@@ -28,6 +28,10 @@ export interface blogTowColProps  {
   isMain: boolean;
 }
 
+export interface blogOneColProps {
+  blogInfo: blogInfo;
+}
+
 export interface chatResProps {
   res: string;
 }

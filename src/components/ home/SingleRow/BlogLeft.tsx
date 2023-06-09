@@ -17,7 +17,7 @@ export default function BlogLeft(props: blogTowColProps) {
     return (
       <div className="border-r-[1px] border-blue-200 text-right flex justify-end items-center">
         <div
-          className={`cursor-pointer overflow-x-hidden relative w-[400px] h-[200px] border-[1px] p-[32px] border-blue-200`}
+          className={`cursor-pointer shadow-md rounded-md overflow-x-hidden relative w-[400px] h-[200px] border-[1px] p-[32px] border-blue-200`}
           onMouseEnter={() => {
             hoverIn();
           }}
@@ -39,6 +39,7 @@ export default function BlogLeft(props: blogTowColProps) {
               imgIn ? "right-0" : "right-[-100%]"
             }  `}
           ></div>
+          <div className="absolute w-full h-full top-0 left-0 bg-white/70 backdrop-blur-md z-[-11]"></div>
           <p className="font-bold text-xl tracking-wider">
             {props.blogInfo.title}
           </p>
@@ -51,7 +52,9 @@ export default function BlogLeft(props: blogTowColProps) {
 
   return (
     <div className="border-r-[1px] border-blue-200 text-right flex justify-end items-center">
-      <p className="mr-[32px] text-xl">{props.blogInfo.date}</p>
+      <div className="w-[150px] shadow-md rounded-md relative h-[50px] text-center leading-[50px] bg-white/70 backdrop-blur-md mr-[32px] text-xl">{props.blogInfo.date}
+      <div className="absolute top-[-50px] h-[50px] w-[107px] left-[75px] border-t-2 border-l-2 border-blue-200"></div>
+      </div>
     </div>
   );
 }

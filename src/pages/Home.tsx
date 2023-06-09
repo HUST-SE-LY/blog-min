@@ -9,6 +9,7 @@ import getAxios from "../utils/getAxios";
 import { blogInfo, getBlogRes } from "../types";
 import { useLoaderData } from "react-router-dom";
 import SingleRow from "../components/ home/SingleRow";
+import getTitleTagPos from "../utils/getTitleTagPos";
 
 const TypingWord = lazy(() => import("../components/public/typingWord"));
 const ChatBox = lazy(() => import("../components/ home/ChatBox"));
@@ -20,6 +21,7 @@ export default function Home() {
   const [blogList, setBlogList] = useState<Array<blogInfo>>(
     loaderData.data.blogs
   );
+  const [showTags, setShowTags] = useState(false);
   document.addEventListener("scroll", (e) => {
     e.stopPropagation();
   });
@@ -117,11 +119,30 @@ export default function Home() {
           ref={headerContainer}
           className="relative w-full h-screen flex gap-[1rem] flex-col items-center justify-center bg-radial-transparent-to-white"
         >
-          <img
-            src={blogConfig.avatar}
-            alt=""
-            className="block w-[5rem] h-[5rem] border-blue-400 border-[1px] rounded-full hover:shadow-md hover:shadow-blue-200 transition-all"
-          />
+          <div className="relative w-fit h-fit">
+            <img
+              src={blogConfig.avatar}
+              alt=""
+              onMouseMove={() => {
+                setShowTags(true);
+              }}
+              onMouseLeave={() => {
+                setShowTags(false);
+              }}
+              className="block w-[5rem] h-[5rem] border-blue-400 border-[1px] rounded-full hover:shadow-md hover:shadow-blue-200 transition-all"
+            />
+            {blogConfig.avatarTags && showTags
+              ? blogConfig.avatarTags.map((tag, index) => {
+                  const pos = getTitleTagPos(index);
+                  return (
+                    <p className={`animate-pulse absolute ${pos.x} ${pos.y}`}>
+                      {tag}
+                    </p>
+                  );
+                })
+              : null}
+          </div>
+
           <p className="font-bold text-2xl">
             <TypingWord time={200} content={blogConfig.title} />
           </p>
@@ -149,10 +170,23 @@ export default function Home() {
             </>
           ) : null}
         </div>
-        <div className="w-full h-screen overflow-y-auto" ref={mainContainer}>
+        <div
+          className="relative w-full h-screen overflow-y-auto non-scrollbar"
+          ref={mainContainer}
+        >
           {blogList.map((blogInfo, index) => (
             <SingleRow key={blogInfo.id} blogInfo={blogInfo} index={index} />
           ))}
+          {blogConfig.mainBackground ? (
+            <>
+              <img
+                className="fixed w-screen h-screen top-0 z-[-1000] left-0"
+                src={blogConfig.mainBackground}
+                alt=""
+              />
+              {/* <div className="fixed w-screen h-screen top-0 left-0 z-[-999] bg-radial-transparent-to-white"></div> */}
+            </>
+          ) : null}
         </div>
       </div>
     </>
