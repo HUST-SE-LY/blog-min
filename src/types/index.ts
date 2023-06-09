@@ -28,4 +28,17 @@ export interface blogTowColProps  {
   isMain: boolean;
 }
 
+export interface chatResProps {
+  res: string;
+}
+
+export interface chatReqProps {
+  req: string;
+}
+
+export interface chatListElement {
+  isReq: boolean;
+  content: string;
+}
+
 

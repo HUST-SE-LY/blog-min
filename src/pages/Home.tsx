@@ -10,8 +10,9 @@ import { blogInfo, getBlogRes } from "../types";
 import { useLoaderData } from "react-router-dom";
 import SingleRow from "../components/ home/SingleRow";
 
-const TypingWord = lazy(() => import("../components/public/typingWord"));
 
+const TypingWord = lazy(() => import("../components/public/typingWord"));
+const ChatBox = lazy(() => import("../components/ home/ChatBox"));
 export default function Home() {
   const mainContainer = useRef<HTMLDivElement>(null);
   const headerContainer = useRef<HTMLDivElement>(null);
@@ -111,6 +112,9 @@ export default function Home() {
   }, []);
   return (
     <div className="h-screen overflow-y-scroll non-scrollbar" ref={container}>
+      {
+        blogConfig.chatBox? <ChatBox /> : null
+      }
       <div
         ref={headerContainer}
         className="relative w-full h-screen flex gap-[1rem] flex-col items-center justify-center bg-radial-transparent-to-white"
