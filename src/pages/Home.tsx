@@ -10,7 +10,6 @@ import { blogInfo, getBlogRes } from "../types";
 import { useLoaderData } from "react-router-dom";
 import SingleRow from "../components/ home/SingleRow";
 
-
 const TypingWord = lazy(() => import("../components/public/typingWord"));
 const ChatBox = lazy(() => import("../components/ home/ChatBox"));
 export default function Home() {
@@ -111,54 +110,51 @@ export default function Home() {
     };
   }, []);
   return (
-    <div className="h-screen overflow-y-scroll non-scrollbar" ref={container}>
-      {
-        blogConfig.chatBox? <ChatBox /> : null
-      }
-      <div
-        ref={headerContainer}
-        className="relative w-full h-screen flex gap-[1rem] flex-col items-center justify-center bg-radial-transparent-to-white"
-      >
-        <img
-          src={blogConfig.avatar}
-          alt=""
-          className="block w-[5rem] h-[5rem] border-blue-400 border-[1px] rounded-full hover:shadow-md hover:shadow-blue-200 transition-all"
-        />
-        <p className="font-bold text-2xl">
-          <TypingWord time={200} content={blogConfig.title} />
-        </p>
-        <p>
-          <TypingWord time={100} content={blogConfig.introduction} />
-        </p>
-        {blogConfig.homeVideo ? (
-          <>
-            <video
-              src={blogConfig.homeVideo}
-              className="-z-10 object-cover w-full h-full absolute top-0 left-0"
-              autoPlay
-              loop
-              muted
-              controls={false}
-            ></video>
-          </>
-        ) : null}
-        {blogConfig.homeBackground ? (
-          <>
-            <img
-              src={blogConfig.homeBackground}
-              className="-z-10 object-fill w-full h-full absolute top-0 left-0"
-            />
-          </>
-        ) : null}
+    <>
+      {blogConfig.chatBox ? <ChatBox /> : null}
+      <div className="h-screen overflow-y-scroll non-scrollbar" ref={container}>
+        <div
+          ref={headerContainer}
+          className="relative w-full h-screen flex gap-[1rem] flex-col items-center justify-center bg-radial-transparent-to-white"
+        >
+          <img
+            src={blogConfig.avatar}
+            alt=""
+            className="block w-[5rem] h-[5rem] border-blue-400 border-[1px] rounded-full hover:shadow-md hover:shadow-blue-200 transition-all"
+          />
+          <p className="font-bold text-2xl">
+            <TypingWord time={200} content={blogConfig.title} />
+          </p>
+          <p>
+            <TypingWord time={100} content={blogConfig.introduction} />
+          </p>
+          {blogConfig.homeVideo ? (
+            <>
+              <video
+                src={blogConfig.homeVideo}
+                className="-z-10 object-cover w-full h-full absolute top-0 left-0"
+                autoPlay
+                loop
+                muted
+                controls={false}
+              ></video>
+            </>
+          ) : null}
+          {blogConfig.homeBackground ? (
+            <>
+              <img
+                src={blogConfig.homeBackground}
+                className="-z-10 object-fill w-full h-full absolute top-0 left-0"
+              />
+            </>
+          ) : null}
+        </div>
+        <div className="w-full h-screen overflow-y-auto" ref={mainContainer}>
+          {blogList.map((blogInfo, index) => (
+            <SingleRow key={blogInfo.id} blogInfo={blogInfo} index={index} />
+          ))}
+        </div>
       </div>
-      <div
-        className="w-full h-screen overflow-y-auto"
-        ref={mainContainer}
-      >
-        {
-          blogList.map((blogInfo,index) => <SingleRow key={blogInfo.id} blogInfo={blogInfo} index={index} />)
-        }
-      </div>
-    </div>
+    </>
   );
 }

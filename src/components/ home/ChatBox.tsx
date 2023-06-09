@@ -1,4 +1,4 @@
-import { lazy, useEffect, useState } from "react";
+import { useState } from "react";
 import blogConfig from "../../blog.config";
 import { chatListElement } from "../../types";
 import { fetchData } from "../../utils/fetchData";
@@ -24,13 +24,16 @@ export default function ChatBox() {
   }
   return (
     <div
-      className={`fixed w-fit h-full flex gap-[1rem] z-20 items-center transition-all ${
+      className={`fixed w-fit h-full flex gap-[1rem] z-[9999] items-center transition-all ${
         showBox ? "right-0" : "right-[-400px]"
       }`}
     >
       <div
         className="flex justify-center items-center w-[40px] h-[40px] rounded-full border-[1px] border-blue-200 bg-white cursor-pointer"
         onClick={() => {
+          setShowBox(!showBox);
+        }}
+        onTouchStart={() => {
           setShowBox(!showBox);
         }}
       >
@@ -45,7 +48,12 @@ export default function ChatBox() {
           />
           <p>赛博柴犬</p>
         </div>
-        <div className=" h-full flex-1 overflow-y-auto p-[0.5rem]">
+        <div
+          onWheel={(e) => {
+            e.stopPropagation();
+          }}
+          className=" h-full flex-1 overflow-y-auto p-[0.5rem]"
+        >
           <SingleInfoRes res={blogConfig.chatWelcomeWord} />
           {chatList.map((info) => {
             if (info.isReq) {
