@@ -45,4 +45,10 @@ export interface chatListElement {
   content: string;
 }
 
+export interface playListElement {
+  name: string;
+  id: number
+}
+
+
 

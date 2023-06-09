@@ -8,11 +8,13 @@ import {
 import getAxios from "../utils/getAxios";
 import { blogInfo, getBlogRes } from "../types";
 import { useLoaderData } from "react-router-dom";
-import SingleRow from "../components/ home/SingleRow";
+import SingleRow from "../components/home/SingleRow";
 import getTitleTagPos from "../utils/getTitleTagPos";
 
+
 const TypingWord = lazy(() => import("../components/public/typingWord"));
-const ChatBox = lazy(() => import("../components/ home/ChatBox"));
+const ChatBox = lazy(() => import("../components/home/ChatBox"));
+const MusicBar = lazy(() => import("../components/home/MusicBar"));
 export default function Home() {
   const mainContainer = useRef<HTMLDivElement>(null);
   const headerContainer = useRef<HTMLDivElement>(null);
@@ -114,6 +116,7 @@ export default function Home() {
   return (
     <>
       {blogConfig.chatBox ? <ChatBox /> : null}
+      {blogConfig.music ? <MusicBar /> : null}
       <div className="h-screen overflow-y-scroll non-scrollbar" ref={container}>
         <div
           ref={headerContainer}
@@ -180,7 +183,7 @@ export default function Home() {
           {blogConfig.mainBackground ? (
             <>
               <img
-                className="fixed w-screen h-screen top-0 z-[-1000] left-0"
+                className="fixed w-screen h-screen object-cover top-0 z-[-1000] left-0"
                 src={blogConfig.mainBackground}
                 alt=""
               />

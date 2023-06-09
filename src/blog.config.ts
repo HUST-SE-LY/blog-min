@@ -16,6 +16,7 @@ interface config {
   introduction: string;
   chatBox: boolean;
   chatWelcomeWord: string;
+  music: boolean;
 
 }
 
@@ -30,6 +31,7 @@ const blogConfig: config = {
   commonTags: false,
   searchByTag: false,
   commonSites: false,
+  music: true,
   sticker: false,
   layout: "two cols",
   avatar: "/src/assets/avatar.jpg",
