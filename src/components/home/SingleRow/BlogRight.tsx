@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { blogTowColProps } from "../../../types";
 import blogConfig from "../../../blog.config";
+import { Link } from "react-router-dom";
 
 export default function BlogRight(props: blogTowColProps) {
   const [imgIn, setImgIn] = useState(false);
@@ -17,7 +18,7 @@ export default function BlogRight(props: blogTowColProps) {
     return (
       <div className="border-l-[1px] border-blue-200 text-left flex justify-start items-center">
         <span className="w-[200px] h-[1px] bg-blue-200"></span>
-        <div
+        <Link to={`/blog/${props.blogInfo.id}`}><div
           className={`shadow-md rounded-md cursor-pointer overflow-x-hidden relative w-[400px] h-[200px] border-[1px] p-[32px] border-blue-200`}
           onMouseEnter={() => {
             hoverIn();
@@ -40,12 +41,13 @@ export default function BlogRight(props: blogTowColProps) {
               imgIn ? "left-0" : "left-[-100%]"
             }  `}
           ></div>
-          <div className="absolute w-full h-full top-0 left-0 bg-white/70 backdrop-blur-md z-[-11]"></div>
+          <div className="absolute w-full h-full top-0 left-0 bg-white/50 backdrop-blur-md z-[-11]"></div>
           <p className="font-bold text-xl tracking-wider">
             {props.blogInfo.title}
           </p>
           <p>{props.blogInfo.des}</p>
-        </div>
+        </div></Link>
+        
       </div>
     );
   }

@@ -4,7 +4,7 @@ interface config {
   mainBackground: false | string;
   homeVideo: false | string;
   avatarTags: false| [string, string?, string?, string?, string?],
-  blogBackground: boolean;
+  blogBackground: false| string;
   blogComment: boolean;
   commonTags: boolean;
   searchByTag: boolean;
@@ -26,7 +26,7 @@ const blogConfig: config = {
   mainBackground: '/src/assets/mainBackground.jpg',
   chatBox: true,
   homeVideo: '/src/assets/background.mp4',
-  blogBackground: true,
+  blogBackground: '/src/assets/blogBackground.jpeg',
   blogComment: false,
   commonTags: false,
   searchByTag: false,

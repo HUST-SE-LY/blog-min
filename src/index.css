@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 .bg-radial-transparent-to-white {
-  background-image: radial-gradient(circle, rgba(255,255,255,0.7), transparent);
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.7),
+    transparent
+  );
 }
 
 .non-scrollbar {
@@ -20,3 +24,58 @@
 .clip-trapezoid-right {
   clip-path: polygon(0 0, 50% 0, 100% 100%, 0% 100%);
 }
+
+.blog-html-pre {
+  overflow-x: auto;
+}
+
+.blog-html-pre code {
+  background-color: transparent;
+}
+
+.hljs-built_in,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-tag {
+  color: #087ea4;
+}
+
+.hljs-keyword {
+  font-style: italic;
+  color: #d73a49;
+}
+
+.hljs-built_in,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-tag {
+  color: #6f42c1;
+}
+
+.hljs-addition,
+.hljs-attribute,
+.hljs-literal,
+.hljs-section,
+.hljs-string,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-title,
+.hljs-type {
+  color: #005cc5;
+}
+
+.hljs-attr, .hljs-property {
+  color: #811e18;
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-variable {
+  color: #5468ff;
+}
+
+
+
+
+
+

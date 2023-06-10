@@ -8,7 +8,7 @@ const BlogSingle = lazy(() => import("./SingleRow/BlogSingle.tsx"));
 
 export default function SingleRow(props: singleRowProps) {
   if (blogConfig.layout === "one col") {
-    return <BlogSingle blogInfo={props.blogInfo} />;
+    return <BlogSingle isLeft={props.index % 2 === 0} blogInfo={props.blogInfo} />;
   }
 
   return (

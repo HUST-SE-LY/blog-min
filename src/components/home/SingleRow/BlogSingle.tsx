@@ -1,6 +1,7 @@
 import { useState } from "react";
 import blogConfig from "../../../blog.config";
 import { blogOneColProps } from "../../../types";
+import { Link } from "react-router-dom";
 
 export default function BlogSingle(props: blogOneColProps) {
   const [imgIn, setImgIn] = useState(false);
@@ -16,6 +17,7 @@ export default function BlogSingle(props: blogOneColProps) {
   return (
     <div>
       <div className="w-[2px] h-[50px] bg-blue-200 mx-[auto]"></div>
+      <Link to={`/blog/${props.blogInfo.id}`}>
         <div
           className={`cursor-pointer overflow-x-hidden relative mx-[auto] w-[400px] h-[200px] border-[1px] p-[32px] border-blue-200`}
           onMouseEnter={() => {
@@ -39,15 +41,16 @@ export default function BlogSingle(props: blogOneColProps) {
               imgIn ? "left-0" : "left-[-100%]"
             }  `}
           ></div>
-          <div className="absolute w-full h-full top-0 left-0 bg-white/70 backdrop-blur-md z-[-11]"></div>
+          <div className="absolute w-full h-full top-0 left-0 bg-white/50 backdrop-blur-md z-[-11]"></div>
           <p className="font-bold text-xl tracking-wider">
             {props.blogInfo.title}
           </p>
           <p>{props.blogInfo.des}</p>
           <p>{props.blogInfo.date}</p>
         </div>
+      </Link>
+
       <div className="w-[2px] h-[50px] bg-blue-200 mx-[auto]"></div>
     </div>
   );
 }
-

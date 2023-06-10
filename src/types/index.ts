@@ -18,6 +18,14 @@ export interface getBlogRes extends basicRes {
   }
 }
 
+export interface getBlogDetailRes {
+  data: {
+    html: string;
+    code: number;
+    msg: string;
+  }
+}
+
 export interface singleRowProps {
   blogInfo: blogInfo;
   index: number
@@ -30,6 +38,7 @@ export interface blogTowColProps  {
 
 export interface blogOneColProps {
   blogInfo: blogInfo;
+  isLeft: boolean;
 }
 
 export interface chatResProps {
@@ -48,6 +57,10 @@ export interface chatListElement {
 export interface playListElement {
   name: string;
   id: number
+}
+
+export interface blogHtmlProps {
+  html: string;
 }
 
 

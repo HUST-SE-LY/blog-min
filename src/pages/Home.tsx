@@ -76,6 +76,7 @@ export default function Home() {
     if (mainContainer.current) {
       let isGoingToTop = false;
       mainContainer.current.addEventListener("wheel", (e) => {
+        console.log(1111)
         if (!mainContainer.current?.scrollTop && e.deltaY < 0) {
           e.preventDefault();
           if (isGoingToTop) return;

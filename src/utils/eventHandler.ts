@@ -2,10 +2,20 @@ import throttle from "./throttle";
 
 export const handleScroll = throttle(
   (e: WheelEvent, from: HTMLDivElement, to: HTMLDivElement) => {
+    function prevent(e: WheelEvent) {
+      e.preventDefault()
+    }
+    e.preventDefault()
     if (e.deltaY > 0) {
       to.scrollIntoView({
         behavior: "smooth",
       });
+      to.addEventListener('wheel',prevent
+      )
+      setTimeout(()=> {
+        to.removeEventListener('wheel',prevent)
+      },800)
+      
     } else {
       from.scrollIntoView({
         behavior: "smooth",
