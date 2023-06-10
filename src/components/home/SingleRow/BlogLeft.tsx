@@ -1,10 +1,26 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { blogTowColProps } from "../../../types";
 import blogConfig from "../../../blog.config";
 import { Link } from "react-router-dom";
 
 export default function BlogLeft(props: blogTowColProps) {
   const [imgIn, setImgIn] = useState(false);
+  const mainBox = useRef<HTMLDivElement>(null)
+  const [showMain, setShowMain] = useState(false);
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].intersectionRatio > 0) {
+        setShowMain(true);
+      } else {
+        setShowMain(false);
+      }
+    },{
+      threshold: [0,0.1]
+    });
+    if (mainBox.current) {
+      observer.observe(mainBox.current);
+    }
+  }, []);
   function hoverIn() {
     setImgIn(true);
   }
@@ -16,10 +32,11 @@ export default function BlogLeft(props: blogTowColProps) {
   const img = `https://www.coisini.love/api/picture/${props.blogInfo.picture}`;
   if (props.isMain) {
     return (
-      <div className="border-r-[1px] border-blue-200 text-right flex justify-end items-center">
-        <Link to={`/blog/${props.blogInfo.id}`}>
+      <div ref={mainBox} className="border-r-[1px] border-blue-200 text-right flex gap-[20px] justify-end items-center">
+        {
+          showMain ? <Link to={`/blog/${props.blogInfo.id}`}>
           <div
-            className={`cursor-pointer shadow-md rounded-md overflow-x-hidden relative w-[400px] h-[200px] border-[1px] p-[32px] border-blue-200`}
+            className={` animate-comeInFromLeft cursor-pointer animate-floating shadow-2xl rounded-md overflow-x-hidden relative w-[400px] h-[200px] border-[1px] p-[32px] border-blue-200`}
             onMouseEnter={() => {
               hoverIn();
             }}
@@ -41,15 +58,18 @@ export default function BlogLeft(props: blogTowColProps) {
                 imgIn ? "right-0" : "right-[-100%]"
               }  `}
             ></div>
-            <div className="absolute w-full h-full top-0 left-0 bg-white/50 backdrop-blur-md z-[-11]"></div>
+            <div className="absolute w-full h-full top-0 left-0 bg-white/70 z-[-11]"></div>
             <p className="font-bold text-xl tracking-wider">
               {props.blogInfo.title}
             </p>
             <p>{props.blogInfo.des}</p>
           </div>
-        </Link>
+        </Link> : null
+        }
 
-        <span className="w-[200px] h-[1px] bg-blue-200"></span>
+        <span className="relative w-[150px] h-[1px] bg-blue-200">
+          <span className="absolute w-[5px] h-[5px] rounded-full bg-blue-200 left-0 top-[-2px]"></span>
+        </span>
       </div>
     );
   }
@@ -63,3 +83,5 @@ export default function BlogLeft(props: blogTowColProps) {
     </div>
   );
 }
+
+

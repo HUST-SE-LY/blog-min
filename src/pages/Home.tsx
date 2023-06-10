@@ -10,7 +10,7 @@ import { blogInfo, getBlogRes } from "../types";
 import { useLoaderData } from "react-router-dom";
 import SingleRow from "../components/home/SingleRow";
 import getTitleTagPos from "../utils/getTitleTagPos";
-
+import loadingSVG from "../assets/loading.svg"
 
 const TypingWord = lazy(() => import("../components/public/typingWord"));
 const ChatBox = lazy(() => import("../components/home/ChatBox"));
@@ -20,13 +20,37 @@ export default function Home() {
   const headerContainer = useRef<HTMLDivElement>(null);
   const container = useRef<HTMLDivElement>(null);
   const loaderData = useLoaderData() as getBlogRes;
+  const [isBottom, setIsBottom] = useState(false);
+  const loadingBall = useRef<HTMLImageElement>(null);
+  const axios = getAxios();
+  const limit = 10;
+  let offset = 10;
   const [blogList, setBlogList] = useState<Array<blogInfo>>(
     loaderData.data.blogs
   );
+  const currentList = [...blogList]
   const [showTags, setShowTags] = useState(false);
   document.addEventListener("scroll", (e) => {
     e.stopPropagation();
   });
+  async function updateBlogList() {
+    const res = await axios
+      .post("/get/blog", {
+        limit: limit,
+        offset: offset,
+      })
+      .catch((err) => {
+        throw err;
+      });
+    const blogs = (res as unknown as getBlogRes).data.blogs;
+    if (blogs.length < limit) {
+      setIsBottom(true);
+    }
+    offset += blogs.length;
+    currentList.push(...blogs);
+    setBlogList(currentList);
+    console.log(blogList)
+  }
   useEffect(() => {
     const handler: (e: WheelEvent) => void = (e: WheelEvent) => {
       if (
@@ -76,7 +100,6 @@ export default function Home() {
     if (mainContainer.current) {
       let isGoingToTop = false;
       mainContainer.current.addEventListener("wheel", (e) => {
-        console.log(1111)
         if (!mainContainer.current?.scrollTop && e.deltaY < 0) {
           e.preventDefault();
           if (isGoingToTop) return;
@@ -113,6 +136,21 @@ export default function Home() {
         });
       }
     };
+  }, []);
+  useEffect(() => {
+    let isLoading = false;
+    const observer = new IntersectionObserver(async (entries) => {
+      if(isLoading) return;
+      isLoading = true;
+      if(entries[0].intersectionRatio > 0) {
+        await updateBlogList();
+      }
+      isLoading = false;
+    })
+    if(loadingBall.current) {
+      observer.observe(loadingBall.current)
+    }
+    
   }, []);
   return (
     <>
@@ -191,6 +229,13 @@ export default function Home() {
               {/* <div className="fixed w-screen h-screen top-0 left-0 z-[-999] bg-radial-transparent-to-white"></div> */}
             </>
           ) : null}
+          <div className="w-full flex justify-center items-center">
+            {
+              !isBottom ? <div className="w-[40px] h-[40px] rounded-full animate-spin flex justify-center items-center bg-blue-200">
+                <img ref={loadingBall} src={loadingSVG} alt="" />
+              </div> : <div className="w-fit h-fit px-[2rem] py-[1rem] border-2 border-blue-200 bg-white/80 rounded-lg mb-[2rem] ">已经到尽头了哦</div>
+            }
+          </div>
         </div>
       </div>
     </>

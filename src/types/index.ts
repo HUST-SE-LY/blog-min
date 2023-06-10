@@ -63,5 +63,10 @@ export interface blogHtmlProps {
   html: string;
 }
 
+export interface blogContentTitles {
+  style: string
+  title: string;
+}
+
 
 

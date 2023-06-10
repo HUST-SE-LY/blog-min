@@ -6,6 +6,7 @@ interface config {
   avatarTags: false| [string, string?, string?, string?, string?],
   blogBackground: false| string;
   blogComment: boolean;
+  blogContent: boolean;
   commonTags: boolean;
   searchByTag: boolean;
   commonSites: boolean;
@@ -28,6 +29,7 @@ const blogConfig: config = {
   homeVideo: '/src/assets/background.mp4',
   blogBackground: '/src/assets/blogBackground.jpeg',
   blogComment: false,
+  blogContent: true,
   commonTags: false,
   searchByTag: false,
   commonSites: false,

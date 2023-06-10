@@ -15,7 +15,7 @@ export default function BlogHtml(props: blogHtmlProps) {
     code: BlogCode,
   }
   return (
-    <div className="max-w-[800px] mx-auto border-x-2 bg-white/90  py-[1rem] px-[2rem] border-blue-200">
+    <div className="max-w-[800px] mx-auto border-x-2 bg-white/90 transition-all hover:backdrop-blur-sm  py-[1rem] px-[2rem] border-blue-200">
       {htmr(props.html, {
         transform
       })}

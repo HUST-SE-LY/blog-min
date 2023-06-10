@@ -5,27 +5,27 @@ interface simpleProps {
 }
 
 export function BlogH1(props: simpleProps) {
-  return <h1 className="leading-[64px] text-[24px] font-bold">{props.children}</h1>
+  return <h1 className="h leading-[64px] text-[24px] font-bold">{props.children}</h1>
 }
 
 export function BlogH2(props: simpleProps) {
-  return <h2 className="leading-[60px] text-[22px] font-bold">{props.children}</h2>
+  return <h2 className="h leading-[60px] text-[22px] font-bold">{props.children}</h2>
 }
 
 export function BlogH3(props: simpleProps) {
-  return <h3 className="leading-[56px] text-[20px] font-bold">{props.children}</h3>
+  return <h3 className="h leading-[56px] text-[20px] font-bold">{props.children}</h3>
 }
 
 export function BlogH4(props: simpleProps) {
-  return <h4 className="leading-[52px] text-[18px] font-bold">{props.children}</h4>
+  return <h4 className="h leading-[52px] text-[18px] font-bold">{props.children}</h4>
 }
 
 export function BlogH5(props: simpleProps) {
-  return <h5 className="leading-[48px] text-[16px] font-bold">{props.children}</h5>
+  return <h5 className="h leading-[48px] text-[16px] font-bold">{props.children}</h5>
 }
 
 export function BlogH6(props: simpleProps) {
-  return <h6 className="leading-[44px] text-[16px] font-bold text-gray-600">{props.children}</h6>
+  return <h6 className="h leading-[44px] text-[16px] font-bold text-gray-600">{props.children}</h6>
 }
 
 export function BlogP(props: simpleProps) {
