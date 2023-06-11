@@ -23,6 +23,8 @@ export interface getBlogDetailRes {
     html: string;
     code: number;
     msg: string;
+    date: string;
+    title: string;
   }
 }
 
@@ -61,11 +63,22 @@ export interface playListElement {
 
 export interface blogHtmlProps {
   html: string;
+  title: string;
+  date: string;
 }
 
 export interface blogContentTitles {
   style: string
   title: string;
+}
+
+export interface getBlogTagRes {
+  data: {
+    tags: Array<{
+      id: number;
+      name: string;
+    }>
+  }
 }
 
 

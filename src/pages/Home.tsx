@@ -10,7 +10,9 @@ import { blogInfo, getBlogRes } from "../types";
 import { useLoaderData } from "react-router-dom";
 import SingleRow from "../components/home/SingleRow";
 import getTitleTagPos from "../utils/getTitleTagPos";
-import loadingSVG from "../assets/loading.svg"
+import loadingSVG from "../assets/loading.svg";
+import toTopSVG from "../assets/toTop.svg"
+import toTop from "../utils/toTop";
 
 const TypingWord = lazy(() => import("../components/public/typingWord"));
 const ChatBox = lazy(() => import("../components/home/ChatBox"));
@@ -28,7 +30,7 @@ export default function Home() {
   const [blogList, setBlogList] = useState<Array<blogInfo>>(
     loaderData.data.blogs
   );
-  const currentList = [...blogList]
+  const currentList = [...blogList];
   const [showTags, setShowTags] = useState(false);
   document.addEventListener("scroll", (e) => {
     e.stopPropagation();
@@ -49,7 +51,6 @@ export default function Home() {
     offset += blogs.length;
     currentList.push(...blogs);
     setBlogList(currentList);
-    console.log(blogList)
   }
   useEffect(() => {
     const handler: (e: WheelEvent) => void = (e: WheelEvent) => {
@@ -140,17 +141,18 @@ export default function Home() {
   useEffect(() => {
     let isLoading = false;
     const observer = new IntersectionObserver(async (entries) => {
-      if(isLoading) return;
+      if (isLoading) return;
       isLoading = true;
-      if(entries[0].intersectionRatio > 0) {
+      if (entries[0].intersectionRatio > 0) {
         await updateBlogList();
       }
-      isLoading = false;
-    })
-    if(loadingBall.current) {
-      observer.observe(loadingBall.current)
+      isLoading = false
+    },{
+      threshold: [0,0.1,0.5,1]
+    });
+    if (loadingBall.current) {
+      observer.observe(loadingBall.current);
     }
-    
   }, []);
   return (
     <>
@@ -230,14 +232,21 @@ export default function Home() {
             </>
           ) : null}
           <div className="w-full flex justify-center items-center">
-            {
-              !isBottom ? <div className="w-[40px] h-[40px] rounded-full animate-spin flex justify-center items-center bg-blue-200">
+            {!isBottom ? (
+              <div className="w-[40px] h-[40px] rounded-full animate-spin flex justify-center items-center bg-blue-200">
                 <img ref={loadingBall} src={loadingSVG} alt="" />
-              </div> : <div className="w-fit h-fit px-[2rem] py-[1rem] border-2 border-blue-200 bg-white/80 rounded-lg mb-[2rem] ">已经到尽头了哦</div>
-            }
+              </div>
+            ) : (
+              <div className="w-fit h-fit px-[2rem] py-[1rem] border-2 border-blue-200 bg-white/80 rounded-lg mb-[2rem] ">
+                已经到尽头了哦
+              </div>
+            )}
           </div>
         </div>
       </div>
+      <div onClick={() => {toTop(mainContainer.current as HTMLElement)}} className="z-[904] fixed right-[150px] bottom-[100px] w-[40px] h-[40px] bg-white border-blue-200 border-2 cursor-pointer rounded-full flex justify-center items-center">
+      <img src={toTopSVG} alt="" />
+    </div>
     </>
   );
 }

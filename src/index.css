@@ -25,6 +25,10 @@
   clip-path: polygon(0 0, 50% 0, 100% 100%, 0% 100%);
 }
 
+.blog-title {
+  clip-path: polygon(0 0, 70% 0, 100% 100%, 0% 100%);
+}
+
 .blog-html-pre {
   overflow-x: auto;
 }
