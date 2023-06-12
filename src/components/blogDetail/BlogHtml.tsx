@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import htmr from "htmr";
-import { blogHtmlProps, getBlogRes, getBlogTagRes } from "../../types";
+import { blogHtmlProps, getBlogTagRes } from "../../types";
 import {
   BlogCode,
   BlogH1,

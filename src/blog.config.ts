@@ -8,7 +8,7 @@ interface config {
   blogComment: boolean;
   blogContent: boolean;
   commonTags: boolean;
-  searchByTag: boolean;
+  search: boolean;
   commonSites: boolean;
   sticker: false | Array<string>;
   layout: "one col" | "two cols";
@@ -31,7 +31,7 @@ const blogConfig: config = {
   blogComment: false,
   blogContent: true,
   commonTags: false,
-  searchByTag: false,
+  search: true,
   commonSites: false,
   music: true,
   sticker: false,

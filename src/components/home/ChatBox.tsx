@@ -32,7 +32,7 @@ export default function ChatBox() {
   },[currentRes]);
   return (
     <div
-      className={`fixed w-fit h-full flex gap-[1rem] z-[902] items-center transition-all ${
+      className={`fixed w-fit h-full flex gap-[1rem] z-[906] items-center transition-all ${
         showBox ? "right-0" : "right-[-400px]"
       }`}
     >

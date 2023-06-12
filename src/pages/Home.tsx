@@ -17,6 +17,7 @@ import toTop from "../utils/toTop";
 const TypingWord = lazy(() => import("../components/public/typingWord"));
 const ChatBox = lazy(() => import("../components/home/ChatBox"));
 const MusicBar = lazy(() => import("../components/home/MusicBar"));
+const SideBar = lazy(() => import("../components/home/SideBar"));
 export default function Home() {
   const mainContainer = useRef<HTMLDivElement>(null);
   const headerContainer = useRef<HTMLDivElement>(null);
@@ -121,22 +122,6 @@ export default function Home() {
         e.stopPropagation();
       });
     }
-    return () => {
-      if (container.current) {
-        container.current.removeEventListener("wheel", (e) => {
-          e.preventDefault();
-          handler(e);
-        });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        container.current.removeEventListener("touchstart", (e) => {
-          e.preventDefault();
-          mobileHandler(e);
-        });
-        document.removeEventListener("keyup", (e) => {
-          keyboardHandler(e);
-        });
-      }
-    };
   }, []);
   useEffect(() => {
     let isLoading = false;
@@ -153,11 +138,13 @@ export default function Home() {
     if (loadingBall.current) {
       observer.observe(loadingBall.current);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>
       {blogConfig.chatBox ? <ChatBox /> : null}
       {blogConfig.music ? <MusicBar /> : null}
+      {blogConfig.search || blogConfig.commonSites || blogConfig.commonTags ? <SideBar /> : null}
       <div className="h-screen overflow-y-scroll non-scrollbar" ref={container}>
         <div
           ref={headerContainer}

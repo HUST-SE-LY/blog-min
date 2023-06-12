@@ -1,21 +1,23 @@
+import React from "react";
+import { asyncDebounce } from "./debounce";
+import getAxios from "./getAxios";
 import throttle from "./throttle";
+import requests from "./requests";
 
 export const handleScroll = throttle(
   (e: WheelEvent, from: HTMLDivElement, to: HTMLDivElement) => {
     function prevent(e: WheelEvent) {
-      e.preventDefault()
+      e.preventDefault();
     }
-    e.preventDefault()
+    e.preventDefault();
     if (e.deltaY > 0) {
       to.scrollIntoView({
         behavior: "smooth",
       });
-      to.addEventListener('wheel',prevent
-      )
-      setTimeout(()=> {
-        to.removeEventListener('wheel',prevent)
-      },800)
-      
+      to.addEventListener("wheel", prevent);
+      setTimeout(() => {
+        to.removeEventListener("wheel", prevent);
+      }, 800);
     } else {
       from.scrollIntoView({
         behavior: "smooth",
@@ -81,4 +83,27 @@ export const handleKeyBoard = throttle(
     }
   },
   800
+);
+
+export const handleSearchBarInput = await asyncDebounce(
+  async (
+    keyWords: string,
+    limit: number,
+    offset: number,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  ) => {
+    const axios = getAxios();
+    if (!keyWords) {
+      setLoading(false);
+      return;
+    }
+    const result = await axios.post(requests.getBlogByTitle, {
+      limit: limit,
+      offset: offset,
+      title: keyWords,
+    });
+    setLoading(false);
+    return result.data.blogs;
+  },
+  500
 );
