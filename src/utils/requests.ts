@@ -10,6 +10,7 @@ const requestConfig = blogConfig.requests as {
     getTags: routerType;
     getBlogTags: routerType;
     getBlogByTags: routerType;
+    getLinks: routerType;
   };
 }
 const routers = requestConfig.router;
@@ -51,6 +52,12 @@ export async function getBlogTags(params: getBlogTagsParams) {
 export async function getBlogByTags(params: getBlogByTagsParams) {
   return await basicRequest(routers.getBlogByTags.path, routers.getBlogByTags.method, params)
 }
+
+export async function getLinks() {
+  return await basicRequest(routers.getLinks.path, routers.getLinks.method)
+}
+
+
 
 
 

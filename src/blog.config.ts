@@ -1,4 +1,4 @@
-import { routerType } from "./types";
+import { routerType, staticLink } from "./types";
 
 interface config {
   static: boolean;
@@ -10,9 +10,10 @@ interface config {
   blogComment: boolean;
   blogContent: boolean;
   commonTags: boolean;
+  staticCommonTags: false | [string, string?, string?, string?, string?];
   search: boolean;
   commonSites: boolean;
-  sticker: false | Array<string>;
+  staticCommonSites: false | Array<staticLink>;
   layout: "one col" | "two cols";
   avatar: string;
   title: string;
@@ -20,6 +21,7 @@ interface config {
   chatBox: boolean;
   chatWelcomeWord: false | string;
   music: boolean;
+  staticMusicList: false| Array<string>;
   requests:
     | false
     | {
@@ -31,9 +33,12 @@ interface config {
           getTags: routerType;
           getBlogTags: routerType;
           getBlogByTags: routerType;
+          getLinks: routerType;
         };
       };
+  
 }
+
 
 export interface getBlogListParams {
   limit: number;
@@ -58,6 +63,11 @@ export interface getBlogByTagsParams {
   limit: number;
   offset: number;
   tag: string;
+}
+
+export interface getLinksParams {
+  limit: number;
+  offset: number;
 }
 
 const blogConfig: config = {
@@ -90,6 +100,10 @@ const blogConfig: config = {
         path: "/get/blogByTag",
         method: "post",
       },
+      getLinks: {
+        path: "/get/link",
+        method: "post",
+      },
     },
   },
   homeBackground: false,
@@ -100,10 +114,15 @@ const blogConfig: config = {
   blogComment: false,
   blogContent: true,
   commonTags: true,
+  staticCommonTags: ["vue", "react"],
   search: true,
   commonSites: true,
+  staticCommonSites: [{
+    name: "bilibili",
+    url: "https://www.bilibili.com/",
+  }],
   music: true,
-  sticker: false,
+  staticMusicList: ["/src/assets/bgm.m4a"],
   layout: "two cols",
   avatar: "/src/assets/avatar.jpg",
   avatarTags: ["前端", "想吃薯条", "infp", "enfp", "睡眠好差"],
@@ -112,5 +131,7 @@ const blogConfig: config = {
   chatWelcomeWord:
     "你好，我是柴犬的朋友赛博柴犬，你可以在下面的输入框里添加openAI的apiKey来与我对话，我不会收集任何apiKey",
 };
+
+
 
 export default blogConfig;

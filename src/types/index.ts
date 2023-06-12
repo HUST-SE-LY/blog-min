@@ -97,3 +97,8 @@ export interface routerType {
   path: string;
   method: 'get'|'post';
 }
+
+export interface staticLink {
+  name: string;
+  url: string;
+}
