@@ -11,7 +11,7 @@ import { useLoaderData } from "react-router-dom";
 import SingleRow from "../components/home/SingleRow";
 import getTitleTagPos from "../utils/getTitleTagPos";
 import loadingSVG from "../assets/loading.svg";
-import toTopSVG from "../assets/toTop.svg"
+import toTopSVG from "../assets/toTop.svg";
 import toTop from "../utils/toTop";
 
 const TypingWord = lazy(() => import("../components/public/typingWord"));
@@ -125,26 +125,31 @@ export default function Home() {
   }, []);
   useEffect(() => {
     let isLoading = false;
-    const observer = new IntersectionObserver(async (entries) => {
-      if (isLoading) return;
-      isLoading = true;
-      if (entries[0].intersectionRatio > 0) {
-        await updateBlogList();
+    const observer = new IntersectionObserver(
+      async (entries) => {
+        if (isLoading) return;
+        isLoading = true;
+        if (entries[0].intersectionRatio > 0) {
+          await updateBlogList();
+        }
+        isLoading = false;
+      },
+      {
+        threshold: [0, 0.1, 0.5, 1],
       }
-      isLoading = false
-    },{
-      threshold: [0,0.1,0.5,1]
-    });
+    );
     if (loadingBall.current) {
       observer.observe(loadingBall.current);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>
       {blogConfig.chatBox ? <ChatBox /> : null}
       {blogConfig.music ? <MusicBar /> : null}
-      {blogConfig.search || blogConfig.commonSites || blogConfig.commonTags ? <SideBar /> : null}
+      {blogConfig.search || blogConfig.commonSites || blogConfig.commonTags ? (
+        <SideBar />
+      ) : null}
       <div className="h-screen overflow-y-scroll non-scrollbar" ref={container}>
         <div
           ref={headerContainer}
@@ -231,9 +236,14 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div onClick={() => {toTop(mainContainer.current as HTMLElement)}} className="z-[904] fixed right-[150px] bottom-[100px] w-[40px] h-[40px] bg-white border-blue-200 border-2 cursor-pointer rounded-full flex justify-center items-center">
-      <img src={toTopSVG} alt="" />
-    </div>
+      <div
+        onClick={() => {
+          toTop(mainContainer.current as HTMLElement);
+        }}
+        className="z-[904] fixed right-[150px] bottom-[100px] w-[40px] h-[40px] bg-white border-blue-200 border-2 cursor-pointer rounded-full flex justify-center items-center"
+      >
+        <img src={toTopSVG} alt="" />
+      </div>
     </>
   );
 }

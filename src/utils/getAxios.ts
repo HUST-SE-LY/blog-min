@@ -1,9 +1,10 @@
 import axios from "axios";
+import blogConfig from "../blog.config";
 
 function getAxios() {
   const instance = axios.create({
     timeout: 3000000,
-    baseURL: "https://www.coisini.love/api"
+    baseURL: blogConfig.requests ? blogConfig.requests.host : "https://www.coisini.love"
   });
 
   instance.interceptors.request.use((config) => {

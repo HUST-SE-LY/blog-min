@@ -63,7 +63,7 @@ export default function ChatBox() {
           className=" h-full flex-1 overflow-y-auto p-[0.5rem]"
           ref={main}
         >
-          <SingleInfoRes res={blogConfig.chatWelcomeWord} />
+          <SingleInfoRes res={blogConfig.chatWelcomeWord as string} />
           {chatList.map((info) => {
             if (info.isReq) {
               return <SingleInfoReq key={id++} req={info.content} />;

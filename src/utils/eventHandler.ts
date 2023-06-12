@@ -1,8 +1,7 @@
 import React from "react";
 import { asyncDebounce } from "./debounce";
-import getAxios from "./getAxios";
 import throttle from "./throttle";
-import requests from "./requests";
+import { getBlogByTitle } from "./requests";
 
 export const handleScroll = throttle(
   (e: WheelEvent, from: HTMLDivElement, to: HTMLDivElement) => {
@@ -92,16 +91,11 @@ export const handleSearchBarInput = await asyncDebounce(
     offset: number,
     setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   ) => {
-    const axios = getAxios();
     if (!keyWords) {
       setLoading(false);
       return;
     }
-    const result = await axios.post(requests.getBlogByTitle, {
-      limit: limit,
-      offset: offset,
-      title: keyWords,
-    });
+    const result = await getBlogByTitle({limit: limit, offset: offset, title: keyWords});
     setLoading(false);
     return result.data.blogs;
   },

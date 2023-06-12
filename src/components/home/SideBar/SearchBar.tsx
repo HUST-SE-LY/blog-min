@@ -2,8 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { blogInfo } from "../../../types";
 import { handleSearchBarInput } from "../../../utils/eventHandler";
 import { Link } from "react-router-dom";
-import getAxios from "../../../utils/getAxios";
-import requests from "../../../utils/requests";
+import { getBlogByTitle } from "../../../utils/requests";
 
 export default function SearchBar() {
   const [resultList, setResultList] = useState<Array<blogInfo>>([]);
@@ -15,7 +14,6 @@ export default function SearchBar() {
   const limit = 10;
   // eslint-disable-next-line prefer-const
   let offset = 0;
-  const axios = getAxios();
   async function handler(value: string) {
     const res = (await handleSearchBarInput(
       value,
@@ -32,11 +30,7 @@ export default function SearchBar() {
 
   async function updateList() {
     offset += resultList.length;
-    const res = await axios.post(requests.getBlogByTitle, {
-      limit: limit,
-      offset: offset,
-      title: keyWords,
-    });
+    const res = await getBlogByTitle({limit: limit, offset: offset, title: keyWords});
     console.log(res.data.blogs);
     if (res.data.blogs) {
       if (res.data.blogs.length < limit) setIsBottom(true);

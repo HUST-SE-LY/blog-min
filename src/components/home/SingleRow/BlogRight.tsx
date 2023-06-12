@@ -9,7 +9,6 @@ export default function BlogRight(props: blogTowColProps) {
   const [showMain, setShowMain] = useState(true);
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
-      console.log(entries[0].intersectionRatio)
       if (entries[0].intersectionRatio > 0) {
         setShowMain(true);
       } else {

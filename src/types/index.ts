@@ -7,15 +7,11 @@ export interface blogInfo {
   title: string;
 }
 
-export interface basicRes {
-  code: number;
-  message: string;
-}
 
-export interface getBlogRes extends basicRes {
-  data: {   
-      blogs: Array<blogInfo>
-  }
+export interface getBlogRes {
+  data: {
+    blogs: Array<blogInfo>;
+  };
 }
 
 export interface getBlogDetailRes {
@@ -25,15 +21,15 @@ export interface getBlogDetailRes {
     msg: string;
     date: string;
     title: string;
-  }
+  };
 }
 
 export interface singleRowProps {
   blogInfo: blogInfo;
-  index: number
+  index: number;
 }
 
-export interface blogTowColProps  {
+export interface blogTowColProps {
   blogInfo: blogInfo;
   isMain: boolean;
 }
@@ -58,7 +54,7 @@ export interface chatListElement {
 
 export interface playListElement {
   name: string;
-  id: number
+  id: number;
 }
 
 export interface blogHtmlProps {
@@ -68,18 +64,36 @@ export interface blogHtmlProps {
 }
 
 export interface blogContentTitles {
-  style: string
+  style: string;
   title: string;
+}
+
+export interface tagInfo {
+  id: number;
+  name: string;
 }
 
 export interface getBlogTagRes {
   data: {
-    tags: Array<{
-      id: number;
-      name: string;
-    }>
+    tags: Array<tagInfo>;
+  };
+}
+
+export interface getTagsRes {
+  data: {
+    tags: Array<tagInfo>;
   }
 }
 
+export interface singleTagProps {
+  content: string;
+  setList: React.Dispatch<React.SetStateAction<blogInfo[]>>;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  setIsBottom: React.Dispatch<React.SetStateAction<boolean>>
+  setCurrentTag: React.Dispatch<React.SetStateAction<string>>
+}
 
-
+export interface routerType {
+  path: string;
+  method: 'get'|'post';
+}
