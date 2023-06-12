@@ -102,3 +102,9 @@ export interface staticLink {
   name: string;
   url: string;
 }
+
+export interface getLinksRes {
+  data: {
+    links: Array<staticLink>
+  }
+}

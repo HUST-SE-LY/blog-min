@@ -4,6 +4,7 @@ import blogConfig from "../../blog.config";
 
 const SearchBar = lazy(() => import("./SideBar/SearchBar"));
 const CommonTags = lazy(() => import("./SideBar/CommonTags"));
+const CommonLinks = lazy(() => import("./SideBar/CommonLinks"));
 
 export default function SideBar() {
   const [showSideBar, setShowSideBar] = useState(false);
@@ -14,6 +15,9 @@ export default function SideBar() {
       }
       {
         blogConfig.commonTags ? <CommonTags /> : null
+      }
+      {
+        blogConfig.commonSites ? <CommonLinks /> : null
       }
     </div>
     <div onClick={() => {setShowSideBar(!showSideBar)}} className="cursor-pointer w-[40px] h-[40px] rounded-full flex justify-center items-center bg-white border-[1px] border-blue-200">

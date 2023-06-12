@@ -13,16 +13,19 @@ export default function ChatBox() {
   const [currentRes, setCurrentRes] = useState("");
   const [chatList, setChatList] = useState<Array<chatListElement>>([]);
   const main = useRef<HTMLDivElement>(null);
-
+  const [loading, setLoading] = useState(false);
   let id = 0;
   const systemPrompt = "现在假设你是一个赛博朋克柴犬，能回答我提出的问题，你的回答方式要像赛博朋克柴犬说话的样子。我的问题是："
   async function send() {
     if (!reqContent && !apiKey) return;
+    if (loading) return;
+    setLoading(true)
     const list = [...chatList, { isReq: true, content: reqContent }];
     setChatList(list);
     await fetchData(apiKey, systemPrompt + reqContent, setCurrentRes, (data) => {
       setCurrentRes("");
       setChatList([...list, { isReq: false, content: data }]);
+      setLoading(false)
     });
   }
   useEffect(() => {
@@ -91,6 +94,7 @@ export default function ChatBox() {
             placeholder="和赛博柴犬聊天"
           ></textarea>
           <button
+            disabled={loading}
             className="w-full bg-blue-400 transition-all hover:bg-blue-500 text-white py-[0.5rem] rounded"
             onClick={() => {
               send();

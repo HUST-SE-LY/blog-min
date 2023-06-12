@@ -39,9 +39,10 @@ export default function CommonTags() {
       });
       observer.observe(bottom.current);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[isBottom])
   return (
-    <div className="max-h-[30%] pt-[1rem] overflow-y-auto non-scrollbar">
+    <div className="max-h-[30%] pt-[1rem] overflow-y-auto non-scrollbar border-b-2 border-blue-200">
       <p className="relative px-[1rem] before:absolute before:h-full before:top-0 before:left-0 before:w-[5px] before:bg-gradient-to-br before:from-purple-300 before:to-blue-300 before:transition-all hover:before:w-[10px]">
         常用Tag
       </p>
