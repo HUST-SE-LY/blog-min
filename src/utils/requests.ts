@@ -51,10 +51,10 @@ export async function getBlogList(params: getBlogListParams) {
 }
 
 export async function getStaticBlogList(params: getBlogListParams) {
-  const blogList = (await basicStaticRequest()) as staticBlogInfo[];
+  let blogList = (await basicStaticRequest()) as staticBlogInfo[];
   blogList.length - params.offset > params.limit
-    ? blogList.slice(params.offset, params.offset + params.limit)
-    : null;
+    ? blogList = blogList.slice(params.offset, params.offset + params.limit)
+    : blogList = blogList.slice(params.offset, blogList.length);
   return blogList;
 }
 
@@ -82,12 +82,12 @@ export async function getBlogByTitle(params: getBlogByTitleParams) {
 
 export async function getStaticBlogByTitle(params: getBlogByTitleParams) {
   const blogList = (await basicStaticRequest()) as staticBlogInfo[];
-  const blogsNeed = blogList.filter((blog) =>
+  let blogsNeed = blogList.filter((blog) =>
     blog.title.includes(params.title)
   );
   blogsNeed.length - params.offset > params.limit
-    ? blogsNeed.slice(params.offset, params.offset + params.limit)
-    : null;
+    ? blogsNeed = blogsNeed.slice(params.offset, params.offset + params.limit)
+    : blogsNeed = blogsNeed.slice(params.offset, blogList.length);
   return blogsNeed;
 }
 
@@ -121,10 +121,10 @@ export async function getBlogByTags(params: getBlogByTagsParams) {
 
 export async function getStaticBlogByTags(params: getBlogByTagsParams) {
   const blogList = (await basicStaticRequest()) as staticBlogInfo[];
-  const blogsNeed = blogList.filter(blog => blog.tags.includes(params.tag));
+  let blogsNeed = blogList.filter(blog => blog.tags.includes(params.tag));
   blogsNeed.length - params.offset > params.limit
-    ? blogsNeed.slice(params.offset, params.offset + params.limit)
-    : null;
+    ? blogsNeed = blogsNeed.slice(params.offset, params.offset + params.limit)
+    : blogsNeed = blogsNeed.slice(params.offset, blogList.length);
   return blogsNeed;
 }
 

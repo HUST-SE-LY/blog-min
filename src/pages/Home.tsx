@@ -30,20 +30,20 @@ export default function Home() {
   const [blogList, setBlogList] = useState<
     Array<blogInfo> | Array<staticBlogInfo>
   >([]);
-  const currentList = [...blogList];
   const [showTags, setShowTags] = useState(false);
   document.addEventListener("scroll", (e) => {
     e.stopPropagation();
   });
   async function updateBlogList() {
+    offset += blogList.length;
     if (blogConfig.static) {
-      const res = await getStaticBlogList({limit: limit, offset: offset});
+      const res = await getStaticBlogList({ limit: limit, offset: offset });
+      console.log(res);
       if (res.length < limit) {
         setIsBottom(true);
       }
       offset += res.length;
-      currentList.push(...res);
-      setBlogList(currentList as staticBlogInfo[])
+      setBlogList((prev) => [...prev, ...res]);
     } else {
       const res = await getBlogList({ limit: limit, offset: offset });
       const blogs = (res as getBlogRes).data.blogs;
@@ -51,8 +51,7 @@ export default function Home() {
         setIsBottom(true);
       }
       offset += blogs.length;
-      currentList.push(...blogs);
-      setBlogList(currentList as blogInfo[]);
+      setBlogList((prev) => [...prev, ...(res as getBlogRes).data.blogs]);
     }
   }
   useEffect(() => {
@@ -151,8 +150,8 @@ export default function Home() {
     } else {
       setBlogList((loaderData as getBlogRes).data.blogs);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       {blogConfig.chatBox ? <ChatBox /> : null}

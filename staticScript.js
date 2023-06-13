@@ -21,6 +21,7 @@ const md = new MarkdownIt({
 function getBlogsInfo() {
   const blogFiles = fs.readdirSync("./src/blogs/");
   blogFiles.forEach((fileName) => {
+    if(!fileName.endsWith(".md")) return;
     const path = `./src/blogs/${fileName}`;
     const data = fs.readFileSync(path, "utf8");
     let title = "";
@@ -65,7 +66,7 @@ function getBlogsInfo() {
         picture
       });
     } else {
-      throw new Error("Invalid blog file");
+      throw new Error(`${fileName} Invalid blog file`);
     }
   });
 }
