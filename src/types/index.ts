@@ -1,10 +1,12 @@
 export interface staticBlogInfo {
+  file: string;
   id: number;
   date: string;
   title: string;
   des: string;
   html: string;
   tags: string[];
+  picture: string;
 }
 
 export interface blogInfo {

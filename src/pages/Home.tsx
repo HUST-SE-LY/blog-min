@@ -5,14 +5,14 @@ import {
   handleScroll,
   handleTouch,
 } from "../utils/eventHandler";
-import getAxios from "../utils/getAxios";
-import { blogInfo, getBlogRes } from "../types";
+import { blogInfo, getBlogRes, staticBlogInfo } from "../types";
 import { useLoaderData } from "react-router-dom";
 import SingleRow from "../components/home/SingleRow";
 import getTitleTagPos from "../utils/getTitleTagPos";
 import loadingSVG from "../assets/loading.svg";
 import toTopSVG from "../assets/toTop.svg";
 import toTop from "../utils/toTop";
+import { getBlogList, getStaticBlogList } from "../utils/requests";
 
 const TypingWord = lazy(() => import("../components/public/typingWord"));
 const ChatBox = lazy(() => import("../components/home/ChatBox"));
@@ -22,36 +22,38 @@ export default function Home() {
   const mainContainer = useRef<HTMLDivElement>(null);
   const headerContainer = useRef<HTMLDivElement>(null);
   const container = useRef<HTMLDivElement>(null);
-  const loaderData = useLoaderData() as getBlogRes;
+  const loaderData = useLoaderData() as staticBlogInfo[] | getBlogRes;
   const [isBottom, setIsBottom] = useState(false);
   const loadingBall = useRef<HTMLImageElement>(null);
-  const axios = getAxios();
   const limit = 10;
   let offset = 10;
-  const [blogList, setBlogList] = useState<Array<blogInfo>>(
-    loaderData.data.blogs
-  );
+  const [blogList, setBlogList] = useState<
+    Array<blogInfo> | Array<staticBlogInfo>
+  >([]);
   const currentList = [...blogList];
   const [showTags, setShowTags] = useState(false);
   document.addEventListener("scroll", (e) => {
     e.stopPropagation();
   });
   async function updateBlogList() {
-    const res = await axios
-      .post("/get/blog", {
-        limit: limit,
-        offset: offset,
-      })
-      .catch((err) => {
-        throw err;
-      });
-    const blogs = (res as unknown as getBlogRes).data.blogs;
-    if (blogs.length < limit) {
-      setIsBottom(true);
+    if (blogConfig.static) {
+      const res = await getStaticBlogList({limit: limit, offset: offset});
+      if (res.length < limit) {
+        setIsBottom(true);
+      }
+      offset += res.length;
+      currentList.push(...res);
+      setBlogList(currentList as staticBlogInfo[])
+    } else {
+      const res = await getBlogList({ limit: limit, offset: offset });
+      const blogs = (res as getBlogRes).data.blogs;
+      if (blogs.length < limit) {
+        setIsBottom(true);
+      }
+      offset += blogs.length;
+      currentList.push(...blogs);
+      setBlogList(currentList as blogInfo[]);
     }
-    offset += blogs.length;
-    currentList.push(...blogs);
-    setBlogList(currentList);
   }
   useEffect(() => {
     const handler: (e: WheelEvent) => void = (e: WheelEvent) => {
@@ -143,6 +145,14 @@ export default function Home() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useEffect(() => {
+    if (blogConfig.static) {
+      setBlogList(loaderData as staticBlogInfo[]);
+    } else {
+      setBlogList((loaderData as getBlogRes).data.blogs);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
   return (
     <>
       {blogConfig.chatBox ? <ChatBox /> : null}

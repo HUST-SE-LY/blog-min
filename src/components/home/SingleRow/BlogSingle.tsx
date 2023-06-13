@@ -12,8 +12,9 @@ export default function BlogSingle(props: blogOneColProps) {
   function hoverOut() {
     setImgIn(false);
   }
+  
+  const img = props.blogInfo.picture ?( blogConfig.static ? props.blogInfo.picture : `${(blogConfig.requests as {host: string}).host}/picture/${props.blogInfo.picture}`) : (blogConfig.staticBlogBackground ? blogConfig.staticBlogBackground[Math.floor(blogConfig.staticBlogBackground.length*Math.random())] : "");
 
-  const img = `https://www.coisini.love/api/picture/${props.blogInfo.picture}`;
   return (
     <div>
       <div className="w-[2px] h-[50px] bg-blue-200 mx-[auto]"></div>

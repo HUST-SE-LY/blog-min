@@ -29,7 +29,7 @@ export default function BlogLeft(props: blogTowColProps) {
     setImgIn(false);
   }
 
-  const img = `https://www.coisini.love/api/picture/${props.blogInfo.picture}`;
+  const img = props.blogInfo.picture ?( blogConfig.static ? props.blogInfo.picture : `${(blogConfig.requests as {host: string}).host}/picture/${props.blogInfo.picture}`) : (blogConfig.staticBlogBackground ? blogConfig.staticBlogBackground[Math.floor(blogConfig.staticBlogBackground.length*Math.random())] : "");
   if (props.isMain) {
     return (
       <div ref={mainBox} className="border-r-[1px] border-blue-200 text-right flex gap-[20px] justify-end items-center">

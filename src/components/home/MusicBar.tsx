@@ -45,7 +45,6 @@ export default function MusicBar() {
   async function lastSong() {
     const newIndex =
       currentIndex === 0 ? playList.length - 1 : currentIndex - 1;
-
     setCurrentIndex(newIndex);
     setPlay(false);
     setCurrentSong(playList[newIndex].name);

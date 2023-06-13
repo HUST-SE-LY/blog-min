@@ -1,5 +1,5 @@
 const staticInfo =  {
-  path: "/src/static/config.json",
+  path: "/config.json",
 }
 
 export default staticInfo

@@ -1,7 +1,8 @@
 import React from "react";
 import { asyncDebounce } from "./debounce";
 import throttle from "./throttle";
-import { getBlogByTitle } from "./requests";
+import { getBlogByTitle, getStaticBlogByTitle } from "./requests";
+import blogConfig from "../blog.config";
 
 export const handleScroll = throttle(
   (e: WheelEvent, from: HTMLDivElement, to: HTMLDivElement) => {
@@ -96,7 +97,20 @@ export const handleSearchBarInput = asyncDebounce(
       setLoading(false);
       return;
     }
-    const result = await getBlogByTitle({limit: limit, offset: offset, title: keyWords});
+    let result;
+    if(!blogConfig.static) {
+      result = await getBlogByTitle({limit: limit, offset: offset, title: keyWords});
+    } else {
+      const res = await getStaticBlogByTitle({limit: limit, offset: offset, title: keyWords})
+      if(res.length > limit) {
+        res.slice(0, limit)
+      }
+      result = {
+        data: {
+          blogs: res
+        }
+      }
+    } 
     setLoading(false);
     return result.data.blogs;
   },

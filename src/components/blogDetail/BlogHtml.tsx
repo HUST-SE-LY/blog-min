@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import htmr from "htmr";
-import { blogHtmlProps, getBlogTagRes } from "../../types";
+import { blogHtmlProps, getBlogTagRes, tagInfo } from "../../types";
 import {
   BlogCode,
   BlogH1,
@@ -16,6 +16,8 @@ import {
 import getAxios from "../../utils/getAxios";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import blogConfig from "../../blog.config";
+import { getStaticBlogTags } from "../../utils/requests";
 
 export default function BlogHtml(props: blogHtmlProps) {
   const axios = getAxios();
@@ -39,23 +41,44 @@ export default function BlogHtml(props: blogHtmlProps) {
     li: BlogLi,
   };
   async function getTag() {
-    const res = await axios.post("/get/blogTag", {
-      id: params.id,
-    });
-    const tags = (res as getBlogTagRes).data.tags;
-    setTags(tags)
+    if (blogConfig.static) {
+      const res = await getStaticBlogTags({id: parseInt(params.id as string)});
+      const tags:tagInfo[] = [];
+      res.forEach((tag, index) => {
+        tags.push({
+          id: index,
+          name: tag
+        })
+      })
+      setTags(tags)
+    } else {
+      const res = await axios.post("/get/blogTag", {
+        id: params.id,
+      });
+      const tags = (res as getBlogTagRes).data.tags;
+      setTags(tags);
+    }
   }
   useEffect(() => {
     getTag();
   }, []);
   return (
-    <div className="max-w-[800px] mx-auto border-x-2 overflow-x-hidden bg-white/90 transition-all hover:backdrop-blur-sm  py-[1rem] px-[2rem] border-blue-200">
+    <div className="max-w-[800px] rounded-lg my-[1rem] mx-auto border-2 overflow-x-hidden bg-white/90 transition-all hover:backdrop-blur-sm  py-[1rem] px-[2rem] border-blue-200">
       <div className="w-full min-w-fit max-w-full border-y-2 border-blue-200  relative pl-[1rem] py-[1rem] pr-[30px]">
         <p className="text-xl font-bold mb-[10px]">{props.title}</p>
         <p className="text-gray-600 mb-[10px]">{props.date}</p>
-        {
-          tags ? tags.map((tag) => <span key={tag.id} className="w-fit h-fit px-[1rem] text-sm py-[0.1rem] bg-blue-200 rounded mr-[1rem]">{tag.name}</span>) : <span className="bg-gray-400 animate-pulse h-[1.2rem] w-[10rem]"></span>
-        }
+        {tags ? (
+          tags.map((tag) => (
+            <span
+              key={tag.id}
+              className="w-fit h-fit px-[1rem] text-sm py-[0.1rem] bg-blue-200 rounded mr-[1rem]"
+            >
+              {tag.name}
+            </span>
+          ))
+        ) : (
+          <span className="bg-gray-400 animate-pulse h-[1.2rem] w-[10rem]"></span>
+        )}
       </div>
       {htmr(props.html, {
         transform,

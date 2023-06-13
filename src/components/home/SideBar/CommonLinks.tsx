@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { getLinksRes, staticLink } from "../../../types";
 import { getLinks } from "../../../utils/requests";
+import blogConfig from "../../../blog.config";
 
 export default function CommonLinks() {
   const [links, setLinks] = useState<staticLink[]>([]);
   async function getSites() {
+    if(blogConfig.static&&blogConfig.staticCommonSites) {
+      setLinks(blogConfig.staticCommonSites)
+      return ;
+    }
     const res = (await getLinks()) as getLinksRes;
     setLinks(res.data.links);
   }

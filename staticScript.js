@@ -27,6 +27,7 @@ function getBlogsInfo() {
     const tags = [];
     let des = "";
     let date = "";
+    let picture = "";
     if (data.startsWith("---\n")) {
       const head = data.split("---\n")[1];
       const content = data.split(head + "---\n")[1];
@@ -48,14 +49,20 @@ function getBlogsInfo() {
           case "date":
             date = value;
             break;
+          case "picture": 
+            picture = value;
+            break;
         }
       });
+      if(!(title&&des&&date&&tags)) throw new Error(`blog ${fileName} lose info`)
       blogContent.push({
+        file: fileName,
         title,
         tags,
         des,
         date,
         html,
+        picture
       });
     } else {
       throw new Error("Invalid blog file");
@@ -69,7 +76,8 @@ blogContent.forEach((item, index) => {
   item.id = index
 }); 
 fs.writeFileSync(
-  "./src/static/config.json",
+  "./public/config.json",
   JSON.stringify(blogContent),
   "utf-8"
 );
+console.log("success! Congratulations!")

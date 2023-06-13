@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { blogTowColProps } from "../../../types";
 import { Link } from "react-router-dom";
+import blogConfig from "../../../blog.config";
 
 export default function BlogRight(props: blogTowColProps) {
   const [imgIn, setImgIn] = useState(false);
@@ -32,7 +33,7 @@ export default function BlogRight(props: blogTowColProps) {
     setImgIn(false);
   }
 
-  const img = `https://www.coisini.love/api/picture/${props.blogInfo.picture}`;
+  const img = props.blogInfo.picture ?( blogConfig.static ? props.blogInfo.picture : `${(blogConfig.requests as {host: string}).host}/picture/${props.blogInfo.picture}`) : (blogConfig.staticBlogBackground ? blogConfig.staticBlogBackground[Math.floor(blogConfig.staticBlogBackground.length*Math.random())] : "");
   if (props.isMain) {
     return (
       <div
