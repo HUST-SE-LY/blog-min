@@ -15,7 +15,7 @@ export default function ChatBox() {
   const main = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(false);
   let id = 0;
-  const systemPrompt = "现在假设你是一个赛博朋克柴犬，能回答我提出的问题，你的回答方式要像赛博朋克柴犬说话的样子。我的问题是："
+  const systemPrompt = blogConfig.systemPrompt ? blogConfig.systemPrompt : "现在假设你是一个赛博朋克柴犬，能回答我提出的问题，你的回答方式要像赛博朋克柴犬说话的样子。我的问题是："
   async function send() {
     if (!reqContent && !apiKey) return;
     if (loading) return;

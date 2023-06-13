@@ -1,17 +1,8 @@
-import blogConfig, { getBlogByTagsParams, getBlogByTitleParams, getBlogDetailParams, getBlogListParams, getBlogTagsParams} from "../blog.config";
-import { routerType } from "../types";
+import blogConfig, { addCommentParams, getBlogByTagsParams, getBlogByTitleParams, getBlogCommentsParams, getBlogDetailParams, getBlogListParams, getBlogTagsParams, router} from "../blog.config";
 import getAxios from "./getAxios";
 const requestConfig = blogConfig.requests as {
   host: string;
-  router: {
-    getBlogList: routerType;
-    getBlogDetail: routerType;
-    getBlogByTitle: routerType;
-    getTags: routerType;
-    getBlogTags: routerType;
-    getBlogByTags: routerType;
-    getLinks: routerType;
-  };
+  router: router;
 }
 const routers = requestConfig.router;
 export default {}
@@ -56,6 +47,16 @@ export async function getBlogByTags(params: getBlogByTagsParams) {
 export async function getLinks() {
   return await basicRequest(routers.getLinks.path, routers.getLinks.method)
 }
+
+export async function getBlogComments(params: getBlogCommentsParams) {
+  return await basicRequest(routers.getBlogComments.path, routers.getBlogComments.method, params);
+}
+
+export async function addComment(params: addCommentParams) {
+  return await basicRequest(routers.addComment.path, routers.addComment.method, params);
+}
+
+
 
 
 

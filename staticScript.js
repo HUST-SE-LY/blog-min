@@ -65,4 +65,11 @@ function getBlogsInfo() {
 
 const blogContent = [];
 getBlogsInfo();
-console.log(blogContent);
+blogContent.forEach((item, index) => {
+  item.id = index
+}); 
+fs.writeFileSync(
+  "./src/static/config.json",
+  JSON.stringify(blogContent),
+  "utf-8"
+);

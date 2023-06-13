@@ -84,7 +84,8 @@ export const handleKeyBoard = throttle(
   800
 );
 
-export const handleSearchBarInput = await asyncDebounce(
+
+export const handleSearchBarInput = asyncDebounce(
   async (
     keyWords: string,
     limit: number,

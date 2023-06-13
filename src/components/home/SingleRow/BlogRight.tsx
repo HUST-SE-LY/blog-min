@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { blogTowColProps } from "../../../types";
-import blogConfig from "../../../blog.config";
 import { Link } from "react-router-dom";
 
 export default function BlogRight(props: blogTowColProps) {
@@ -8,15 +7,18 @@ export default function BlogRight(props: blogTowColProps) {
   const mainBox = useRef<HTMLDivElement>(null);
   const [showMain, setShowMain] = useState(true);
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].intersectionRatio > 0) {
-        setShowMain(true);
-      } else {
-        setShowMain(false)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].intersectionRatio > 0) {
+          setShowMain(true);
+        } else {
+          setShowMain(false);
+        }
+      },
+      {
+        threshold: [0, 0.1],
       }
-    },{
-      threshold: [0,0.1]
-    });
+    );
     if (mainBox.current) {
       observer.observe(mainBox.current);
     }
@@ -33,7 +35,10 @@ export default function BlogRight(props: blogTowColProps) {
   const img = `https://www.coisini.love/api/picture/${props.blogInfo.picture}`;
   if (props.isMain) {
     return (
-      <div ref={mainBox} className="border-l-[1px] border-blue-200 text-left flex gap-[20px] justify-start items-center">
+      <div
+        ref={mainBox}
+        className="border-l-[1px] border-blue-200 text-left flex gap-[20px] justify-start items-center"
+      >
         <span className="relative w-[150px] h-[1px] bg-blue-200">
           <span className="absolute w-[5px] h-[5px] top-[-2px] right-0 rounded-full bg-blue-200"></span>
         </span>
@@ -48,15 +53,14 @@ export default function BlogRight(props: blogTowColProps) {
                 hoverOut();
               }}
             >
-              {blogConfig.blogBackground ? (
-                <img
-                  src={img}
-                  alt=""
-                  className={`-z-10 absolute w-full h-full object-cover transition-all top-0 ${
-                    imgIn ? "right-0" : "right-[-100%]"
-                  }`}
-                />
-              ) : null}
+              <img
+                src={img}
+                alt=""
+                className={`-z-10 absolute w-full h-full object-cover transition-all top-0 ${
+                  imgIn ? "right-0" : "right-[-100%]"
+                }`}
+              />
+
               <div
                 className={`absolute w-full h-full clip-trapezoid-right bg-blue-200/80  top-0 transition-all -z-[9]  ${
                   imgIn ? "left-0" : "left-[-100%]"

@@ -1,16 +1,28 @@
 import { routerType, staticLink } from "./types";
 
+export interface router {
+  getBlogList: routerType;
+  getBlogDetail: routerType;
+  getBlogByTitle: routerType;
+  getTags: routerType;
+  getBlogTags: routerType;
+  getBlogByTags: routerType;
+  getLinks: routerType;
+  getBlogComments: routerType;
+  addComment: routerType;
+}
 interface config {
   static: boolean;
   homeBackground: false | string;
   mainBackground: false | string;
+  staticBlogBackground: false | string[];
   homeVideo: false | string;
   avatarTags: false | [string, string?, string?, string?, string?];
   blogBackground: false | string;
   blogComment: boolean;
   blogContent: boolean;
   commonTags: boolean;
-  staticCommonTags: false | [string, string?, string?, string?, string?];
+  staticCommonTags: false | Array<string>;
   search: boolean;
   commonSites: boolean;
   staticCommonSites: false | Array<staticLink>;
@@ -20,25 +32,16 @@ interface config {
   introduction: string;
   chatBox: boolean;
   chatWelcomeWord: false | string;
+  systemPrompt: false | string,
   music: boolean;
-  staticMusicList: false| Array<string>;
+  staticMusicList: false | Array<string>;
   requests:
     | false
     | {
         host: string;
-        router: {
-          getBlogList: routerType;
-          getBlogDetail: routerType;
-          getBlogByTitle: routerType;
-          getTags: routerType;
-          getBlogTags: routerType;
-          getBlogByTags: routerType;
-          getLinks: routerType;
-        };
+        router: router;
       };
-  
 }
-
 
 export interface getBlogListParams {
   limit: number;
@@ -70,8 +73,20 @@ export interface getLinksParams {
   offset: number;
 }
 
+export interface getBlogCommentsParams {
+  limit: number;
+  offset: number;
+  blog: number;
+}
+
+export interface addCommentParams {
+  name: string;
+  content: string;
+  blog: string;
+}
+
 const blogConfig: config = {
-  static: false,
+  static: true,
   requests: {
     host: "https://www.coisini.love/api/",
     router: {
@@ -104,34 +119,48 @@ const blogConfig: config = {
         path: "/get/link",
         method: "post",
       },
+      getBlogComments: {
+        path: "/get/comment",
+        method: "post",
+      },
+      addComment: {
+        path: "/comment/add",
+        method: "post",
+      },
     },
   },
   homeBackground: false,
-  mainBackground: "/src/assets/mainBackground.jpg",
+  mainBackground: "mainBackground.jpg",
+  staticBlogBackground: ["blogBackground1.jpeg","blogBackground1.jpeg","blogBackground3.jpeg"],
   chatBox: true,
-  homeVideo: "/src/assets/background.mp4",
-  blogBackground: "/src/assets/blogBackground.jpeg",
-  blogComment: false,
+  homeVideo: "background.mp4",
+  blogBackground: "blogBackground.jpeg",
+  blogComment: true,
   blogContent: true,
   commonTags: true,
-  staticCommonTags: ["vue", "react"],
+  staticCommonTags: ["vue", "react","hello"],
   search: true,
   commonSites: true,
-  staticCommonSites: [{
-    name: "bilibili",
-    url: "https://www.bilibili.com/",
-  }],
+  staticCommonSites: [
+    {
+      name: "bilibili",
+      url: "https://www.bilibili.com/",
+    },
+    {
+      name: "google",
+      url: "https://www.google.com/"
+    }
+  ],
   music: true,
-  staticMusicList: ["/src/assets/bgm.m4a"],
+  staticMusicList: ["bgm.m4a"],
   layout: "two cols",
-  avatar: "/src/assets/avatar.jpg",
+  avatar: "avatar.jpg",
   avatarTags: ["前端", "想吃薯条", "infp", "enfp", "睡眠好差"],
   title: "柴犬的小窝",
   introduction: "她做着琉璃般的梦...当星河坠入深海之时...",
   chatWelcomeWord:
     "你好，我是柴犬的朋友赛博柴犬，你可以在下面的输入框里添加openAI的apiKey来与我对话，我不会收集任何apiKey",
+  systemPrompt: "现在假设你是一个赛博朋克柴犬，能回答我提出的问题，你的回答方式要像赛博朋克柴犬说话的样子。我的问题是："
 };
-
-
 
 export default blogConfig;

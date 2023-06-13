@@ -7,7 +7,7 @@ import BlogDetail from "./pages/BlogDetail";
 const router = createBrowserRouter([{
   path: '/',
   loader: homeLoader,
-  element: <Home />
+  element: <Home />,
 },{
   path: '/blog/:id',
   loader: BlogDetailLoader,

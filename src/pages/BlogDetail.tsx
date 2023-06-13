@@ -8,7 +8,7 @@ import { lazy } from "react";
 import toTop from "../utils/toTop";
 
 const BlogContent = lazy(() => import("../components/blogDetail/BlogContent"))
-
+const BlogComment = lazy(() => import("../components/blogDetail/BlogComment"));
 export default function BlogDetail() {
   const res = useLoaderData() as getBlogDetailRes;
 
@@ -19,6 +19,10 @@ export default function BlogDetail() {
     {
       blogConfig.blogContent ? <BlogContent /> : null
     }
+    {
+      blogConfig.blogComment ? <BlogComment /> : null
+    }
+
     <div onClick={() => {toTop()}} className="fixed right-[150px] bottom-[50px] w-[40px] h-[40px] bg-white border-blue-200 border-2 cursor-pointer rounded-full flex justify-center items-center">
       <img src={toTopSVG} alt="" />
     </div>

@@ -9,6 +9,7 @@ import {
   BlogH4,
   BlogH5,
   BlogH6,
+  BlogLi,
   BlogP,
   BlogPre,
 } from "./BlogHtml/ BlogHtmlComponent";
@@ -35,6 +36,7 @@ export default function BlogHtml(props: blogHtmlProps) {
     h5: BlogH5,
     h6: BlogH6,
     code: BlogCode,
+    li: BlogLi,
   };
   async function getTag() {
     const res = await axios.post("/get/blogTag", {

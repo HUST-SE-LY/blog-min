@@ -37,7 +37,10 @@ export function BlogCode(props: simpleProps) {
 }
 
 export function BlogPre(props: simpleProps) {
-
   return <pre className="non-scrollbar blog-html-pre leading-[32px] bg-slate-100 p-[12px] text-[14px] rounded-md font-mono">{props.children}</pre>
+}
+
+export function BlogLi(props: simpleProps) {
+  return <li className="list-disc leading-[28px] my-[1rem] font-[400] font-sans ml-[20px]">{props.children}</li>
 }
 

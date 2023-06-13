@@ -1,3 +1,12 @@
+export interface staticBlogInfo {
+  id: number;
+  date: string;
+  title: string;
+  des: string;
+  html: string;
+  tags: string[];
+}
+
 export interface blogInfo {
   date: string;
   des: string;
@@ -108,3 +117,17 @@ export interface getLinksRes {
     links: Array<staticLink>
   }
 }
+
+export interface commentInfo {
+  name: string;
+  content: string;
+  id: number;
+
+}
+
+export interface getCommentsRes {
+  data: {
+    list: commentInfo[];
+  }
+}
+

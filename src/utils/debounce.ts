@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export async function asyncDebounce<T extends any[]>(
+export function asyncDebounce<T extends any[]>(
   fn: (...args: T) => Promise<any>,
   delay: number
 ) {

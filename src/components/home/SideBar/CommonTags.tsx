@@ -3,6 +3,7 @@ import { blogInfo, getBlogRes, getTagsRes, tagInfo } from "../../../types";
 import { getBlogByTags, getTags } from "../../../utils/requests";
 import SingleTag from "./CommonTags/SingleTag";
 import { Link } from "react-router-dom";
+import blogConfig from "../../../blog.config";
 
 export default function CommonTags() {
   const [tags, setTags] = useState<tagInfo[]>([]);
@@ -14,8 +15,21 @@ export default function CommonTags() {
   let offset = 0;
   const bottom = useRef<HTMLDivElement>(null);
   async function getList() {
-    const res = (await getTags()) as getTagsRes;
-    setTags(res.data.tags);
+    if(!blogConfig.static) {
+      const res = (await getTags()) as getTagsRes;
+      setTags(res.data.tags);
+    } else {
+      const list = blogConfig.staticCommonTags;
+      const res:tagInfo[] = [];
+      if(list) {
+        list.forEach((tag, index) => {
+          res.push({id: index,name: tag})
+        })
+      }
+      setTags(res)
+
+    }
+    
   }
   async function updateList() {
     offset += limit;
