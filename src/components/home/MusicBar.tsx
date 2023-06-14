@@ -77,7 +77,7 @@ export default function MusicBar() {
         >
           <div className="flex justify-center items-center">
             {currentSong && currentUrl ? (
-              <p>{currentSong}</p>
+              <p className=" text-ellipsis overflow-hidden whitespace-nowrap">{currentSong}</p>
             ) : (
               <div className="w-[15rem] h-[1rem] animate-pulse bg-gray-100"></div>
             )}
