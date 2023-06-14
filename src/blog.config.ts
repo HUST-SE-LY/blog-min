@@ -35,6 +35,7 @@ interface config {
   chatWelcomeWord: false | string;
   systemPrompt: false | string,
   music: boolean;
+  neteasePlayListId: false|string;
   staticMusicList: false | Array<string>;
   requests:
     | false
@@ -154,6 +155,7 @@ const blogConfig: config = {
     }
   ],
   music: true,
+  neteasePlayListId: "2517473337",
   staticMusicList: ["bgm.m4a"],
   layout: "two cols",
   avatar: "avatar.jpg",

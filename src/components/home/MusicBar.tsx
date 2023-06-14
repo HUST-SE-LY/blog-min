@@ -4,6 +4,7 @@ import pauseSVG from "/src/assets/pause.svg";
 import playSVG from "/src/assets/play.svg";
 import arrowSVG from "/src/assets/arrow.svg";
 import { playListElement } from "../../types";
+import blogConfig from "../../blog.config";
 
 export default function MusicBar() {
   const audio = useRef<HTMLAudioElement>(null);
@@ -15,7 +16,7 @@ export default function MusicBar() {
   const [playList, setPlayList] = useState<playListElement[]>([]);
   const axios = getMusicAxios();
   async function getList() {
-    const result = await axios.get(`/playlist/track/all?id=2517473337`);
+    const result = await axios.get(`/playlist/track/all?id=${blogConfig.neteasePlayListId}`);
     setPlayList(result.data.songs);
     setCurrentSong(result.data.songs[0].name);
     const songRes = await axios.get(`/song/url?id=${result.data.songs[0].id}`);
