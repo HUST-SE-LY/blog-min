@@ -53,6 +53,7 @@ export default {
       },
       animation: {
         chatIn: "chatIn 0.1s forwards ease-in",
+        floatIn: "chatIn 0.5s forwards ease-in",
         comeInFromRight: "comeInFromRight 0.5s forwards ease-in 0s, floating 5s ease-in-out infinite 0.5s",
         comeInFromLeft: "comeInFromLeft 0.5s forwards ease-in 0s, floating 5s ease-in-out infinite 0.5s",
       }

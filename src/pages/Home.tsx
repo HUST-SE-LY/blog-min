@@ -14,7 +14,6 @@ import toTopSVG from "../assets/toTop.svg";
 import toTop from "../utils/toTop";
 import { getBlogList, getStaticBlogList } from "../utils/requests";
 
-const TypingWord = lazy(() => import("../components/public/typingWord"));
 const ChatBox = lazy(() => import("../components/home/ChatBox"));
 const MusicBar = lazy(() => import("../components/home/MusicBar"));
 const SideBar = lazy(() => import("../components/home/SideBar"));
@@ -188,11 +187,11 @@ export default function Home() {
               : null}
           </div>
 
-          <p className="font-bold text-2xl max-sm:text-[16px]">
-            <TypingWord time={200} content={blogConfig.title} />
+          <p className="animate-floatIn font-bold text-2xl max-sm:text-[16px]">
+            {blogConfig.title}
           </p>
-          <p className="max-sm:text-[12px]">
-            <TypingWord time={100} content={blogConfig.introduction} />
+          <p className="animate-floatIn max-sm:text-[12px]">
+           {blogConfig.introduction}
           </p>
           {blogConfig.homeVideo ? (
             <>
