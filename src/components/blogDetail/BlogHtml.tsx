@@ -63,7 +63,7 @@ export default function BlogHtml(props: blogHtmlProps) {
     getTag();
   }, []);
   return (
-    <div className="max-w-[800px] rounded-lg my-[1rem] mx-auto border-2 overflow-x-hidden bg-white/90 transition-all hover:backdrop-blur-sm  py-[1rem] px-[2rem] border-blue-200">
+    <div className="max-w-[800px] mb-[1rem] rounded-[0_0_16px_16px] mx-auto border-2 overflow-x-hidden bg-white/90 transition-all hover:backdrop-blur-sm  py-[1rem] px-[2rem] border-blue-200">
       <div className="w-full min-w-fit max-w-full border-y-2 border-blue-200  relative pl-[1rem] py-[1rem] pr-[30px]">
         <p className="text-xl font-bold mb-[10px]">{props.title}</p>
         <p className="text-gray-600 mb-[10px]">{props.date}</p>
