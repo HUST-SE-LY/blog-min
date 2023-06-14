@@ -111,9 +111,9 @@ export default function BlogComment() {
         onClick={() => {
           setShowComment(!showComment);
         }}
-        className="w-[40px] bg-white h-[40px] rounded-full cursor-pointer flex justify-center items-center border-[1px] border-blue-200"
+        className="max-sm:w-[30px] max-sm:h-[30px] w-[40px] bg-white h-[40px] rounded-full cursor-pointer flex justify-center items-center border-[1px] border-blue-200"
       >
-        <img src={commentSVG} alt="" />
+        <img className="max-sm:w-[30px] max-sm:h-[30px]" src={commentSVG} alt="" />
       </div>
     </div>
   );

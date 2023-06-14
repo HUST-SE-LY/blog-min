@@ -13,19 +13,19 @@ export default function BlogContent() {
   return (
     <div
       className={`flex h-screen justify-center top-0 fixed z-[10] items-center transition-all ${
-        showContent ? "right-0" : "right-[-400px]"
+        showContent ? "right-0" : "right-[-400px] max-sm:right-[-250px]"
       } h-fit w-fit gap-[1rem]`}
     >
       <div
-        className="flex justify-center items-center w-[40px] h-[40px] rounded-full border-[1px] border-blue-200 bg-white cursor-pointer"
+        className="flex max-sm:w-[30px] max-sm:h-[30px] justify-center items-center w-[40px] h-[40px] rounded-full border-[1px] border-blue-200 bg-white cursor-pointer"
         onClick={() => {
           setShowContent(!showContent);
         }}
       >
-        <img src={contentSVG} alt="" />
+        <img className="max-sm:w-[30px] max-sm:h-[30px]" src={contentSVG} alt="" />
       </div>
       <div
-        className={`h-fit max-h-screen overflow-y-auto non-scrollbar w-[400px] bg-white border-2 rounded-[16px_0_0_16px] shadow-md border-r-0 py-[1rem] border-blue-200 overflow-x-auto non-scrollbar`}
+        className={`h-fit max-h-screen overflow-y-auto non-scrollbar max-sm:w-[250px] w-[400px] bg-white border-2 rounded-[16px_0_0_16px] shadow-md border-r-0 py-[1rem] border-blue-200 overflow-x-auto non-scrollbar`}
       >
         <p className="text-[20px] mb-[1rem] px-[8px]">目录</p>
         {contentList.map((contentInfo, index) => (

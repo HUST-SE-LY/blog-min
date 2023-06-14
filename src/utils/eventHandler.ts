@@ -36,35 +36,25 @@ export const handleTouch = throttle(
   ) => {
     container.addEventListener("touchend", (e) => {
       e.preventDefault();
+      function prevent(e: TouchEvent) {
+        e.preventDefault();
+      }
       const startY = touchStartEvent.touches[0].pageY;
       const endY = e.changedTouches[0].pageY;
       if (endY < startY) {
         to.scrollIntoView({
           behavior: "smooth",
         });
+        to.addEventListener("touchstart", prevent);
+      setTimeout(() => {
+        to.removeEventListener("touchstart", prevent);
+      }, 800);
       } else {
         from.scrollIntoView({
           behavior: "smooth",
         });
       }
     });
-    setTimeout(() => {
-      container.removeEventListener("touchend", (e) => {
-        e.preventDefault();
-        const startY = touchStartEvent.touches[0].pageY;
-        const endY = e.changedTouches[0].pageY;
-        console.log(startY, endY);
-        if (endY < startY) {
-          to.scrollIntoView({
-            behavior: "smooth",
-          });
-        } else {
-          from.scrollIntoView({
-            behavior: "smooth",
-          });
-        }
-      });
-    }, 800);
   },
   800
 );

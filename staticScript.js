@@ -34,9 +34,14 @@ function getBlogsInfo() {
       const content = data.split(head + "---\n")[1];
       const html = md.render(content);
       const headOptions = head.split("\n");
+      headOptions.pop();
       headOptions.forEach((option) => {
         const key = option.split(": ")[0];
         const value = option.split(": ")[1];
+        if(!(value&&key)) {
+          console.log(key, value);
+          throw new Error(`Invalid delimiter in ${fileName}`)
+        }
         switch (key) {
           case "title":
             title = value;
@@ -53,6 +58,8 @@ function getBlogsInfo() {
           case "picture": 
             picture = value;
             break;
+          default: 
+            throw new Error(`invalid option in ${fileName}, naming ${key.toString()}`);
         }
       });
       if(!(title&&des&&date&&tags)) throw new Error(`blog ${fileName} lose info`)

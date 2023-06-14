@@ -198,7 +198,7 @@ export default function Home() {
             <>
               <video
                 src={blogConfig.homeVideo}
-                className="-z-10 object-cover w-full h-full absolute top-0 left-0"
+                className="-z-10 max-sm:hidden object-cover w-full h-full absolute top-0 left-0"
                 autoPlay
                 loop
                 muted

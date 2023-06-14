@@ -63,15 +63,15 @@ export default function BlogHtml(props: blogHtmlProps) {
     getTag();
   }, []);
   return (
-    <div className="max-w-[800px] mb-[1rem] rounded-[0_0_16px_16px] mx-auto border-2 overflow-x-hidden bg-white/90 transition-all hover:backdrop-blur-sm  py-[1rem] px-[2rem] border-blue-200">
+    <div className="max-w-[800px] mx-[auto] mb-[1rem] rounded-[0_0_16px_16px] max-md:w-auto max-md:mx-[20px] border-2 overflow-x-hidden bg-white/90 transition-all hover:backdrop-blur-sm  py-[1rem] px-[2rem] max-sm:px-[1rem] border-blue-200">
       <div className="w-full min-w-fit max-w-full border-y-2 border-blue-200  relative pl-[1rem] py-[1rem] pr-[30px]">
-        <p className="text-xl font-bold mb-[10px]">{props.title}</p>
-        <p className="text-gray-600 mb-[10px]">{props.date}</p>
+        <p className="text-xl max-sm:mb-[5px] max-sm:text-[16px] font-bold mb-[10px]">{props.title}</p>
+        <p className="text-gray-600 max-sm:mb-[5px] max-sm:text-[12px] mb-[10px]">{props.date}</p>
         {tags ? (
           tags.map((tag) => (
             <span
               key={tag.id}
-              className="w-fit h-fit px-[1rem] text-sm py-[0.1rem] bg-blue-200 rounded mr-[1rem]"
+              className="w-fit h-fit px-[1rem] max-sm:text-[12px] text-sm py-[0.1rem] bg-blue-200 rounded mr-[1rem]"
             >
               {tag.name}
             </span>
