@@ -16,6 +16,9 @@ export default function TypingWord(props: typingWordProps) {
       }
       setWord((prev) => prev + contentArray.shift());
     },props.time)
+    return () => {
+      clearInterval(interval)
+    }
   },[])
   return <>{word}</>
 }
