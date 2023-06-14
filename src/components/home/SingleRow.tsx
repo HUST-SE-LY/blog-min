@@ -12,7 +12,7 @@ export default function SingleRow(props: singleRowProps) {
   }
 
   return (
-    <div className={"grid grid-cols-2 h-[300px]"}>
+    <div className={"grid grid-cols-2 max-sm:h-[150px] h-[300px]"}>
       <BlogLeft isMain={props.index % 2 === 1} blogInfo={props.blogInfo} />
       <BlogRight isMain={props.index % 2 === 0} blogInfo={props.blogInfo} />
     </div>

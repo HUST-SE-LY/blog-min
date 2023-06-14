@@ -31,6 +31,7 @@ interface config {
   title: string;
   introduction: string;
   chatBox: boolean;
+  chatAvatar: false | string;
   chatWelcomeWord: false | string;
   systemPrompt: false | string,
   music: boolean;
@@ -133,6 +134,7 @@ const blogConfig: config = {
   mainBackground: "mainBackground.jpg",
   staticBlogBackground: ["blogBackground1.jpeg","blogBackground2.jpeg","blogBackground3.jpeg"],
   chatBox: true,
+  chatAvatar: "cyberCheems.jpg",
   homeVideo: "background.mp4",
   blogBackground: "/blogBackground.jpeg",
   blogComment: true,

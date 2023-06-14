@@ -48,10 +48,10 @@ export default function SingleTag(props: singleTagProps) {
   return (
     <div
       onClick={() => getList()}
-      className="relative w-fit px-[20px] h-[24px] rounded-full leading-[20px] text-[12px] overflow-hidden"
+      className="relative w-fit px-[20px] h-[24px] max-sm:px-[16px] max-sm:h-[20px] max-sm:leading-[18px] rounded-full leading-[20px] text-[12px] overflow-hidden"
     >
       <div className="animate-spin w-[200px]  h-[200px] absolute top-[calc(50%_-_100px)] left-[calc(50%_-_100px)] bg-gradient-to-br from-pink-300 to-blue-300"></div>
-      <div className="cursor-pointer text-center w-[calc(100%_-_4px)] h-[calc(100%_-_4px)] absolute transition-all hover:bg-transparent hover:text-white top-[2px] left-[2px] rounded-full bg-white">
+      <div className="cursor-pointer max-sm:w-[calc(100%_-_2px)] max-sm:h-[calc(100%_-_2px)] max-sm:top-[1px] max-sm:left-[1px] text-center w-[calc(100%_-_4px)] h-[calc(100%_-_4px)] absolute transition-all hover:bg-transparent hover:text-white top-[2px] left-[2px] rounded-full bg-white">
         {props.content}
       </div>
       <p>{props.content}</p>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import blogConfig from "../../../blog.config";
 import { blogOneColProps } from "../../../types";
 import { Link } from "react-router-dom";
@@ -13,7 +13,7 @@ export default function BlogSingle(props: blogOneColProps) {
     setImgIn(false);
   }
   
-  const img = props.blogInfo.picture ?( blogConfig.static ? props.blogInfo.picture : `${(blogConfig.requests as {host: string}).host}/picture/${props.blogInfo.picture}`) : (blogConfig.staticBlogBackground ? blogConfig.staticBlogBackground[Math.floor(blogConfig.staticBlogBackground.length*Math.random())] : "");
+  const img = useMemo(() => props.blogInfo.picture ?( blogConfig.static ? props.blogInfo.picture : `${(blogConfig.requests as {host: string}).host}/picture/${props.blogInfo.picture}`) : (blogConfig.staticBlogBackground ? blogConfig.staticBlogBackground[Math.floor(blogConfig.staticBlogBackground.length*Math.random())] : ""),[props.blogInfo.picture]) 
 
   return (
     <div>

@@ -188,10 +188,10 @@ export default function Home() {
               : null}
           </div>
 
-          <p className="font-bold text-2xl">
+          <p className="font-bold text-2xl max-sm:text-[16px]">
             <TypingWord time={200} content={blogConfig.title} />
           </p>
-          <p>
+          <p className="max-sm:text-[12px]">
             <TypingWord time={100} content={blogConfig.introduction} />
           </p>
           {blogConfig.homeVideo ? (
@@ -249,9 +249,9 @@ export default function Home() {
         onClick={() => {
           toTop(mainContainer.current as HTMLElement);
         }}
-        className="z-[904] fixed right-[150px] bottom-[100px] w-[40px] h-[40px] bg-white border-blue-200 border-2 cursor-pointer rounded-full flex justify-center items-center"
+        className="max-sm:w-[30px] max-sm:h-[30px] max-md:right-[50px] z-[904] fixed right-[150px] bottom-[100px] w-[40px] h-[40px] bg-white border-blue-200 border-2 cursor-pointer rounded-full flex justify-center items-center"
       >
-        <img src={toTopSVG} alt="" />
+        <img className="max-sm:w-[15px] max-sm:h-[15px]" src={toTopSVG} alt="" />
       </div>
     </>
   );

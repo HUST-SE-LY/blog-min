@@ -36,11 +36,11 @@ export default function ChatBox() {
   return (
     <div
       className={`fixed w-fit h-full flex gap-[1rem] z-[906] items-center transition-all ${
-        showBox ? "right-0" : "right-[-400px]"
+        showBox ? "right-0" : "right-[-400px] max-sm:right-[-250px]"
       }`}
     >
       <div
-        className="flex justify-center items-center w-[40px] h-[40px] rounded-full border-[1px] border-blue-200 bg-white cursor-pointer"
+        className="max-sm:w-[30px] max-sm:h-[30px] flex justify-center items-center w-[40px] h-[40px] rounded-full border-[1px] border-blue-200 bg-white cursor-pointer"
         onClick={() => {
           setShowBox(!showBox);
         }}
@@ -48,16 +48,16 @@ export default function ChatBox() {
           setShowBox(!showBox);
         }}
       >
-        <img src={chatSVG} alt="" />
+        <img className="max-sm:w-[15px] max-sm:h-[15px]" src={chatSVG} alt="" />
       </div>
-      <div className="w-[400px] h-full bg-white border-l-2 border-blue-300 flex flex-col">
+      <div className="w-[400px] max-sm:w-[250px] h-full bg-white border-l-2 border-blue-300 flex flex-col">
         <div className="w-full h-fit p-[26px] flex border-b-[1px] border-blue-200 gap-[1rem] justify-center items-center">
           <img
-            src="/src/assets/cyberCheems.jpg"
-            className="w-[60px] h-[60px] rounded-full object-cover border-2  border-blue-200"
+            src={blogConfig.chatAvatar ? blogConfig.chatAvatar : "cyberCheems.jpg"}
+            className="w-[60px] h-[60px] max-sm:w-[40px] max-sm:h-[40px] rounded-full object-cover border-2  border-blue-200"
             alt=""
           />
-          <p>赛博柴犬</p>
+          <p className="max-sm:text-[12px]">赛博柴犬</p>
         </div>
         <div
           onWheel={(e) => {
@@ -76,13 +76,13 @@ export default function ChatBox() {
           })}
           {currentRes.length ? <SingleInfoRes res={currentRes} /> : null}
         </div>
-        <div className="h-[300px] p-[20px_40px] w-full mt-[auto] border-[1px] border-blue-200 flex flex-col gap-[10px] justify-center items-center">
+        <div className="h-[300px] max-sm:p-[10px_20px] max-sm:h-[200px] p-[20px_40px] w-full mt-[auto] border-[1px] border-blue-200 flex flex-col gap-[10px] justify-center items-center">
           <input
             value={apiKey}
             onChange={(e) => {
               setApiKey(e.target.value);
             }}
-            className="w-full p-[0.5rem_1rem] rounded-md bg-gray-100 outline-blue-200"
+            className="w-full max-sm:text-[12px] max-sm:p-[0.2rem_0.5rem] p-[0.5rem_1rem] rounded-md bg-gray-100 outline-blue-200"
             placeholder="输入你的openAI apiKey"
           />
           <textarea
@@ -90,12 +90,12 @@ export default function ChatBox() {
             onChange={(e) => {
               setReqContent(e.target.value);
             }}
-            className="w-full h-[100px] bg-gray-100 p-[0.5rem_1rem] outline-blue-200 rounded-md"
+            className="w-full h-[100px] max-sm:text-[12px] max-sm:p-[0.2rem_0.5rem] bg-gray-100 p-[0.5rem_1rem] outline-blue-200 rounded-md"
             placeholder="和赛博柴犬聊天"
           ></textarea>
           <button
             disabled={loading}
-            className="w-full bg-blue-400 transition-all hover:bg-blue-500 text-white py-[0.5rem] rounded"
+            className="w-full bg-blue-400 max-sm:py-[0.2rem] max-sm:text-[12px] transition-all hover:bg-blue-500 text-white py-[0.5rem] rounded"
             onClick={() => {
               send();
             }}

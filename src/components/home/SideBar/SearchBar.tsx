@@ -54,7 +54,7 @@ export default function SearchBar() {
   }, [isBottom]);
 
   return (
-    <div className="border-b-2 p-[1rem] border-blue-200">
+    <div className="border-b-[1px] p-[1rem] border-blue-200">
       <div className="mb-[1rem]">
         <input
           type="text"
@@ -68,7 +68,7 @@ export default function SearchBar() {
             setLoading(true);
             handler(e.target.value);
           }}
-          className="w-full py-[0.2rem] text-sm border-[1px] border-blue-200 rounded-full px-[1rem]"
+          className="w-full py-[0.2rem] max-sm:text-[12px] max-sm:py-[1px] outline-none text-sm border-[1px] border-blue-200 rounded-full px-[1rem]"
         />
       </div>
       <div className="h-fit max-h-[40%] overflow-y-auto non-scrollbar">
@@ -77,7 +77,7 @@ export default function SearchBar() {
         ) : null}
         {resultList.map((blogInfo) => (
           <Link key={blogInfo.id} to={`/blog/${blogInfo.id}`}>
-            <div className="transition-all mb-[0.5rem] hover:text-white hover:bg-blue-500 w-full py-[0.2rem] px-[1rem] text-gray-500 text-sm rounded-lg bg-blue-200">
+            <div className="max-sm:bg-blue-500 max-sm:text-white max-sm:text-[12px] transition-all mb-[0.5rem] hover:text-white hover:bg-blue-500 w-full py-[0.2rem] px-[1rem] text-gray-500 text-sm rounded-lg bg-blue-200">
               {blogInfo.title}
             </div>
           </Link>
