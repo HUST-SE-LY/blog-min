@@ -174,7 +174,7 @@ export default function Home() {
               onMouseLeave={() => {
                 setShowTags(false);
               }}
-              className="block w-[5rem] h-[5rem] border-blue-400 border-[1px] rounded-full hover:shadow-md hover:shadow-blue-200 transition-all"
+              className="max-sm:w-[3rem] max-sm:h-[3rem] block w-[5rem] h-[5rem] border-blue-400 border-[1px] rounded-full hover:shadow-md hover:shadow-blue-200 transition-all"
             />
             {blogConfig.avatarTags && showTags
               ? blogConfig.avatarTags.map((tag, index) => {
