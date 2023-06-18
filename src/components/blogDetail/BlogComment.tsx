@@ -63,10 +63,10 @@ export default function BlogComment() {
   return (
     <div
       className={`transition-all fixed z-[905] flex items-center gap-[1rem] w-fit h-screen top-0 ${
-        showComment ? "left-0" : "left-[-400px]"
+        showComment ? "left-0" : "left-[-400px] max-sm:left-[-250px]"
       }`}
     >
-      <div className="bg-white w-[400px] h-full border-r-2 border-blue-200 flex flex-col gap-[1rem]">
+      <div className="bg-white w-[400px] max-sm:w-[250px] h-full border-r-2 border-blue-200 flex flex-col gap-[1rem]">
         <div className="py-[1rem] flex flex-col gap-[1rem] h-full overflow-y-auto non-scrollbar">
           {commentList.map((commentInfo) => (
             <div className="px-[1rem]" key={commentInfo.id}>
@@ -92,7 +92,7 @@ export default function BlogComment() {
             }}
             type="text"
             placeholder="输入昵称"
-            className="w-full rounded-lg bg-gray-100 px-[1rem] py-[0.5rem] outline-none text-sm"
+            className="w-full rounded-lg bg-gray-100 px-[1rem] py-[0.5rem] max-sm:text-[12px] max-sm:p-[0.2rem_0.5rem] outline-none text-sm"
           />
           <textarea
             value={content}
@@ -100,9 +100,9 @@ export default function BlogComment() {
               setContent(e.target.value);
             }}
             placeholder="输入评论内容"
-            className="w-full h-[100px] rounded-lg bg-gray-100 outline-none p-[1rem] text-sm"
+            className="w-full h-[100px] rounded-lg bg-gray-100 outline-none p-[1rem] max-sm:p-[0.2rem_0.5rem] max-sm:text-[12px] text-sm"
           ></textarea>
-          <button onClick={() => {addAComment()}} className="w-full py-[0.5rem] text-center bg-blue-200 rounded-lg transition-all hover:text-white hover:bg-blue-500">
+          <button onClick={() => {addAComment()}} className="w-full py-[0.5rem] max-sm:text-[12px] text-center bg-blue-200 rounded-lg transition-all hover:text-white hover:bg-blue-500">
             发送
           </button>
         </div>
@@ -113,7 +113,7 @@ export default function BlogComment() {
         }}
         className="max-sm:w-[30px] max-sm:h-[30px] w-[40px] bg-white h-[40px] rounded-full cursor-pointer flex justify-center items-center border-[1px] border-blue-200"
       >
-        <img className="max-sm:w-[30px] max-sm:h-[30px]" src={commentSVG} alt="" />
+        <img className="max-sm:w-[20px] max-sm:h-[20px]" src={commentSVG} alt="" />
       </div>
     </div>
   );
