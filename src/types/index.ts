@@ -124,7 +124,6 @@ export interface commentInfo {
   name: string;
   content: string;
   id: number;
-
 }
 
 export interface getCommentsRes {

@@ -22,7 +22,7 @@ export default function BlogContent() {
           setShowContent(!showContent);
         }}
       >
-        <img className="max-sm:w-[30px] max-sm:h-[30px]" src={contentSVG} alt="" />
+        <img className="max-sm:w-[20px] max-sm:h-[20px]" src={contentSVG} alt="" />
       </div>
       <div
         className={`h-fit max-h-screen overflow-y-auto non-scrollbar max-sm:w-[250px] w-[400px] bg-white border-2 rounded-[16px_0_0_16px] shadow-md border-r-0 py-[1rem] border-blue-200 overflow-x-auto non-scrollbar`}

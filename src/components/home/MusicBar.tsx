@@ -62,7 +62,7 @@ export default function MusicBar() {
     <>
       <audio src={currentUrl} loop className="hidden" ref={audio}></audio>
       <div
-        className="fixed z-[901] bottom-0 h-[80px] w-full left-0"
+        className="fixed z-[901] bottom-0 h-[80px] max-sm:h-[60px] w-full left-0"
         onMouseEnter={() => {
           setShowBar(true);
         }}
@@ -71,8 +71,8 @@ export default function MusicBar() {
         }}
       >
         <div
-          className={`fixed z-[902] h-[60px] grid grid-cols-3  bg-white/80 backdrop-blur-md w-full left-0 transition-all ${
-            showBar ? "bottom-0" : "bottom-[-60px]"
+          className={`fixed z-[902] max-sm:h-[40px] h-[60px] grid grid-cols-3  bg-white/80 backdrop-blur-md w-full left-0 transition-all ${
+            showBar ? "bottom-0" : "bottom-[-60px] max-sm:h-[-40px]"
           }`}
         >
           <div className="flex justify-center items-center">
@@ -88,12 +88,12 @@ export default function MusicBar() {
               onClick={() => {
                 lastSong();
               }}
-              className="cursor-pointer block rotate-180 self-center"
+              className="max-sm:w-[15px] max-sm:h-[15px] cursor-pointer block rotate-180 self-center"
               alt=""
             />
             <img
               src={play ? pauseSVG : playSVG}
-              className="cursor-pointer block"
+              className="max-sm:w-[15px] max-sm:h-[15px] cursor-pointer block"
               onClick={() => {
                 changePlayState();
               }}
@@ -105,7 +105,7 @@ export default function MusicBar() {
                 nextSong();
               }}
               alt=""
-              className="cursor-pointer block"
+              className="max-sm:w-[15px] max-sm:h-[15px] cursor-pointer block"
             />
           </div>
         </div>
