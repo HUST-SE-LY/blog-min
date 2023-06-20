@@ -33,9 +33,9 @@ interface config {
   chatBox: boolean;
   chatAvatar: false | string;
   chatWelcomeWord: false | string;
-  systemPrompt: false | string,
+  systemPrompt: false | string;
   music: boolean;
-  neteasePlayListId: false|string;
+  neteasePlayListId: false | string;
   staticMusicList: false | Array<string>;
   requests:
     | false
@@ -88,7 +88,7 @@ export interface addCommentParams {
 }
 
 const blogConfig: config = {
-  static: false,
+  static: true,
   requests: {
     host: "https://www.coisini.love/api/",
     router: {
@@ -132,7 +132,11 @@ const blogConfig: config = {
   },
   homeBackground: false,
   mainBackground: "mainBackground.jpg",
-  staticBlogBackground: ["blogBackground1.jpeg","blogBackground2.jpeg","blogBackground3.jpeg"],
+  staticBlogBackground: [
+    "blogBackground1.jpeg",
+    "blogBackground2.jpeg",
+    "blogBackground3.jpeg",
+  ],
   chatBox: true,
   chatAvatar: "cyberCheems.jpg",
   homeVideo: "background.mp4",
@@ -140,7 +144,7 @@ const blogConfig: config = {
   blogComment: true,
   blogContent: true,
   commonTags: true,
-  staticCommonTags: ["vue", "react","hello"],
+  staticCommonTags: ["vue", "react", "hello"],
   search: true,
   commonSites: true,
   staticCommonSites: [
@@ -150,8 +154,8 @@ const blogConfig: config = {
     },
     {
       name: "google",
-      url: "https://www.google.com/"
-    }
+      url: "https://www.google.com/",
+    },
   ],
   music: true,
   neteasePlayListId: "2517473337",
@@ -163,7 +167,8 @@ const blogConfig: config = {
   introduction: "她做着琉璃般的梦...当星河坠入深海之时...",
   chatWelcomeWord:
     "你好，我是柴犬的朋友赛博柴犬，你可以在下面的输入框里添加openAI的apiKey来与我对话，我不会收集任何apiKey",
-  systemPrompt: "现在假设你是一个赛博朋克柴犬，能回答我提出的问题，你的回答方式要像赛博朋克柴犬说话的样子。我的问题是："
+  systemPrompt:
+    "现在假设你是一个赛博朋克柴犬，能回答我提出的问题，你的回答方式要像赛博朋克柴犬说话的样子。我的问题是：",
 };
 
 export default blogConfig;
