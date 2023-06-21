@@ -16,7 +16,7 @@ export default function CommonLinks() {
     getSites();
   }, []);
   return (
-    <div className="max-h-[20%] pt-[1rem] overflow-y-auto non-scrollbar border-b-2 border-blue-200">
+    <div className="max-h-[20%] pt-[1rem] overflow-y-auto non-scrollbar border-b-[1px] border-blue-200">
       <p className="max-sm:text-[12px] relative px-[1rem] before:absolute before:h-full before:top-0 before:left-0 before:w-[5px] before:bg-gradient-to-br before:from-purple-300 before:to-blue-300 before:transition-all hover:before:w-[10px]">
         常用网址
       </p>

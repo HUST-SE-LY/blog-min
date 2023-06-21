@@ -8,6 +8,7 @@ export interface router {
   getLinks: routerType;
   getBlogComments: routerType;
   addComment: routerType;
+  getFriendLinks: routerType;
 }
 interface config {
   static: boolean;
@@ -128,6 +129,10 @@ const blogConfig: config = {
         path: "/comment/add",
         method: "post",
       },
+      getFriendLinks: {
+        path: "/link/getLink",
+        method: "post",
+      }
     },
   },
   homeBackground: false,

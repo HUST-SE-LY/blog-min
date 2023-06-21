@@ -145,5 +145,11 @@ declare interface staticFriendLinkInfo {
   url: string
 }
 
+declare interface getFriendLinkListRes {
+  data: {
+    list: friendLinkInfo[];
+  }
+}
+
 
 

@@ -146,3 +146,10 @@ export async function addComment(params: addCommentParams) {
     params
   );
 }
+
+export async function getFriendLinks() {
+  return await basicRequest(
+    routers.getFriendLinks.path,
+    routers.getFriendLinks.method
+  )
+}
