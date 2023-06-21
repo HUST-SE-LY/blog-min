@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
 import blogConfig from "../../../blog.config";
-import { blogOneColProps } from "../../../types";
 import { Link } from "react-router-dom";
 
 export default function BlogSingle(props: blogOneColProps) {

@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { blogTowColProps } from "../../../types";
 import { Link } from "react-router-dom";
 import blogConfig from "../../../blog.config";
 

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { getLinksRes, staticLink } from "../../../types";
 import { getLinks } from "../../../utils/requests";
 import blogConfig from "../../../blog.config";
 

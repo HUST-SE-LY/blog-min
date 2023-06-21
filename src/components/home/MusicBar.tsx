@@ -3,7 +3,6 @@ import getMusicAxios from "../../utils/getMusicAxios";
 import pauseSVG from "/src/assets/pause.svg";
 import playSVG from "/src/assets/play.svg";
 import arrowSVG from "/src/assets/arrow.svg";
-import { playListElement } from "../../types";
 import blogConfig from "../../blog.config";
 
 export default function MusicBar() {

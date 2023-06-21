@@ -1,4 +1,4 @@
-export interface staticBlogInfo {
+declare interface staticBlogInfo {
   file: string;
   id: number;
   date: string;
@@ -9,7 +9,7 @@ export interface staticBlogInfo {
   picture: string;
 }
 
-export interface blogInfo {
+declare interface blogInfo {
   date: string;
   des: string;
   file: string;
@@ -19,13 +19,13 @@ export interface blogInfo {
 }
 
 
-export interface getBlogRes {
+declare interface getBlogRes {
   data: {
     blogs: Array<blogInfo>;
   };
 }
 
-export interface getBlogDetailRes {
+declare interface getBlogDetailRes {
   data: {
     html: string;
     code: number;
@@ -35,68 +35,68 @@ export interface getBlogDetailRes {
   };
 }
 
-export interface singleRowProps {
+declare interface singleRowProps {
   blogInfo: blogInfo;
   index: number;
 }
 
-export interface blogTowColProps {
+declare interface blogTowColProps {
   blogInfo: blogInfo;
   isMain: boolean;
 }
 
-export interface blogOneColProps {
+declare interface blogOneColProps {
   blogInfo: blogInfo;
   isLeft: boolean;
 }
 
-export interface chatResProps {
+declare interface chatResProps {
   res: string;
 }
 
-export interface chatReqProps {
+declare interface chatReqProps {
   req: string;
 }
 
-export interface chatListElement {
+declare interface chatListElement {
   isReq: boolean;
   content: string;
 }
 
-export interface playListElement {
+declare interface playListElement {
   name: string;
   id: number;
 }
 
-export interface blogHtmlProps {
+declare interface blogHtmlProps {
   html: string;
   title: string;
   date: string;
 }
 
-export interface blogContentTitles {
+declare interface blogContentTitles {
   style: string;
   title: string;
 }
 
-export interface tagInfo {
+declare interface tagInfo {
   id: number;
   name: string;
 }
 
-export interface getBlogTagRes {
+declare interface getBlogTagRes {
   data: {
     tags: Array<tagInfo>;
   };
 }
 
-export interface getTagsRes {
+declare interface getTagsRes {
   data: {
     tags: Array<tagInfo>;
   }
 }
 
-export interface singleTagProps {
+declare interface singleTagProps {
   content: string;
   setList: React.Dispatch<React.SetStateAction<blogInfo[]>>;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
@@ -104,31 +104,46 @@ export interface singleTagProps {
   setCurrentTag: React.Dispatch<React.SetStateAction<string>>
 }
 
-export interface routerType {
+declare interface routerType {
   path: string;
   method: 'get'|'post';
 }
 
-export interface staticLink {
+declare interface staticLink {
   name: string;
   url: string;
 }
 
-export interface getLinksRes {
+declare interface getLinksRes {
   data: {
     links: Array<staticLink>
   }
 }
 
-export interface commentInfo {
+declare interface commentInfo {
   name: string;
   content: string;
   id: number;
 }
 
-export interface getCommentsRes {
+declare interface getCommentsRes {
   data: {
     list: commentInfo[];
   }
 }
+
+declare interface friendLinkInfo {
+  name: string;
+  content: string;
+  url: string;
+  id: number;
+}
+
+declare interface staticFriendLinkInfo {
+  name: string;
+  content: string;
+  url: string
+}
+
+
 

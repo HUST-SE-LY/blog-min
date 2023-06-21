@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import blogConfig from "../../blog.config";
-import { chatListElement } from "../../types";
 import { fetchData } from "../../utils/fetchData";
 import SingleInfoRes from "./ChatBox/SingleInfoRes";
 import SingleInfoReq from "./ChatBox/SingleInfoReq";

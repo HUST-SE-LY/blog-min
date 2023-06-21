@@ -5,7 +5,6 @@ import {
   handleScroll,
   handleTouch,
 } from "../utils/eventHandler";
-import { blogInfo, getBlogRes, staticBlogInfo } from "../types";
 import { useLoaderData } from "react-router-dom";
 import SingleRow from "../components/home/SingleRow";
 import getTitleTagPos from "../utils/getTitleTagPos";

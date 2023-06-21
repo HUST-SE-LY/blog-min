@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import contentSVG from "../../assets/content.svg";
 import getBlogContentTitles from "../../utils/getBlogContentTitles";
-import { blogContentTitles } from "../../types";
-
 export default function BlogContent() {
   const [showContent, setShowContent] = useState(false);
   const [contentList, setContentList] = useState<blogContentTitles[]>([]);

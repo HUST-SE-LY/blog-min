@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { getBlogRes, singleTagProps, staticBlogInfo } from "../../../../types";
 import { getBlogByTags } from "../../../../utils/requests";
 import blogConfig from "../../../../blog.config";
 import staticInfo from "../../../../static/static";

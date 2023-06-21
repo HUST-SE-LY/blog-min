@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import commentSVG from "../../assets/comment.svg";
-import { commentInfo, getCommentsRes } from "../../types";
 import { addComment, getBlogComments } from "../../utils/requests";
 import { useParams } from "react-router-dom";
 

@@ -1,5 +1,4 @@
 import { useLoaderData } from "react-router-dom"
-import { getBlogDetailRes, staticBlogInfo } from "../types"
 import BlogHtml from "../components/blogDetail/BlogHtml";
 import blogConfig from "../blog.config";
 import toTopSVG from "../assets/toTop.svg"

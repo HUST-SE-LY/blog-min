@@ -1,6 +1,5 @@
 import { lazy } from "react";
 import blogConfig from "../../blog.config.ts";
-import { singleRowProps } from "../../types/index.ts";
 
 const BlogLeft = lazy(() => import("./SingleRow/BlogLeft.tsx"));
 const BlogRight = lazy(() => import("./SingleRow/BlogRight.tsx"));

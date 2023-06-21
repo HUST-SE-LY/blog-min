@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { blogInfo } from "../../../types";
 import { handleSearchBarInput } from "../../../utils/eventHandler";
 import { Link } from "react-router-dom";
 import { getBlogByTitle } from "../../../utils/requests";

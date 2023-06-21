@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { blogInfo, getBlogRes, getTagsRes, tagInfo } from "../../../types";
 import { getBlogByTags, getTags } from "../../../utils/requests";
 import SingleTag from "./CommonTags/SingleTag";
 import { Link } from "react-router-dom";

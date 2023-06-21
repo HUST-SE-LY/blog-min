@@ -1,4 +1,4 @@
-import { blogContentTitles } from "../types";
+
 
 export default function getBlogContentTitles() {
   const result: Array<blogContentTitles> = [];

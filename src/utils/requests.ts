@@ -10,7 +10,6 @@ import blogConfig, {
   router,
 } from "../blog.config";
 import staticInfo from "../static/static";
-import { staticBlogInfo } from "../types";
 import getAxios from "./getAxios";
 const requestConfig = blogConfig.requests as {
   host: string;
