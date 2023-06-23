@@ -11,16 +11,4 @@ export default function throttle(fn: (...args:any[]) => any,delay: number) {
   }
 }
 
-export async function asyncThrottle(fn: (...args:any[]) => Promise<any>, delay: number) {
-  let time = false;
-  return async function(this:unknown,...args: any[]) {
-    if(time) return
-    time = true
-    setTimeout(() => {
-      time = false;
-    },delay)
-    const res = await fn.apply(this, args);
-    return res;
-  }
-}
 

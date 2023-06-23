@@ -153,3 +153,11 @@ export async function getFriendLinks() {
     routers.getFriendLinks.method
   )
 }
+
+export async function addFriendLink(params: addFriendLinkParams) {
+  return await basicRequest(
+    routers.addFriendLink.path,
+    routers.addFriendLink.method,
+    params
+  )
+}

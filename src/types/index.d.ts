@@ -151,5 +151,11 @@ declare interface getFriendLinkListRes {
   }
 }
 
+declare interface addFriendLinkParams {
+  name: string;
+  content: string;
+  url: string;
+}
+
 
 
