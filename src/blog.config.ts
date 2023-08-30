@@ -90,10 +90,10 @@ export interface addCommentParams {
 }
 
 const blogConfig: config = {
-  static: true,
+  static: false,
   requests: {
     host: "https://www.coisini.love/api/",
-    router: {
+    router: {           
       getBlogList: {
         path: "/get/blog",
         method: "post",
