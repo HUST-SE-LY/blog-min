@@ -140,7 +140,7 @@ const blogConfig: config = {
       }
     },
   },
-  homeBackground: false,
+  homeBackground: 'background.jpg',
   mainBackground: "mainBackground.jpg",
   staticBlogBackground: [
     "blogBackground1.jpeg",

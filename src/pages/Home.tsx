@@ -208,7 +208,7 @@ export default function Home() {
             <>
               <img
                 src={blogConfig.homeBackground}
-                className="-z-10 object-fill w-full h-full absolute top-0 left-0"
+                className="-z-10 object-cover w-full h-full absolute top-0 left-0"
               />
             </>
           ) : null}
