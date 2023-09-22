@@ -232,7 +232,7 @@ export default function Home() {
           ) : null}
           <div className="w-full flex justify-center items-center">
             {!isBottom ? (
-              <div className="w-[40px] h-[40px] rounded-full animate-spin flex justify-center items-center bg-blue-200">
+              <div className="w-[40px] mb-[2rem] h-[40px] rounded-full animate-spin flex justify-center items-center bg-blue-200">
                 <img ref={loadingBall} src={loadingSVG} alt="" />
               </div>
             ) : (
