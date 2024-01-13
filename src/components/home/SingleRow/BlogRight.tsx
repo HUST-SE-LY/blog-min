@@ -1,11 +1,17 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import blogConfig from "../../../blog.config";
 
 export default function BlogRight(props: blogTowColProps) {
   const [imgIn, setImgIn] = useState(false);
   const mainBox = useRef<HTMLDivElement>(null);
   const [showMain, setShowMain] = useState(true);
+  const navigate = useNavigate()
+  const nav = () => {
+    setTimeout(() => {
+      navigate(`/blog/${props.blogInfo.id}`)
+    },500)
+  }
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -43,8 +49,8 @@ export default function BlogRight(props: blogTowColProps) {
           <span className="absolute w-[5px] h-[5px] top-[-2px] right-0 rounded-full bg-blue-200"></span>
         </span>
         {showMain ? (
-          <Link to={`/blog/${props.blogInfo.id}`}>
             <div
+              onClick={nav}
               className={`animate-comeInFromRight shadow-2xl rounded-md cursor-pointer overflow-x-hidden relative max-sm:h-[100px] max-sm:p-[1rem] max-sm:w-[160px] max-sm:mr-[5px] w-[400px] h-[200px] border-[1px] p-[32px] border-blue-200`}
               onMouseEnter={() => {
                 hoverIn();
@@ -72,7 +78,6 @@ export default function BlogRight(props: blogTowColProps) {
               </p>
               <p className="overflow-x-hidden text-ellipsis whitespace-nowrap max-sm:text-[12px]">{props.blogInfo.des}</p>
             </div>
-          </Link>
         ) : null}
       </div>
     );

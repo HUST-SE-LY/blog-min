@@ -1,16 +1,15 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createBrowserRouter } from "react-router-dom";
-import Home from "./pages/Home";
-import { BlogDetailLoader, homeLoader } from "./utils/loaders";
-import BlogDetail from "./pages/BlogDetail";
 
+import { lazy } from "react";
 
+const Home = lazy(() => import("./pages/Home"))
+const BlogDetail = lazy(() => import("./pages/BlogDetail"));
 const router = createBrowserRouter([{
   path: '/',
-  loader: homeLoader,
-  element: <Home />,
+  element:<Home />
 },{
   path: '/blog/:id',
-  loader: BlogDetailLoader,
   element: <BlogDetail />
 }]);
 

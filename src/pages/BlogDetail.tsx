@@ -1,31 +1,88 @@
-import { useLoaderData } from "react-router-dom"
+import { useParams } from "react-router-dom";
 import BlogHtml from "../components/blogDetail/BlogHtml";
 import blogConfig from "../blog.config";
-import toTopSVG from "../assets/toTop.svg"
-
-import { lazy } from "react";
+import toTopSVG from "../assets/toTop.svg";
+import lottie from "lottie-web";
+import React, { lazy, useEffect, useRef, useState } from "react";
 import toTop from "../utils/toTop";
+import cx from "clsx";
+import { getBlogDetail, getStaticBlogDetail } from "../utils/requests";
 
-const BlogContent = lazy(() => import("../components/blogDetail/BlogContent"))
+const BlogContent = lazy(() => import("../components/blogDetail/BlogContent"));
 const BlogComment = lazy(() => import("../components/blogDetail/BlogComment"));
 export default function BlogDetail() {
-  const res = useLoaderData() as getBlogDetailRes|staticBlogInfo;
-  const title = blogConfig.static ? (res as staticBlogInfo).title : (res as getBlogDetailRes).data.title;
-  const date = blogConfig.static ? (res as staticBlogInfo).date : (res as getBlogDetailRes).data.date;
-  const html = blogConfig.static ? (res as staticBlogInfo).html : (res as getBlogDetailRes).data.html;
-  return <><BlogHtml title={title} date={date} html={html} />
-    {
-      blogConfig.blogBackground ? <img src={blogConfig.blogBackground} className="top-0 left-0 w-screen h-screen fixed z-[-10] object-cover" alt="" />:null
+  const [showLoading, setShowLoading] = useState(true);
+  const loadingLineContainer = useRef<HTMLDivElement>(null);
+  const params = useParams();
+  const [title, setTitle] = useState("");
+  const [date, setDate] = useState("");
+  const [html, setHtml] = useState("");
+  useEffect(() => {
+    if (blogConfig.static) {
+      getStaticBlogDetail({ id: parseInt(params.id as string) })
+        .then((res) => {
+          if (!res) return;
+          setTitle(res.title);
+          setDate(res.date);
+          setHtml(res.html);
+        })
+        .finally(() => {
+          setShowLoading(false);
+        });
+    } else {
+      getBlogDetail({ id: parseInt(params.id as string) })
+        .then((res: getBlogDetailRes) => {
+          setTitle(res.data.title);
+          setDate(res.data.date);
+          setHtml(res.data.html);
+        })
+        .finally(() => {
+          setShowLoading(false);
+        });
     }
-    {
-      blogConfig.blogContent ? <BlogContent /> : null
-    }
-    {
-      blogConfig.blogComment&&!blogConfig.static ? <BlogComment /> : null
-    }
+  }, [params.id]);
+  useEffect(() => {
+    loadingLineContainer.current &&
+      lottie.loadAnimation({
+        container: loadingLineContainer.current,
+        loop: true,
+        autoplay: true,
+        path: "/loadingLine.json",
+      });
+  }, []);
+  return (
+    <React.Suspense>
+      <BlogHtml title={title} date={date} html={html} />
+      {blogConfig.blogBackground ? (
+        <img
+          src={blogConfig.blogBackground}
+          className="top-0 left-0 w-screen h-screen fixed z-[-10] object-cover"
+          alt=""
+        />
+      ) : null}
+      {blogConfig.blogContent ? <BlogContent /> : null}
+      {blogConfig.blogComment && !blogConfig.static ? <BlogComment /> : null}
 
-    <div onClick={() => {toTop()}} className="max-sm:w-[30px] max-sm:h-[30px] max-md:right-[50px] fixed right-[150px] bottom-[50px] w-[40px] h-[40px] bg-white border-blue-200 border-2 cursor-pointer rounded-full flex justify-center items-center">
-      <img className="max-sm:w-[15px] max-sm:h-[15px]" src={toTopSVG} alt="" />
-    </div>
-  </>
+      <div
+        onClick={() => {
+          toTop();
+        }}
+        className="max-sm:w-[30px] max-sm:h-[30px] max-md:right-[50px] fixed right-[150px] bottom-[50px] w-[40px] h-[40px] bg-white border-blue-200 border-2 cursor-pointer rounded-full flex justify-center items-center"
+      >
+        <img
+          className="max-sm:w-[15px] max-sm:h-[15px]"
+          src={toTopSVG}
+          alt=""
+        />
+      </div>
+      <div
+        className={cx([
+          "bg-white fixed w-screen h-screen z-[999] top-0 transition-all flex justify-center flex-col items-center duration-500",
+          showLoading ? "right-0" : "right-[100vw]",
+        ])}
+      >
+        <div ref={loadingLineContainer} className="w-full"></div>
+      </div>
+    </React.Suspense>
+  );
 }

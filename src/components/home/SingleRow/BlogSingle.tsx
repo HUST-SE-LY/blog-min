@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import blogConfig from "../../../blog.config";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function BlogSingle(props: blogOneColProps) {
   const [imgIn, setImgIn] = useState(false);
@@ -11,14 +11,21 @@ export default function BlogSingle(props: blogOneColProps) {
   function hoverOut() {
     setImgIn(false);
   }
+  const navigate = useNavigate()
+  const nav = () => {
+    setTimeout(() => {
+      navigate(`/blog/${props.blogInfo.id}`)
+    },500)
+  }
   
   const img = useMemo(() => props.blogInfo.picture ?( blogConfig.static ? props.blogInfo.picture : `${(blogConfig.requests as {host: string}).host}/picture/${props.blogInfo.picture}`) : (blogConfig.staticBlogBackground ? blogConfig.staticBlogBackground[Math.floor(blogConfig.staticBlogBackground.length*Math.random())] : ""),[props.blogInfo.picture]) 
 
   return (
     <div>
       <div className="w-[2px] h-[50px] bg-blue-200 mx-[auto]"></div>
-      <Link to={`/blog/${props.blogInfo.id}`}>
+
         <div
+          onClick={nav}
           className={`cursor-pointer overflow-x-hidden relative mx-[auto] w-[400px] h-[200px] border-[1px] p-[32px] border-blue-200`}
           onMouseEnter={() => {
             hoverIn();
@@ -48,7 +55,7 @@ export default function BlogSingle(props: blogOneColProps) {
           <p>{props.blogInfo.des}</p>
           <p>{props.blogInfo.date}</p>
         </div>
-      </Link>
+
 
       <div className="w-[2px] h-[50px] bg-blue-200 mx-[auto]"></div>
     </div>
