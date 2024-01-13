@@ -2,15 +2,21 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import { lazy } from "react";
+import { ErrorPage } from "./pages/Error";
 
-const Home = lazy(() => import("./pages/Home"))
+const Home = lazy(() => import("./pages/Home"));
 const BlogDetail = lazy(() => import("./pages/BlogDetail"));
-const router = createBrowserRouter([{
-  path: '/',
-  element:<Home />
-},{
-  path: '/blog/:id',
-  element: <BlogDetail />
-}]);
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: "/blog/:id",
+    element: <BlogDetail />,
+    errorElement: <ErrorPage />
+  },
+]);
 
-export default router
+export default router;
