@@ -20,7 +20,7 @@ export default function Home() {
   const container = useRef<HTMLDivElement>(null);
   const [isBottom, setIsBottom] = useState(false);
   const loadingBall = useRef<HTMLImageElement>(null);
-  const [isJump, setIsJump] = useState(false);
+  const [isJump, setIsJump] = useState(true);
   const limit = 10;
   let offset = 10;
   const [blogList, setBlogList] = useState<
@@ -92,6 +92,9 @@ export default function Home() {
         path: "/loadingLine.json",
       });
   }, []);
+  useEffect(() => {
+    setIsJump(false)
+  },[])
   return (
     <>
       <React.Suspense>

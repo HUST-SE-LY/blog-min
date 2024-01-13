@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import BlogHtml from "../components/blogDetail/BlogHtml";
 import blogConfig from "../blog.config";
 import toTopSVG from "../assets/toTop.svg";
@@ -7,16 +7,25 @@ import React, { lazy, useEffect, useRef, useState } from "react";
 import toTop from "../utils/toTop";
 import cx from "clsx";
 import { getBlogDetail, getStaticBlogDetail } from "../utils/requests";
+import homeSVG from '../assets/home.svg'
 
 const BlogContent = lazy(() => import("../components/blogDetail/BlogContent"));
 const BlogComment = lazy(() => import("../components/blogDetail/BlogComment"));
 export default function BlogDetail() {
   const [showLoading, setShowLoading] = useState(true);
   const loadingLineContainer = useRef<HTMLDivElement>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
   const params = useParams();
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [html, setHtml] = useState("");
+  const nav = () => {
+    setShowLoading(true);
+    setTimeout(() => {
+      navigate('/');
+    },500)
+  }
   useEffect(() => {
     if (blogConfig.static) {
       getStaticBlogDetail({ id: parseInt(params.id as string) })
@@ -50,6 +59,9 @@ export default function BlogDetail() {
         path: "/loadingLine.json",
       });
   }, []);
+  useEffect(() => {
+    setShowLoading(true)
+  },[location])
   return (
     <>
       <React.Suspense>
@@ -73,6 +85,17 @@ export default function BlogDetail() {
           <img
             className="max-sm:w-[15px] max-sm:h-[15px]"
             src={toTopSVG}
+            alt=""
+          />
+        </div>
+
+        <div
+          onClick={nav}
+          className="max-sm:w-[30px] max-sm:h-[30px] max-md:right-[50px] fixed left-[150px] top-[50px] w-[40px] h-[40px] bg-white border-blue-200 border-2 cursor-pointer rounded-full flex justify-center items-center"
+        >
+          <img
+            className="max-sm:w-[15px] w-[30px] h-[30px] max-sm:h-[15px]"
+            src={homeSVG}
             alt=""
           />
         </div>
