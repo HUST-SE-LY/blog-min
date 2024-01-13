@@ -8,7 +8,7 @@ import toTopSVG from "../assets/toTop.svg";
 import toTop from "../utils/toTop";
 import { getBlogList, getStaticBlogList } from "../utils/requests";
 import cx from "clsx";
-import lottie from 'lottie-web'
+import lottie from "lottie-web";
 
 const ChatBox = lazy(() => import("../components/home/ChatBox"));
 const MusicBar = lazy(() => import("../components/home/MusicBar"));
@@ -93,118 +93,125 @@ export default function Home() {
       });
   }, []);
   return (
-    <React.Suspense>
-      {blogConfig.chatBox ? <ChatBox /> : null}
-      {blogConfig.music ? <MusicBar /> : null}
-      {blogConfig.search || blogConfig.commonSites || blogConfig.commonTags ? (
-        <SideBar />
-      ) : null}
-      <div className="h-screen overflow-y-scroll non-scrollbar snap-y snap-mandatory" ref={container}>
+    <>
+      <React.Suspense>
+        {blogConfig.chatBox ? <ChatBox /> : null}
+        {blogConfig.music ? <MusicBar /> : null}
+        {blogConfig.search ||
+        blogConfig.commonSites ||
+        blogConfig.commonTags ? (
+          <SideBar />
+        ) : null}
         <div
-          ref={headerContainer}
-          className="relative snap-start w-full h-screen flex gap-[1rem] flex-col items-center justify-center bg-radial-transparent-to-white"
+          className="h-screen overflow-y-scroll non-scrollbar snap-y snap-mandatory"
+          ref={container}
         >
-          <div className="relative w-fit h-fit">
-            <img
-              src={blogConfig.avatar}
-              alt=""
-              onMouseMove={() => {
-                setShowTags(true);
-              }}
-              onMouseLeave={() => {
-                setShowTags(false);
-              }}
-              className="max-sm:w-[3rem] max-sm:h-[3rem] block w-[5rem] h-[5rem] border-blue-400 border-[1px] rounded-full hover:shadow-md hover:shadow-blue-200 transition-all"
-            />
-            {blogConfig.avatarTags && showTags
-              ? blogConfig.avatarTags.map((tag, index) => {
-                  const pos = getTitleTagPos(index);
-                  return (
-                    <p className={`animate-pulse absolute ${pos.x} ${pos.y}`}>
-                      {tag}
-                    </p>
-                  );
-                })
-              : null}
-          </div>
-
-          <p className="animate-floatIn font-bold text-2xl max-sm:text-[16px]">
-            {blogConfig.title}
-          </p>
-          <p className="animate-floatIn max-sm:text-[12px]">
-            {blogConfig.introduction}
-          </p>
-          {blogConfig.homeVideo ? (
-            <>
-              <video
-                src={blogConfig.homeVideo}
-                className="-z-10 max-sm:hidden object-cover w-full h-full absolute top-0 left-0"
-                autoPlay
-                loop
-                muted
-                controls={false}
-              ></video>
-            </>
-          ) : null}
-          {blogConfig.homeBackground ? (
-            <>
+          <div
+            ref={headerContainer}
+            className="relative snap-start w-full h-screen flex gap-[1rem] flex-col items-center justify-center bg-radial-transparent-to-white"
+          >
+            <div className="relative w-fit h-fit">
               <img
-                src={blogConfig.homeBackground}
-                className="-z-10 object-cover w-full h-full absolute top-0 left-0"
-              />
-            </>
-          ) : null}
-        </div>
-        <div
-          className="relative snap-start w-full h-screen overflow-y-auto non-scrollbar"
-          ref={mainContainer}
-        >
-          {blogList.map((blogInfo, index) => (
-            <div
-              key={blogInfo.id}
-              onClick={() => {
-                console.log("Ok");
-                setIsJump(true);
-              }}
-            >
-              <SingleRow blogInfo={blogInfo} index={index} />
-            </div>
-          ))}
-          {blogConfig.mainBackground ? (
-            <>
-              <img
-                className="fixed w-screen h-screen object-cover top-0 z-[-1000] left-0"
-                src={blogConfig.mainBackground}
+                src={blogConfig.avatar}
                 alt=""
+                onMouseMove={() => {
+                  setShowTags(true);
+                }}
+                onMouseLeave={() => {
+                  setShowTags(false);
+                }}
+                className="max-sm:w-[3rem] max-sm:h-[3rem] block w-[5rem] h-[5rem] border-blue-400 border-[1px] rounded-full hover:shadow-md hover:shadow-blue-200 transition-all"
               />
-              {/* <div className="fixed w-screen h-screen top-0 left-0 z-[-999] bg-radial-transparent-to-white"></div> */}
-            </>
-          ) : null}
-          <div className="w-full flex justify-center items-center">
-            {!isBottom ? (
-              <div className="w-[40px] mb-[2rem] h-[40px] rounded-full animate-spin flex justify-center items-center bg-blue-200">
-                <img ref={loadingBall} src={loadingSVG} alt="" />
+              {blogConfig.avatarTags && showTags
+                ? blogConfig.avatarTags.map((tag, index) => {
+                    const pos = getTitleTagPos(index);
+                    return (
+                      <p className={`animate-pulse absolute ${pos.x} ${pos.y}`}>
+                        {tag}
+                      </p>
+                    );
+                  })
+                : null}
+            </div>
+
+            <p className="animate-floatIn font-bold text-2xl max-sm:text-[16px]">
+              {blogConfig.title}
+            </p>
+            <p className="animate-floatIn max-sm:text-[12px]">
+              {blogConfig.introduction}
+            </p>
+            {blogConfig.homeVideo ? (
+              <>
+                <video
+                  src={blogConfig.homeVideo}
+                  className="-z-10 max-sm:hidden object-cover w-full h-full absolute top-0 left-0"
+                  autoPlay
+                  loop
+                  muted
+                  controls={false}
+                ></video>
+              </>
+            ) : null}
+            {blogConfig.homeBackground ? (
+              <>
+                <img
+                  src={blogConfig.homeBackground}
+                  className="-z-10 object-cover w-full h-full absolute top-0 left-0"
+                />
+              </>
+            ) : null}
+          </div>
+          <div
+            className="relative snap-start w-full h-screen overflow-y-auto non-scrollbar"
+            ref={mainContainer}
+          >
+            {blogList.map((blogInfo, index) => (
+              <div
+                key={blogInfo.id}
+                onClick={() => {
+                  console.log("Ok");
+                  setIsJump(true);
+                }}
+              >
+                <SingleRow blogInfo={blogInfo} index={index} />
               </div>
-            ) : (
-              <div className="w-fit h-fit px-[2rem] py-[1rem] border-2 border-blue-200 bg-white/80 rounded-lg mb-[2rem] ">
-                已经到尽头了哦
-              </div>
-            )}
+            ))}
+            {blogConfig.mainBackground ? (
+              <>
+                <img
+                  className="fixed w-screen h-screen object-cover top-0 z-[-1000] left-0"
+                  src={blogConfig.mainBackground}
+                  alt=""
+                />
+                {/* <div className="fixed w-screen h-screen top-0 left-0 z-[-999] bg-radial-transparent-to-white"></div> */}
+              </>
+            ) : null}
+            <div className="w-full flex justify-center items-center">
+              {!isBottom ? (
+                <div className="w-[40px] mb-[2rem] h-[40px] rounded-full animate-spin flex justify-center items-center bg-blue-200">
+                  <img ref={loadingBall} src={loadingSVG} alt="" />
+                </div>
+              ) : (
+                <div className="w-fit h-fit px-[2rem] py-[1rem] border-2 border-blue-200 bg-white/80 rounded-lg mb-[2rem] ">
+                  已经到尽头了哦
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-      <div
-        onClick={() => {
-          toTop(mainContainer.current as HTMLElement);
-        }}
-        className="max-sm:w-[30px] max-sm:h-[30px] max-md:right-[50px] z-[904] fixed right-[150px] bottom-[100px] w-[40px] h-[40px] bg-white border-blue-200 border-2 cursor-pointer rounded-full flex justify-center items-center"
-      >
-        <img
-          className="max-sm:w-[15px] max-sm:h-[15px]"
-          src={toTopSVG}
-          alt=""
-        />
-      </div>
+        <div
+          onClick={() => {
+            toTop(mainContainer.current as HTMLElement);
+          }}
+          className="max-sm:w-[30px] max-sm:h-[30px] max-md:right-[50px] z-[904] fixed right-[150px] bottom-[100px] w-[40px] h-[40px] bg-white border-blue-200 border-2 cursor-pointer rounded-full flex justify-center items-center"
+        >
+          <img
+            className="max-sm:w-[15px] max-sm:h-[15px]"
+            src={toTopSVG}
+            alt=""
+          />
+        </div>
+      </React.Suspense>
       <div
         className={cx([
           "bg-white fixed w-screen h-screen z-[999] top-0 transition-all flex justify-center items-center duration-500",
@@ -213,6 +220,6 @@ export default function Home() {
       >
         <div ref={loadingLineContainer} className="w-full"></div>
       </div>
-    </React.Suspense>
+    </>
   );
 }

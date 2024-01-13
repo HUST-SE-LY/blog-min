@@ -51,30 +51,33 @@ export default function BlogDetail() {
       });
   }, []);
   return (
-    <React.Suspense>
-      <BlogHtml title={title} date={date} html={html} />
-      {blogConfig.blogBackground ? (
-        <img
-          src={blogConfig.blogBackground}
-          className="top-0 left-0 w-screen h-screen fixed z-[-10] object-cover"
-          alt=""
-        />
-      ) : null}
-      {blogConfig.blogContent ? <BlogContent /> : null}
-      {blogConfig.blogComment && !blogConfig.static ? <BlogComment /> : null}
+    <>
+      <React.Suspense>
+        <BlogHtml title={title} date={date} html={html} />
+        {blogConfig.blogBackground ? (
+          <img
+            src={blogConfig.blogBackground}
+            className="top-0 left-0 w-screen h-screen fixed z-[-10] object-cover"
+            alt=""
+          />
+        ) : null}
+        {blogConfig.blogContent ? <BlogContent /> : null}
+        {blogConfig.blogComment && !blogConfig.static ? <BlogComment /> : null}
 
-      <div
-        onClick={() => {
-          toTop();
-        }}
-        className="max-sm:w-[30px] max-sm:h-[30px] max-md:right-[50px] fixed right-[150px] bottom-[50px] w-[40px] h-[40px] bg-white border-blue-200 border-2 cursor-pointer rounded-full flex justify-center items-center"
-      >
-        <img
-          className="max-sm:w-[15px] max-sm:h-[15px]"
-          src={toTopSVG}
-          alt=""
-        />
-      </div>
+        <div
+          onClick={() => {
+            toTop();
+          }}
+          className="max-sm:w-[30px] max-sm:h-[30px] max-md:right-[50px] fixed right-[150px] bottom-[50px] w-[40px] h-[40px] bg-white border-blue-200 border-2 cursor-pointer rounded-full flex justify-center items-center"
+        >
+          <img
+            className="max-sm:w-[15px] max-sm:h-[15px]"
+            src={toTopSVG}
+            alt=""
+          />
+        </div>
+      </React.Suspense>
+
       <div
         className={cx([
           "bg-white fixed w-screen h-screen z-[999] top-0 transition-all flex justify-center flex-col items-center duration-500",
@@ -83,6 +86,6 @@ export default function BlogDetail() {
       >
         <div ref={loadingLineContainer} className="w-full"></div>
       </div>
-    </React.Suspense>
+    </>
   );
 }
