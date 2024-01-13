@@ -79,6 +79,7 @@ export default function Home() {
     } else {
       getBlogList({ limit: 10, offset: 0 }).then((loaderData: getBlogRes) => {
         setBlogList(loaderData.data.blogs);
+        setIsJump(false);
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -92,9 +93,6 @@ export default function Home() {
         path: "/loadingLine.json",
       });
   }, []);
-  useEffect(() => {
-    setIsJump(false)
-  },[])
   return (
     <>
       <React.Suspense>
@@ -169,14 +167,15 @@ export default function Home() {
             ref={mainContainer}
           >
             {blogList.map((blogInfo, index) => (
-              <div
-                key={blogInfo.id}
-                onClick={() => {
-                  console.log("Ok");
-                  setIsJump(true);
-                }}
-              >
-                <SingleRow blogInfo={blogInfo} index={index} />
+              <div key={blogInfo.id}>
+                <SingleRow
+                  onJump={() => {
+                    setIsJump(true);
+                  }}
+                  key={blogInfo.id}
+                  blogInfo={blogInfo}
+                  index={index}
+                />
               </div>
             ))}
             {blogConfig.mainBackground ? (

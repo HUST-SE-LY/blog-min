@@ -38,11 +38,13 @@ declare interface getBlogDetailRes {
 declare interface singleRowProps {
   blogInfo: blogInfo;
   index: number;
+  onJump: () => void;
 }
 
 declare interface blogTowColProps {
   blogInfo: blogInfo;
   isMain: boolean;
+  onJump: () => void
 }
 
 declare interface blogOneColProps {

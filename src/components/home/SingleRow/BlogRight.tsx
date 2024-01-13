@@ -8,6 +8,7 @@ export default function BlogRight(props: blogTowColProps) {
   const [showMain, setShowMain] = useState(true);
   const navigate = useNavigate()
   const nav = () => {
+    props.onJump();
     setTimeout(() => {
       navigate(`/blog/${props.blogInfo.id}`)
     },500)
