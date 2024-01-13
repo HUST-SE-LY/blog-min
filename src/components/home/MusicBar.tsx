@@ -9,13 +9,15 @@ export default function MusicBar() {
   const audio = useRef<HTMLAudioElement>(null);
   const [showBar, setShowBar] = useState(false);
   const [play, setPlay] = useState(false);
-  const [currentSong, setCurrentSong] = useState("");
-  const [currentUrl, setCurrentUrl] = useState("");
+  const [currentSong, setCurrentSong] = useState(blogConfig.staticMusicList ? "背景音乐" :"");
+  const [currentUrl, setCurrentUrl] = useState(blogConfig.staticMusicList ? `/${blogConfig.staticMusicList[0]}` :"");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [playList, setPlayList] = useState<playListElement[]>([]);
   const axios = getMusicAxios();
   async function getList() {
-    const result = await axios.get(`/playlist/track/all?id=${blogConfig.neteasePlayListId}`);
+    const result = await axios.get(
+      `/playlist/track/all?id=${blogConfig.neteasePlayListId}`
+    );
     setPlayList(result.data.songs);
     setCurrentSong(result.data.songs[0].name);
     const songRes = await axios.get(`/song/url?id=${result.data.songs[0].id}`);
@@ -49,13 +51,11 @@ export default function MusicBar() {
     setPlay(false);
     setCurrentSong(playList[newIndex].name);
     setCurrentUrl("");
-    const songRes = await axios.get(
-      `/song/url?id=${playList[newIndex].id}`
-    );
+    const songRes = await axios.get(`/song/url?id=${playList[newIndex].id}`);
     setCurrentUrl(songRes.data.data[0].url);
   }
   useEffect(() => {
-    getList();
+    blogConfig.neteasePlayListId && getList();
   }, []);
   return (
     <>
@@ -76,20 +76,24 @@ export default function MusicBar() {
         >
           <div className="flex justify-center items-center">
             {currentSong && currentUrl ? (
-              <p className=" text-ellipsis overflow-hidden whitespace-nowrap max-sm:hidden">{currentSong}</p>
+              <p className=" text-ellipsis overflow-hidden whitespace-nowrap max-sm:hidden">
+                {currentSong}
+              </p>
             ) : (
               <div className="w-[15rem] h-[1rem] animate-pulse bg-gray-100"></div>
             )}
           </div>
           <div className="flex justify-center gap-[100px] items-center">
-            <img
-              src={arrowSVG}
-              onClick={() => {
-                lastSong();
-              }}
-              className="max-sm:w-[15px] max-sm:h-[15px] cursor-pointer block rotate-180 self-center"
-              alt=""
-            />
+            {blogConfig.neteasePlayListId && (
+              <img
+                src={arrowSVG}
+                onClick={() => {
+                  lastSong();
+                }}
+                className="max-sm:w-[15px] max-sm:h-[15px] cursor-pointer block rotate-180 self-center"
+                alt=""
+              />
+            )}
             <img
               src={play ? pauseSVG : playSVG}
               className="max-sm:w-[15px] max-sm:h-[15px] cursor-pointer block"
@@ -98,14 +102,16 @@ export default function MusicBar() {
               }}
               alt=""
             />
-            <img
-              src={arrowSVG}
-              onClick={() => {
-                nextSong();
-              }}
-              alt=""
-              className="max-sm:w-[15px] max-sm:h-[15px] cursor-pointer block"
-            />
+            {blogConfig.neteasePlayListId && (
+              <img
+                src={arrowSVG}
+                onClick={() => {
+                  nextSong();
+                }}
+                alt=""
+                className="max-sm:w-[15px] max-sm:h-[15px] cursor-pointer block"
+              />
+            )}
           </div>
         </div>
       </div>
