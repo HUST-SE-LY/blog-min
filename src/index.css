@@ -78,6 +78,9 @@
   color: #5468ff;
 }
 
+html, body {
+  scroll-behavior: smooth;
+}
 
 
 

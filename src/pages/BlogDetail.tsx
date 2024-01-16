@@ -7,14 +7,13 @@ import React, { lazy, useEffect, useRef, useState } from "react";
 import toTop from "../utils/toTop";
 import cx from "clsx";
 import { getBlogDetail, getStaticBlogDetail } from "../utils/requests";
-import homeSVG from '../assets/home.svg'
+import homeSVG from "../assets/home.svg";
 
 const BlogContent = lazy(() => import("../components/blogDetail/BlogContent"));
 const BlogComment = lazy(() => import("../components/blogDetail/BlogComment"));
 export default function BlogDetail() {
   const [showLoading, setShowLoading] = useState(true);
   const loadingLineContainer = useRef<HTMLDivElement>(null);
-  const location = useLocation();
   const navigate = useNavigate();
   const params = useParams();
   const [title, setTitle] = useState("");
@@ -23,9 +22,9 @@ export default function BlogDetail() {
   const nav = () => {
     setShowLoading(true);
     setTimeout(() => {
-      navigate('/');
-    },500)
-  }
+      navigate("/");
+    }, 500);
+  };
   useEffect(() => {
     if (blogConfig.static) {
       getStaticBlogDetail({ id: parseInt(params.id as string) })
@@ -59,9 +58,6 @@ export default function BlogDetail() {
         path: "/loadingLine.json",
       });
   }, []);
-  useEffect(() => {
-    setShowLoading(true)
-  },[location])
   return (
     <>
       <React.Suspense>
@@ -75,7 +71,6 @@ export default function BlogDetail() {
         ) : null}
         {blogConfig.blogContent ? <BlogContent /> : null}
         {blogConfig.blogComment && !blogConfig.static ? <BlogComment /> : null}
-
         <div
           onClick={() => {
             toTop();

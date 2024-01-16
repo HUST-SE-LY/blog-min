@@ -6,7 +6,9 @@ export default function BlogContent() {
   const [contentList, setContentList] = useState<blogContentTitles[]>([]);
 
   useEffect(() => {
-    setContentList(getBlogContentTitles());
+    getBlogContentTitles().then((res) => {
+      setContentList(res)
+    })
   }, []);
   return (
     <div

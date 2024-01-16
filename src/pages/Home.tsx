@@ -34,7 +34,6 @@ export default function Home() {
     offset += blogList.length;
     if (blogConfig.static) {
       const res = await getStaticBlogList({ limit: limit, offset: offset });
-      console.log(res);
       if (res.length < limit) {
         setIsBottom(true);
       }
@@ -53,10 +52,12 @@ export default function Home() {
 
   useEffect(() => {
     let isLoading = false;
+    loadingBall.current&&console.log(12221)
     const observer = new IntersectionObserver(
       async (entries) => {
         if (isLoading) return;
         isLoading = true;
+        console.log(111)
         if (entries[0].intersectionRatio > 0) {
           await updateBlogList();
         }
@@ -70,7 +71,7 @@ export default function Home() {
       observer.observe(loadingBall.current);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [loadingBall.current]);
   useEffect(() => {
     if (blogConfig.static) {
       getStaticBlogList({ limit: 10, offset: 0 }).then((loaderData) => {
