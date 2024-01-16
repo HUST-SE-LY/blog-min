@@ -1,4 +1,4 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import BlogHtml from "../components/blogDetail/BlogHtml";
 import blogConfig from "../blog.config";
 import toTopSVG from "../assets/toTop.svg";
