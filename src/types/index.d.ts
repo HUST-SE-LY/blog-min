@@ -41,6 +41,11 @@ declare interface singleRowProps {
   onJump: () => void;
 }
 
+declare interface MobileRowProps {
+  blogInfo: blogInfo;
+  onJump: () => void;
+}
+
 declare interface blogTowColProps {
   blogInfo: blogInfo;
   isMain: boolean;

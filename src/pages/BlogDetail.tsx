@@ -86,7 +86,7 @@ export default function BlogDetail() {
 
         <div
           onClick={nav}
-          className="max-sm:w-[30px] max-sm:h-[30px] max-md:right-[50px] fixed left-[150px] top-[50px] w-[40px] h-[40px] bg-white border-blue-200 border-2 cursor-pointer rounded-full flex justify-center items-center"
+          className="max-sm:w-[30px] max-sm:h-[30px] max-md:right-[50px] fixed right-[150px] bottom-[100px] w-[40px] h-[40px] bg-white border-blue-200 border-2 cursor-pointer rounded-full flex justify-center items-center"
         >
           <img
             className="max-sm:w-[15px] w-[30px] h-[30px] max-sm:h-[15px]"

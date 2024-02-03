@@ -31,7 +31,7 @@ export default function Home() {
     e.stopPropagation();
   });
   async function updateBlogList() {
-    offset += blogList.length;
+    console.log(offset)
     if (blogConfig.static) {
       const res = await getStaticBlogList({ limit: limit, offset: offset });
       if (res.length < limit) {
@@ -52,12 +52,10 @@ export default function Home() {
 
   useEffect(() => {
     let isLoading = false;
-    loadingBall.current&&console.log(12221)
     const observer = new IntersectionObserver(
       async (entries) => {
         if (isLoading) return;
         isLoading = true;
-        console.log(111)
         if (entries[0].intersectionRatio > 0) {
           await updateBlogList();
         }
