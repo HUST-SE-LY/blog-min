@@ -11,6 +11,7 @@ import cx from "clsx";
 import lottie from "lottie-web";
 let offset = 10;
 const limit = 10;
+let isLoading = false;
 const ChatBox = lazy(() => import("../components/home/ChatBox"));
 const MusicBar = lazy(() => import("../components/home/MusicBar"));
 const SideBar = lazy(() => import("../components/home/SideBar"));
@@ -22,7 +23,6 @@ export default function Home() {
   const [isBottom, setIsBottom] = useState(false);
   const loadingBall = useRef<HTMLDivElement>(null);
   const [isJump, setIsJump] = useState(true);
-  let isLoading = false;
 
 
   const [blogList, setBlogList] = useState<
