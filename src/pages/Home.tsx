@@ -19,7 +19,7 @@ export default function Home() {
   const loadingLineContainer = useRef<HTMLDivElement>(null);
   const container = useRef<HTMLDivElement>(null);
   const [isBottom, setIsBottom] = useState(false);
-  const loadingBall = useRef<HTMLImageElement>(null);
+  const loadingBall = useRef<HTMLDivElement>(null);
   const [isJump, setIsJump] = useState(true);
   const limit = 10;
   let offset = 10;
@@ -31,7 +31,6 @@ export default function Home() {
     e.stopPropagation();
   });
   async function updateBlogList() {
-    console.log(offset)
     if (blogConfig.static) {
       const res = await getStaticBlogList({ limit: limit, offset: offset });
       if (res.length < limit) {
@@ -189,8 +188,8 @@ export default function Home() {
             ) : null}
             <div className="w-full flex justify-center items-center">
               {!isBottom ? (
-                <div className="w-[40px] mb-[2rem] h-[40px] rounded-full animate-spin flex justify-center items-center bg-blue-200">
-                  <img ref={loadingBall} src={loadingSVG} alt="" />
+                <div  ref={loadingBall} className="w-[40px] mb-[2rem] h-[40px] rounded-full animate-spin flex justify-center items-center bg-blue-200">
+                  <img src={loadingSVG} alt="" />
                 </div>
               ) : (
                 <div className="w-fit h-fit px-[2rem] py-[1rem] border-2 border-blue-200 bg-white/80 rounded-lg mb-[2rem] ">
