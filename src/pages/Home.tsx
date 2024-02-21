@@ -1,4 +1,4 @@
-import React, { lazy, useEffect, useRef, useState } from "react";
+import React, { lazy, useEffect, useMemo, useRef, useState } from "react";
 import blogConfig from "../blog.config";
 
 import SingleRow from "../components/home/SingleRow";
@@ -9,13 +9,14 @@ import toTop from "../utils/toTop";
 import { getBlogList, getStaticBlogList } from "../utils/requests";
 import cx from "clsx";
 import lottie from "lottie-web";
-let offset = 10;
+
 const limit = 10;
-let isLoading = false;
 const ChatBox = lazy(() => import("../components/home/ChatBox"));
 const MusicBar = lazy(() => import("../components/home/MusicBar"));
 const SideBar = lazy(() => import("../components/home/SideBar"));
 export default function Home() {
+  const offset = useRef(10);
+  const [isLoading, setIsLoading] = useState(false)
   const mainContainer = useRef<HTMLDivElement>(null);
   const headerContainer = useRef<HTMLDivElement>(null);
   const loadingLineContainer = useRef<HTMLDivElement>(null);
@@ -37,27 +38,27 @@ export default function Home() {
     if(mainContainer.current) {
       const {scrollHeight, scrollTop, clientHeight} = mainContainer.current;
       if(scrollTop + clientHeight >= scrollHeight) {
-        isLoading = true;
+        setIsLoading(true)
         await updateBlogList();
-        isLoading = false
+        setIsLoading(false)
       }
     }
   };
   async function updateBlogList() {
     if (blogConfig.static) {
-      const res = await getStaticBlogList({ limit: limit, offset: offset });
+      const res = await getStaticBlogList({ limit: limit, offset: offset.current });
       if (res.length < limit) {
         setIsBottom(true);
       }
-      offset += res.length;
+      offset.current += res.length;
       setBlogList((prev) => [...prev, ...res]);
     } else {
-      const res = await getBlogList({ limit: limit, offset: offset });
+      const res = await getBlogList({ limit: limit, offset: offset.current });
       const blogs = (res as getBlogRes).data.blogs;
       if (blogs.length < limit) {
         setIsBottom(true);
       }
-      offset += blogs.length;
+      offset.current += blogs.length;
       setBlogList((prev) => [...prev, ...(res as getBlogRes).data.blogs]);
     }
   }
