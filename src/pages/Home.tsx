@@ -9,7 +9,8 @@ import toTop from "../utils/toTop";
 import { getBlogList, getStaticBlogList } from "../utils/requests";
 import cx from "clsx";
 import lottie from "lottie-web";
-
+let offset = 10;
+const limit = 10;
 const ChatBox = lazy(() => import("../components/home/ChatBox"));
 const MusicBar = lazy(() => import("../components/home/MusicBar"));
 const SideBar = lazy(() => import("../components/home/SideBar"));
@@ -21,8 +22,9 @@ export default function Home() {
   const [isBottom, setIsBottom] = useState(false);
   const loadingBall = useRef<HTMLDivElement>(null);
   const [isJump, setIsJump] = useState(true);
-  const limit = 10;
-  let offset = 10;
+  let isLoading = false;
+
+
   const [blogList, setBlogList] = useState<
     Array<blogInfo> | Array<staticBlogInfo>
   >([]);
@@ -30,6 +32,17 @@ export default function Home() {
   document.addEventListener("scroll", (e) => {
     e.stopPropagation();
   });
+  const handleScroll = async () => {
+    if(isLoading) return;
+    if(mainContainer.current) {
+      const {scrollHeight, scrollTop, clientHeight} = mainContainer.current;
+      if(scrollTop + clientHeight >= scrollHeight) {
+        isLoading = true;
+        await updateBlogList();
+        isLoading = false
+      }
+    }
+  };
   async function updateBlogList() {
     if (blogConfig.static) {
       const res = await getStaticBlogList({ limit: limit, offset: offset });
@@ -48,27 +61,6 @@ export default function Home() {
       setBlogList((prev) => [...prev, ...(res as getBlogRes).data.blogs]);
     }
   }
-
-  useEffect(() => {
-    let isLoading = false;
-    const observer = new IntersectionObserver(
-      async (entries) => {
-        if (isLoading) return;
-        isLoading = true;
-        if (entries[0].intersectionRatio > 0) {
-          await updateBlogList();
-        }
-        isLoading = false;
-      },
-      {
-        threshold: [0, 0.1, 0.5, 1],
-      }
-    );
-    if (loadingBall.current) {
-      observer.observe(loadingBall.current);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loadingBall.current]);
   useEffect(() => {
     if (blogConfig.static) {
       getStaticBlogList({ limit: 10, offset: 0 }).then((loaderData) => {
@@ -161,6 +153,7 @@ export default function Home() {
             ) : null}
           </div>
           <div
+            onScroll={handleScroll}
             className="relative snap-start w-full h-screen overflow-y-auto non-scrollbar"
             ref={mainContainer}
           >
@@ -188,7 +181,10 @@ export default function Home() {
             ) : null}
             <div className="w-full flex justify-center items-center">
               {!isBottom ? (
-                <div  ref={loadingBall} className="w-[40px] mb-[2rem] h-[40px] rounded-full animate-spin flex justify-center items-center bg-blue-200">
+                <div
+                  ref={loadingBall}
+                  className="w-[40px] mb-[2rem] h-[40px] rounded-full animate-spin flex justify-center items-center bg-blue-200"
+                >
                   <img src={loadingSVG} alt="" />
                 </div>
               ) : (
