@@ -1,4 +1,4 @@
-import React, { lazy, useEffect, useMemo, useRef, useState } from "react";
+import React, { lazy, useEffect, useRef, useState } from "react";
 import blogConfig from "../blog.config";
 
 import SingleRow from "../components/home/SingleRow";
