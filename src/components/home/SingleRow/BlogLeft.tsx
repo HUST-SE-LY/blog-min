@@ -18,8 +18,7 @@ export default function BlogLeft(props: blogTowColProps) {
       (entries) => {
         if (entries[0].intersectionRatio > 0) {
           setShowMain(true);
-        } else {
-          setShowMain(false);
+          observer.disconnect();
         }
       },
       {
