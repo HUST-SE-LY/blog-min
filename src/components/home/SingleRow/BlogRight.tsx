@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import blogConfig from "../../../blog.config";
-
+import imgPic from "../../../assets/img.svg";
 export default function BlogRight(props: blogTowColProps) {
   const [imgIn, setImgIn] = useState(false);
   const mainBox = useRef<HTMLDivElement>(null);
+  const [showImg, setShowImg] = useState(false);
   const [showMain, setShowMain] = useState(false);
   const navigate = useNavigate();
   const nav = () => {
@@ -32,6 +33,7 @@ export default function BlogRight(props: blogTowColProps) {
 
   function hoverIn() {
     setImgIn(true);
+    setShowImg(true)
   }
 
   function hoverOut() {
@@ -74,7 +76,7 @@ export default function BlogRight(props: blogTowColProps) {
             }}
           >
             <img
-              src={img}
+              src={showImg ? img : imgPic}
               alt=""
               className={`-z-10 absolute w-full h-full object-cover transition-all top-0 ${
                 imgIn ? "right-0" : "right-[-100%]"
