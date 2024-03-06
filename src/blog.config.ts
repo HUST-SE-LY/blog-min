@@ -151,7 +151,7 @@ const blogConfig: config = {
   chatAvatar: "cyberCheems.jpg",
   homeVideo: false,
   blogBackground: "/blogBackground.jpeg",
-  blogComment: true,
+  blogComment: false,
   blogContent: true,
   commonTags: true,
   staticCommonTags: ["vue", "react", "hello"],
