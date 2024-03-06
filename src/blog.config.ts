@@ -147,7 +147,7 @@ const blogConfig: config = {
     "blogBackground2.jpeg",
     "blogBackground3.jpeg",
   ],
-  chatBox: true,
+  chatBox: false,
   chatAvatar: "cyberCheems.jpg",
   homeVideo: false,
   blogBackground: "/blogBackground.jpeg",
