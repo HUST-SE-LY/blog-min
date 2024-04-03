@@ -16,7 +16,7 @@ const MusicBar = lazy(() => import("../components/home/MusicBar"));
 const SideBar = lazy(() => import("../components/home/SideBar"));
 export default function Home() {
   const offset = useRef(10);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const mainContainer = useRef<HTMLDivElement>(null);
   const headerContainer = useRef<HTMLDivElement>(null);
   const loadingLineContainer = useRef<HTMLDivElement>(null);
@@ -24,7 +24,6 @@ export default function Home() {
   const [isBottom, setIsBottom] = useState(false);
   const loadingBall = useRef<HTMLDivElement>(null);
   const [isJump, setIsJump] = useState(true);
-
 
   const [blogList, setBlogList] = useState<
     Array<blogInfo> | Array<staticBlogInfo>
@@ -34,19 +33,22 @@ export default function Home() {
     e.stopPropagation();
   });
   const handleScroll = async () => {
-    if(isLoading) return;
-    if(mainContainer.current) {
-      const {scrollHeight, scrollTop, clientHeight} = mainContainer.current;
-      if(scrollTop + clientHeight >= scrollHeight) {
-        setIsLoading(true)
+    if (isLoading) return;
+    if (mainContainer.current) {
+      const { scrollHeight, scrollTop, clientHeight } = mainContainer.current;
+      if (scrollTop + clientHeight >= scrollHeight) {
+        setIsLoading(true);
         await updateBlogList();
-        setIsLoading(false)
+        setIsLoading(false);
       }
     }
   };
   async function updateBlogList() {
     if (blogConfig.static) {
-      const res = await getStaticBlogList({ limit: limit, offset: offset.current });
+      const res = await getStaticBlogList({
+        limit: limit,
+        offset: offset.current,
+      });
       if (res.length < limit) {
         setIsBottom(true);
       }
@@ -100,7 +102,7 @@ export default function Home() {
         >
           <div
             ref={headerContainer}
-            className="relative snap-start w-full h-screen flex gap-[1rem] flex-col items-center justify-center bg-radial-transparent-to-white"
+            className="relative snap-start w-full h-screen flex gap-[1rem] flex-col items-center justify-center"
           >
             <div className="relative w-fit h-fit">
               <img
@@ -112,13 +114,15 @@ export default function Home() {
                 onMouseLeave={() => {
                   setShowTags(false);
                 }}
-                className="max-sm:w-[3rem] max-sm:h-[3rem] block w-[5rem] h-[5rem] border-blue-400 border-[1px] rounded-full hover:shadow-md hover:shadow-blue-200 transition-all"
+                className="max-sm:w-[3rem] max-sm:h-[3rem] block w-[5rem] h-[5rem] border-blue-400 border-[1px] rounded-full hover:shadow-md transition-all"
               />
               {blogConfig.avatarTags && showTags
                 ? blogConfig.avatarTags.map((tag, index) => {
                     const pos = getTitleTagPos(index);
                     return (
-                      <p className={`animate-pulse absolute ${pos.x} ${pos.y}`}>
+                      <p
+                        className={`animate-pulse text-white absolute ${pos.x} ${pos.y}`}
+                      >
                         {tag}
                       </p>
                     );
@@ -126,10 +130,10 @@ export default function Home() {
                 : null}
             </div>
 
-            <p className="animate-floatIn font-bold text-2xl max-sm:text-[16px]">
+            <p className="animate-floatIn bg-clip-text text-transparent bg-gradient-to-br from-white to-blue-300 font-bold text-2xl max-sm:text-[16px]">
               {blogConfig.title}
             </p>
-            <p className="animate-floatIn max-sm:text-[12px]">
+            <p className="animate-floatIn bg-clip-text text-white max-sm:text-[12px]">
               {blogConfig.introduction}
             </p>
             {blogConfig.homeVideo ? (

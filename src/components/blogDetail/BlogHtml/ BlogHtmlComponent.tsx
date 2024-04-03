@@ -62,7 +62,7 @@ export function BlogP(props: simpleProps) {
 
 export function BlogCode(props: simpleProps) {
   return (
-    <code className="leading-[32px] max-sm:text-[12px] py-[2px] h-[32px] px-[10px] rounded bg-slate-100 text-[14px] font-mono">
+    <code className="max-sm:text-[12px] py-[2px] h-[32px] px-[10px] rounded bg-slate-100 text-[14px] font-mono">
       {props.children}
     </code>
   );
@@ -70,7 +70,7 @@ export function BlogCode(props: simpleProps) {
 
 export function BlogPre(props: simpleProps) {
   return (
-    <pre className="non-scrollbar blog-html-pre leading-[32px] bg-slate-100 p-[12px] text-[14px] rounded-md font-mono">
+    <pre className="non-scrollbar leading-[26px] blog-html-pre bg-slate-100 p-[12px] text-[14px] rounded-md font-mono">
       {props.children}
     </pre>
   );

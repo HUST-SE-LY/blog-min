@@ -93,7 +93,7 @@ const blogConfig: config = {
   static: false,
   requests: {
     host: "https://www.coisini.love/api/",
-    router: {           
+    router: {
       getBlogList: {
         path: "/get/blog",
         method: "post",
@@ -137,10 +137,10 @@ const blogConfig: config = {
       addFriendLink: {
         path: "/link/request",
         method: "post",
-      }
+      },
     },
   },
-  homeBackground: 'background.jpg',
+  homeBackground: false,
   mainBackground: "mainBackground.jpg",
   staticBlogBackground: [
     "blogBackground1.jpeg",
@@ -149,7 +149,7 @@ const blogConfig: config = {
   ],
   chatBox: false,
   chatAvatar: "cyberCheems.jpg",
-  homeVideo: false,
+  homeVideo: "background.mp4",
   blogBackground: "/blogBackground.jpeg",
   blogComment: false,
   blogContent: true,
@@ -179,11 +179,13 @@ const blogConfig: config = {
     "你好，我是柴犬的朋友赛博柴犬，你可以在下面的输入框里添加openAI的apiKey来与我对话，我不会收集任何apiKey",
   systemPrompt:
     "现在假设你是一个赛博朋克柴犬，能回答我提出的问题，你的回答方式要像赛博朋克柴犬说话的样子。我的问题是：",
-  staticFriendLink: [{
-    name: "cheems",
-    url: "https://cheems.life",
-    content: "柴犬的小窝"
-  }],
+  staticFriendLink: [
+    {
+      name: "cheems",
+      url: "https://cheems.life",
+      content: "柴犬的小窝",
+    },
+  ],
   friendLink: true,
 };
 
