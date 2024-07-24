@@ -1,4 +1,4 @@
-import React, { lazy, useContext, useEffect, useRef, useState } from "react";
+import React, { lazy, useEffect, useRef, useState } from "react";
 import blogConfig from "../blog.config";
 
 import SingleRow from "../components/home/SingleRow";
@@ -9,7 +9,6 @@ import toTop from "../utils/toTop";
 import { getBlogList, getStaticBlogList } from "../utils/requests";
 import cx from "clsx";
 import lottie from "lottie-web";
-import { ScrollPositionContext } from "../store/scrollPositionStore";
 import { useScrollPosition } from "../store/useScrollPosition";
 
 const limit = 10;
