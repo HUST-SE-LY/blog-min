@@ -94,7 +94,7 @@ export function BlogBlockQuote(props: simpleProps) {
 }
 
 export function BlogA(props: simpleProps) {
-  return <a className="underline text-blue-400">
+  return <a className="underline cursor-pointer text-blue-400">
     {props.children}
   </a>
 }
