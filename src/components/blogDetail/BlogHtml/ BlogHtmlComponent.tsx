@@ -92,3 +92,9 @@ export function BlogBlockQuote(props: simpleProps) {
     </div>
   );
 }
+
+export function BlogA(props: simpleProps) {
+  return <a className="underline text-blue-400">
+    {props.children}
+  </a>
+}

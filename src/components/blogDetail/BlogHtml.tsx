@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import htmr from "htmr";
 import {
+  BlogA,
   BlogBlockQuote,
   BlogCode,
   BlogH1,
@@ -40,6 +41,7 @@ export default function BlogHtml(props: blogHtmlProps) {
     code: BlogCode,
     li: BlogLi,
     blockquote: BlogBlockQuote,
+    a: BlogA,
     
   };
   async function getTag() {
