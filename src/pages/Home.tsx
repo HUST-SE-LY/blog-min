@@ -1,4 +1,4 @@
-import React, { lazy, useEffect, useRef, useState } from "react";
+import React, { lazy, useContext, useEffect, useRef, useState } from "react";
 import blogConfig from "../blog.config";
 
 import SingleRow from "../components/home/SingleRow";
@@ -9,6 +9,8 @@ import toTop from "../utils/toTop";
 import { getBlogList, getStaticBlogList } from "../utils/requests";
 import cx from "clsx";
 import lottie from "lottie-web";
+import { ScrollPositionContext } from "../store/scrollPositionStore";
+import { useScrollPosition } from "../store/useScrollPosition";
 
 const limit = 10;
 const ChatBox = lazy(() => import("../components/home/ChatBox"));
@@ -24,6 +26,7 @@ export default function Home() {
   const [isBottom, setIsBottom] = useState(false);
   const loadingBall = useRef<HTMLDivElement>(null);
   const [isJump, setIsJump] = useState(true);
+  const {state, dispatch} = useScrollPosition();
 
   const [blogList, setBlogList] = useState<
     Array<blogInfo> | Array<staticBlogInfo>
@@ -64,6 +67,16 @@ export default function Home() {
       setBlogList((prev) => [...prev, ...(res as getBlogRes).data.blogs]);
     }
   }
+  const onJump = () => {
+    setIsJump(true);
+    if(container.current && mainContainer.current) {
+      dispatch({type: 'setPosition', payload: {
+        position: container.current.scrollTop,
+        mainPosition: mainContainer.current.scrollTop,
+      }})
+    }
+
+  }
   useEffect(() => {
     if (blogConfig.static) {
       getStaticBlogList({ limit: 10, offset: 0 }).then((loaderData) => {
@@ -86,6 +99,19 @@ export default function Home() {
         path: "/loadingLine.json",
       });
   }, []);
+  useEffect(() => {
+    console.log(state)
+    if(container.current && mainContainer.current && state.mainPosition && state.position) {
+      container.current.scrollTo({
+        top: state.position,
+      })
+      mainContainer.current.scrollTo({
+        top: state.mainPosition,
+      })
+      dispatch({type: 'clear'})
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
   return (
     <>
       <React.Suspense>
@@ -165,9 +191,7 @@ export default function Home() {
             {blogList.map((blogInfo, index) => (
               <div key={blogInfo.id}>
                 <SingleRow
-                  onJump={() => {
-                    setIsJump(true);
-                  }}
+                  onJump={onJump}
                   key={blogInfo.id}
                   blogInfo={blogInfo}
                   index={index}
