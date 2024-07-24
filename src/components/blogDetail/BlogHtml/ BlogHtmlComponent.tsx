@@ -5,7 +5,7 @@ interface simpleProps {
 }
 
 type Aprops = simpleProps & {
-  href: string;
+  href?: string;
 }
 
 export function BlogH1(props: simpleProps) {
