@@ -4,6 +4,10 @@ interface simpleProps {
   children?: ReactNode;
 }
 
+type Aprops = simpleProps & {
+  href: string;
+}
+
 export function BlogH1(props: simpleProps) {
   return (
     <h1 className="h leading-[64px] max-sm:leading-[48px] max-sm:text-[20px] text-[24px] font-bold">
@@ -93,8 +97,8 @@ export function BlogBlockQuote(props: simpleProps) {
   );
 }
 
-export function BlogA(props: simpleProps) {
-  return <a className="underline cursor-pointer text-blue-400">
+export function BlogA(props: Aprops) {
+  return <a href={props.href} target="_blank" className="underline cursor-pointer text-blue-400">
     {props.children}
   </a>
 }
