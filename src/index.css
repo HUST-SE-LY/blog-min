@@ -2,7 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-.bg-radial-transparent-to-white {
+@font-face {
+  font-family: "pixel";
+  src:
+    url("/pixel.woff2") format("woff2"),
+}
+
+.font-pixel {
+  font-family: 'pixel'
+}
+
+.bg-radial-transparent-to-#8D91AA {
   background-image: radial-gradient(
     circle,
     rgba(255, 255, 255, 0.7),
@@ -68,7 +78,8 @@
   color: #005cc5;
 }
 
-.hljs-attr, .hljs-property {
+.hljs-attr,
+.hljs-property {
   color: #811e18;
 }
 
@@ -78,11 +89,45 @@
   color: #5468ff;
 }
 
-html, body {
+html,
+body {
   scroll-behavior: smooth;
 }
 
+.avatar-pixel-circle {
+  width: 12px;
+  height: 12px;
+  box-shadow: 2.5rem 0 0 0 #8D91AA, 2.5rem 0.5rem 0 0 #8D91AA,
+    2.5rem -0.5rem 0 0 #8D91AA,
+    2.3rem -0.8rem 0 0 #8D91AA,
+    2.3rem -1rem 0 0 #8D91AA,
+    2.0rem -1.4rem 0 0 #8D91AA,
+    1.7rem -1.7rem 0 0 #8D91AA,
+    1rem -2.3rem 0 0 #8D91AA,
+    1.4rem -2rem 0 0 #8D91AA,
+    -2.3rem -0.8rem 0 0 #8D91AA,
+    -2.3rem -1rem 0 0 #8D91AA,
+    -2.0rem -1.4rem 0 0 #8D91AA,
+    -1.7rem -1.7rem 0 0 #8D91AA,
+    -1rem -2.3rem 0 0 #8D91AA,
+    -1.4rem -2rem 0 0 #8D91AA,
+    2.3rem 0.8rem 0 0 #8D91AA,
+    2.3rem 1rem 0 0 #8D91AA,
+    2.0rem 1.4rem 0 0 #8D91AA,
+    1.7rem 1.7rem 0 0 #8D91AA,
+    1rem 2.3rem 0 0 #8D91AA,
+    1.4rem 2rem 0 0 #8D91AA,
+    -2.3rem 0.8rem 0 0 #8D91AA,
+    -2.3rem 1rem 0 0 #8D91AA,
+    -2.0rem 1.4rem 0 0 #8D91AA,
+    -1.7rem 1.7rem 0 0 #8D91AA,
+    -1rem 2.3rem 0 0 #8D91AA,
+    -1.4rem 2rem 0 0 #8D91AA,
+    0rem -2.5rem 0 0 #8D91AA, -0.5rem -2.5rem 0 0 #8D91AA,
+    0.5rem -2.5rem 0 0 #8D91AA,
+    0rem 2.5rem 0 0 #8D91AA, -0.5rem 2.5rem 0 0 #8D91AA,
+    0.5rem 2.5rem 0 0 #8D91AA,
+    -2.5rem 0 0 0 #8D91AA, -2.5rem 0.5rem 0 0 #8D91AA,
+    -2.5rem -0.5rem 0 0 #8D91AA;
 
-
-
-
+}

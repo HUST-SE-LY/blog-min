@@ -173,7 +173,7 @@ const blogConfig: config = {
   layout: "two cols",
   avatar: "avatar.jpg",
   avatarTags: ["前端", "想吃薯条", "infp", "enfp", "睡眠好差"],
-  title: "柴犬的小窝",
+  title: "Cheems的小窝",
   introduction: "縱有疾風起，人生不言棄",
   chatWelcomeWord:
     "你好，我是柴犬的朋友赛博柴犬，你可以在下面的输入框里添加openAI的apiKey来与我对话，我不会收集任何apiKey",

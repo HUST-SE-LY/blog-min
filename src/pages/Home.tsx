@@ -1,20 +1,20 @@
-import React, { lazy, useEffect, useRef, useState } from "react";
-import blogConfig from "../blog.config";
+import React, { lazy, useEffect, useRef, useState } from 'react';
+import blogConfig from '../blog.config';
 
-import SingleRow from "../components/home/SingleRow";
-import getTitleTagPos from "../utils/getTitleTagPos";
-import loadingSVG from "../assets/loading.svg";
-import toTopSVG from "../assets/toTop.svg";
-import toTop from "../utils/toTop";
-import { getBlogList, getStaticBlogList } from "../utils/requests";
-import cx from "clsx";
-import lottie from "lottie-web";
-import { useScrollPosition } from "../store/useScrollPosition";
+import SingleRow from '../components/home/SingleRow';
+import getTitleTagPos from '../utils/getTitleTagPos';
+import loadingSVG from '../assets/loading.svg';
+import toTopSVG from '../assets/toTop.svg';
+import toTop from '../utils/toTop';
+import { getBlogList, getStaticBlogList } from '../utils/requests';
+import cx from 'clsx';
+import lottie from 'lottie-web';
+import { useScrollPosition } from '../store/useScrollPosition';
 
 const limit = 10;
-const ChatBox = lazy(() => import("../components/home/ChatBox"));
-const MusicBar = lazy(() => import("../components/home/MusicBar"));
-const SideBar = lazy(() => import("../components/home/SideBar"));
+const ChatBox = lazy(() => import('../components/home/ChatBox'));
+const MusicBar = lazy(() => import('../components/home/MusicBar'));
+const SideBar = lazy(() => import('../components/home/SideBar'));
 export default function Home() {
   const offset = useRef(10);
   const [isLoading, setIsLoading] = useState(false);
@@ -25,13 +25,13 @@ export default function Home() {
   const [isBottom, setIsBottom] = useState(false);
   const loadingBall = useRef<HTMLDivElement>(null);
   const [isJump, setIsJump] = useState(true);
-  const {state, dispatch} = useScrollPosition();
+  const { state, dispatch } = useScrollPosition();
 
   const [blogList, setBlogList] = useState<
     Array<blogInfo> | Array<staticBlogInfo>
   >([]);
   const [showTags, setShowTags] = useState(false);
-  document.addEventListener("scroll", (e) => {
+  document.addEventListener('scroll', (e) => {
     e.stopPropagation();
   });
   const handleScroll = async () => {
@@ -68,14 +68,16 @@ export default function Home() {
   }
   const onJump = () => {
     setIsJump(true);
-    if(container.current && mainContainer.current) {
-      dispatch({type: 'setPosition', payload: {
-        position: container.current.scrollTop,
-        mainPosition: mainContainer.current.scrollTop,
-      }})
+    if (container.current && mainContainer.current) {
+      dispatch({
+        type: 'setPosition',
+        payload: {
+          position: container.current.scrollTop,
+          mainPosition: mainContainer.current.scrollTop,
+        },
+      });
     }
-
-  }
+  };
   useEffect(() => {
     if (blogConfig.static) {
       getStaticBlogList({ limit: 10, offset: 0 }).then((loaderData) => {
@@ -95,22 +97,27 @@ export default function Home() {
         container: loadingLineContainer.current,
         loop: true,
         autoplay: true,
-        path: "/loadingLine.json",
+        path: '/loadingLine.json',
       });
   }, []);
   useEffect(() => {
-    console.log(state)
-    if(container.current && mainContainer.current && state.mainPosition && state.position) {
+    console.log(state);
+    if (
+      container.current &&
+      mainContainer.current &&
+      state.mainPosition &&
+      state.position
+    ) {
       container.current.scrollTo({
         top: state.position,
-      })
+      });
       mainContainer.current.scrollTo({
         top: state.mainPosition,
-      })
-      dispatch({type: 'clear'})
+      });
+      dispatch({ type: 'clear' });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       <React.Suspense>
@@ -130,6 +137,7 @@ export default function Home() {
             className="relative snap-start w-full h-screen flex gap-[1rem] flex-col items-center justify-center"
           >
             <div className="relative w-fit h-fit">
+              <div className="avatar-pixel-circle bg-transparent left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 absolute"></div>
               <img
                 src={blogConfig.avatar}
                 alt=""
@@ -139,7 +147,7 @@ export default function Home() {
                 onMouseLeave={() => {
                   setShowTags(false);
                 }}
-                className="max-sm:w-[3rem] max-sm:h-[3rem] block w-[5rem] h-[5rem] border-blue-400 border-[1px] rounded-full hover:shadow-md transition-all"
+                className="max-sm:w-[3rem] max-sm:h-[3rem] block w-[5rem] h-[5rem] rounded-full hover:shadow-md transition-all"
               />
               {blogConfig.avatarTags && showTags
                 ? blogConfig.avatarTags.map((tag, index) => {
@@ -155,10 +163,10 @@ export default function Home() {
                 : null}
             </div>
 
-            <p className="animate-floatIn bg-clip-text text-transparent bg-gradient-to-br from-white to-blue-300 font-bold text-2xl max-sm:text-[16px]">
+            <p className="animate-floatIn font-pixel bg-clip-text text-transparent bg-gradient-to-br from-white to-blue-300 font-bold text-2xl max-sm:text-[16px]">
               {blogConfig.title}
             </p>
-            <p className="animate-floatIn bg-clip-text text-white max-sm:text-[12px]">
+            <p className="animate-floatIn font-pixel bg-clip-text text-white max-sm:text-[12px]">
               {blogConfig.introduction}
             </p>
             {blogConfig.homeVideo ? (
@@ -238,8 +246,8 @@ export default function Home() {
       </React.Suspense>
       <div
         className={cx([
-          "bg-white fixed w-screen h-screen z-[999] top-0 transition-all flex justify-center items-center duration-500",
-          isJump ? "left-0" : "left-[100vw]",
+          'bg-white fixed w-screen h-screen z-[999] top-0 transition-all flex justify-center items-center duration-500',
+          isJump ? 'left-0' : 'left-[100vw]',
         ])}
       >
         <div ref={loadingLineContainer} className="w-full"></div>
