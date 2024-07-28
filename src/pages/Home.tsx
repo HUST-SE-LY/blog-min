@@ -1,8 +1,6 @@
 import React, { lazy, useEffect, useRef, useState } from 'react';
 import blogConfig from '../blog.config';
-
 import SingleRow from '../components/home/SingleRow';
-import getTitleTagPos from '../utils/getTitleTagPos';
 import loadingSVG from '../assets/loading.svg';
 import toTopSVG from '../assets/toTop.svg';
 import toTop from '../utils/toTop';
@@ -30,7 +28,6 @@ export default function Home() {
   const [blogList, setBlogList] = useState<
     Array<blogInfo> | Array<staticBlogInfo>
   >([]);
-  const [showTags, setShowTags] = useState(false);
   document.addEventListener('scroll', (e) => {
     e.stopPropagation();
   });
@@ -137,30 +134,12 @@ export default function Home() {
             className="relative snap-start w-full h-screen flex gap-[1rem] flex-col items-center justify-center"
           >
             <div className="relative w-fit h-fit">
-              <div className="avatar-pixel-circle bg-transparent left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 absolute"></div>
+              <div className="avatar-pixel-circle bg-transparent z-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 absolute"></div>
               <img
                 src={blogConfig.avatar}
                 alt=""
-                onMouseMove={() => {
-                  setShowTags(true);
-                }}
-                onMouseLeave={() => {
-                  setShowTags(false);
-                }}
-                className="max-sm:w-[3rem] max-sm:h-[3rem] block w-[5rem] h-[5rem] rounded-full hover:shadow-md transition-all"
+                className="block scale-[0.9] w-[5rem] h-[5rem] rounded-full hover:shadow-md transition-all"
               />
-              {blogConfig.avatarTags && showTags
-                ? blogConfig.avatarTags.map((tag, index) => {
-                    const pos = getTitleTagPos(index);
-                    return (
-                      <p
-                        className={`animate-pulse text-white absolute ${pos.x} ${pos.y}`}
-                      >
-                        {tag}
-                      </p>
-                    );
-                  })
-                : null}
             </div>
 
             <p className="animate-floatIn font-pixel bg-clip-text text-transparent bg-gradient-to-br from-white to-blue-300 font-bold text-2xl max-sm:text-[16px]">
@@ -224,8 +203,12 @@ export default function Home() {
                   <img src={loadingSVG} alt="" />
                 </div>
               ) : (
-                <div className="w-fit h-fit px-[2rem] py-[1rem] border-2 border-blue-200 bg-white/80 rounded-lg mb-[2rem] ">
-                  已经到尽头了哦
+                <div className="font-pixel text-left mb-[2rem] text-[white] flex justify-start items-center">
+                  <div className="max-sm:w-[100px] max-sm:h-[25px] max-sm:leading-[25px] max-sm:text-[12px] rounded-md shadow-md w-[150px] relative h-[50px] text-center leading-[50px] bg-blue-500/30 backdrop-blur-md text-xl">
+                    没有了
+                    <div className="blog-sub-pixel-border absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2"></div>
+                    <div className="blog-sub-pixel-decoration absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2"></div>
+                  </div>
                 </div>
               )}
             </div>
@@ -237,6 +220,7 @@ export default function Home() {
           }}
           className="max-sm:w-[30px] max-sm:h-[30px] max-md:right-[50px] z-[904] fixed right-[150px] bottom-[100px] w-[40px] h-[40px] bg-white border-blue-200 border-2 cursor-pointer rounded-full flex justify-center items-center"
         >
+          <div className='button-pixel-border max-sm:hidden absolute top-1/2 left-1/2 translate-x-[-4px] translate-y-[-4px]'></div>
           <img
             className="max-sm:w-[15px] max-sm:h-[15px]"
             src={toTopSVG}

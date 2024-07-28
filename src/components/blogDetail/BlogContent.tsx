@@ -17,11 +17,12 @@ export default function BlogContent() {
       } h-fit w-fit gap-[1rem]`}
     >
       <div
-        className="flex max-sm:w-[30px] max-sm:h-[30px] justify-center items-center w-[40px] h-[40px] rounded-full border-[1px] border-blue-200 bg-white cursor-pointer"
+        className="flex max-sm:w-[30px] max-sm:h-[30px] relative justify-center items-center w-[40px] h-[40px] rounded-full border-[1px] border-blue-200 bg-white cursor-pointer"
         onClick={() => {
           setShowContent(!showContent);
         }}
       >
+        <div className='button-pixel-border max-sm:hidden absolute top-1/2 left-1/2 translate-x-[-4px] translate-y-[-4px]'></div> 
         <img className="max-sm:w-[20px] max-sm:h-[20px]" src={contentSVG} alt="" />
       </div>
       <div

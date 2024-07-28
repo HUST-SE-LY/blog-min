@@ -77,6 +77,7 @@ export default function BlogDetail() {
           }}
           className="max-sm:w-[30px] max-sm:h-[30px] max-md:right-[50px] fixed right-[150px] bottom-[50px] w-[40px] h-[40px] bg-white border-blue-200 border-2 cursor-pointer rounded-full flex justify-center items-center"
         >
+          <div className='button-pixel-border max-sm:hidden absolute top-1/2 left-1/2 translate-x-[-4px] translate-y-[-4px]'></div> 
           <img
             className="max-sm:w-[15px] max-sm:h-[15px]"
             src={toTopSVG}
@@ -86,8 +87,9 @@ export default function BlogDetail() {
 
         <div
           onClick={nav}
-          className="max-sm:w-[30px] max-sm:h-[30px] max-md:right-[50px] fixed right-[150px] bottom-[100px] w-[40px] h-[40px] bg-white border-blue-200 border-2 cursor-pointer rounded-full flex justify-center items-center"
+          className="max-sm:w-[30px] max-sm:h-[30px] max-md:right-[50px] fixed right-[150px] bottom-[120px] w-[40px] h-[40px] bg-white border-blue-200 border-2 cursor-pointer rounded-full flex justify-center items-center"
         >
+          <div className='button-pixel-border max-sm:hidden absolute top-1/2 left-1/2 translate-x-[-4px] translate-y-[-4px]'></div> 
           <img
             className="max-sm:w-[15px] w-[30px] h-[30px] max-sm:h-[15px]"
             src={homeSVG}

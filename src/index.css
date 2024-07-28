@@ -3,13 +3,12 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "pixel";
-  src:
-    url("/pixel.woff2") format("woff2"),
+  font-family: 'pixel';
+  src: url('/pixel.woff2') format('woff2');
 }
 
 .font-pixel {
-  font-family: 'pixel'
+  font-family: 'pixel';
 }
 
 .bg-radial-transparent-to-#8D91AA {
@@ -94,40 +93,112 @@ body {
   scroll-behavior: smooth;
 }
 
+.blog-pixel-decoration-left {
+  width: 12px;
+  height: 12px;
+  box-shadow: -160px -80px 0 0 #d6eaf8, -172px -68px 0 0 #d6eaf8,
+    -172px 68px 0 0 #d6eaf8, -160px 80px 0 0 #d6eaf8, -148px 80px 0 0 #d6eaf8;
+}
+
+.blog-pixel-decoration-right {
+  width: 12px;
+  height: 12px;
+  box-shadow: 160px -80px 0 0 #d6eaf8, 172px -68px 0 0 #d6eaf8,
+    172px 68px 0 0 #d6eaf8, 160px 80px 0 0 #d6eaf8, 148px 80px 0 0 #d6eaf8;
+}
+
+.blog-sub-pixel-border {
+  width: 8px;
+  height: 8px;
+  box-shadow: 75px 0 0 0 #d6eaf8, 75px -8px 0 0 #d6eaf8, 75px 8px 0 0 #d6eaf8,
+    75px -16px 0 0 #d6eaf8, 75px 16px 0 0 #d6eaf8, -75px 0 0 0 #d6eaf8,
+    -75px -8px 0 0 #d6eaf8, -75px 8px 0 0 #d6eaf8, -75px -16px 0 0 #d6eaf8,
+    -75px 16px 0 0 #d6eaf8, -72px -22px 0 0 #d6eaf8, -72px 22px 0 0 #d6eaf8,
+    72px -22px 0 0 #d6eaf8, 72px 22px 0 0 #d6eaf8, 68px 26px 0 0 #d6eaf8,
+    60px 26px 0 0 #d6eaf8, 52px 26px 0 0 #d6eaf8, 46px 26px 0 0 #d6eaf8,
+    38px 26px 0 0 #d6eaf8, 30px 26px 0 0 #d6eaf8, 22px 26px 0 0 #d6eaf8,
+    14px 26px 0 0 #d6eaf8, 6px 26px 0 0 #d6eaf8, 0px 26px 0 0 #d6eaf8,
+    -68px 26px 0 0 #d6eaf8, -60px 26px 0 0 #d6eaf8, -52px 26px 0 0 #d6eaf8,
+    -46px 26px 0 0 #d6eaf8, -38px 26px 0 0 #d6eaf8, -30px 26px 0 0 #d6eaf8,
+    -22px 26px 0 0 #d6eaf8, -14px 26px 0 0 #d6eaf8, -6px 26px 0 0 #d6eaf8,
+    68px -26px 0 0 #d6eaf8, 60px -26px 0 0 #d6eaf8, 52px -26px 0 0 #d6eaf8,
+    46px -26px 0 0 #d6eaf8, 38px -26px 0 0 #d6eaf8, 30px -26px 0 0 #d6eaf8,
+    22px -26px 0 0 #d6eaf8, 14px -26px 0 0 #d6eaf8, 6px -26px 0 0 #d6eaf8,
+    0px -26px 0 0 #d6eaf8, -68px -26px 0 0 #d6eaf8, -60px -26px 0 0 #d6eaf8,
+    -52px -26px 0 0 #d6eaf8, -46px -26px 0 0 #d6eaf8, -38px -26px 0 0 #d6eaf8,
+    -30px -26px 0 0 #d6eaf8, -22px -26px 0 0 #d6eaf8, -14px -26px 0 0 #d6eaf8,
+    -6px -26px 0 0 #d6eaf8;
+}
+
+.blog-sub-pixel-decoration {
+  width: 6px;
+  height: 6px;
+  box-shadow: -56px -14px 0 0 #d6eaf8, -60px -10px 0 0 #d6eaf8,
+    56px 14px 0 0 #d6eaf8, 60px 10px 0 0 #d6eaf8;
+}
+
+.blog-sub-left-pixel-leadline {
+  width: 6px;
+  height: 6px;
+  box-shadow: 0px 0px 0 0 #d6eaf8, 0px 6px 0 0 #d6eaf8, 0px 12px 0 0 #d6eaf8,
+    0px 18px 0 0 #d6eaf8, 0px 24px 0 0 #d6eaf8, 0px 30px 0 0 #d6eaf8,
+    0px 36px 0 0 #d6eaf8, 0px 42px 0 0 #d6eaf8, 6px 0px 0 0 #d6eaf8,
+    12px 0px 0 0 #d6eaf8, 18px 0px 0 0 #d6eaf8, 24px 0px 0 0 #d6eaf8,
+    30px 0px 0 0 #d6eaf8, 36px 0px 0 0 #d6eaf8, 42px 0px 0 0 #d6eaf8,
+    48px 0px 0 0 #d6eaf8, 54px 0px 0 0 #d6eaf8, 60px 0px 0 0 #d6eaf8,
+    66px 0px 0 0 #d6eaf8, 72px 0px 0 0 #d6eaf8, 78px 0px 0 0 #d6eaf8,
+    84px 0px 0 0 #d6eaf8, 90px 0px 0 0 #d6eaf8, 96px 0px 0 0 #d6eaf8,
+    102px 0px 0 0 #d6eaf8, 104px 0px 0 0 #d6eaf8;
+}
+
+.blog-sub-right-pixel-leadline {
+  width: 6px;
+  height: 6px;
+  box-shadow: 0px 6px 0 0 #d6eaf8, 0px 12px 0 0 #d6eaf8, 0px 18px 0 0 #d6eaf8,
+    0px 24px 0 0 #d6eaf8, 0px 30px 0 0 #d6eaf8, 0px 36px 0 0 #d6eaf8,
+    0px 42px 0 0 #d6eaf8, -6px 0px 0 0 #d6eaf8, -12px 0px 0 0 #d6eaf8,
+    -18px 0px 0 0 #d6eaf8, -24px 0px 0 0 #d6eaf8, -30px 0px 0 0 #d6eaf8,
+    -36px 0px 0 0 #d6eaf8, -42px 0px 0 0 #d6eaf8, -48px 0px 0 0 #d6eaf8,
+    -54px 0px 0 0 #d6eaf8, -60px 0px 0 0 #d6eaf8, -66px 0px 0 0 #d6eaf8,
+    -72px 0px 0 0 #d6eaf8, -78px 0px 0 0 #d6eaf8, -84px 0px 0 0 #d6eaf8,
+    -90px 0px 0 0 #d6eaf8, -96px 0px 0 0 #d6eaf8, -102px 0px 0 0 #d6eaf8,
+    -104px 0px 0 0 #d6eaf8;
+}
+
 .avatar-pixel-circle {
   width: 12px;
   height: 12px;
-  box-shadow: 2.5rem 0 0 0 #8D91AA, 2.5rem 0.5rem 0 0 #8D91AA,
-    2.5rem -0.5rem 0 0 #8D91AA,
-    2.3rem -0.8rem 0 0 #8D91AA,
-    2.3rem -1rem 0 0 #8D91AA,
-    2.0rem -1.4rem 0 0 #8D91AA,
-    1.7rem -1.7rem 0 0 #8D91AA,
-    1rem -2.3rem 0 0 #8D91AA,
-    1.4rem -2rem 0 0 #8D91AA,
-    -2.3rem -0.8rem 0 0 #8D91AA,
-    -2.3rem -1rem 0 0 #8D91AA,
-    -2.0rem -1.4rem 0 0 #8D91AA,
-    -1.7rem -1.7rem 0 0 #8D91AA,
-    -1rem -2.3rem 0 0 #8D91AA,
-    -1.4rem -2rem 0 0 #8D91AA,
-    2.3rem 0.8rem 0 0 #8D91AA,
-    2.3rem 1rem 0 0 #8D91AA,
-    2.0rem 1.4rem 0 0 #8D91AA,
-    1.7rem 1.7rem 0 0 #8D91AA,
-    1rem 2.3rem 0 0 #8D91AA,
-    1.4rem 2rem 0 0 #8D91AA,
-    -2.3rem 0.8rem 0 0 #8D91AA,
-    -2.3rem 1rem 0 0 #8D91AA,
-    -2.0rem 1.4rem 0 0 #8D91AA,
-    -1.7rem 1.7rem 0 0 #8D91AA,
-    -1rem 2.3rem 0 0 #8D91AA,
-    -1.4rem 2rem 0 0 #8D91AA,
-    0rem -2.5rem 0 0 #8D91AA, -0.5rem -2.5rem 0 0 #8D91AA,
-    0.5rem -2.5rem 0 0 #8D91AA,
-    0rem 2.5rem 0 0 #8D91AA, -0.5rem 2.5rem 0 0 #8D91AA,
-    0.5rem 2.5rem 0 0 #8D91AA,
-    -2.5rem 0 0 0 #8D91AA, -2.5rem 0.5rem 0 0 #8D91AA,
-    -2.5rem -0.5rem 0 0 #8D91AA;
+  box-shadow: 2.5rem 0 0 0 #8d91aa, 2.5rem 0.5rem 0 0 #8d91aa,
+    2.5rem -0.5rem 0 0 #8d91aa, 2.3rem -0.8rem 0 0 #8d91aa,
+    2.3rem -1rem 0 0 #8d91aa, 2rem -1.4rem 0 0 #8d91aa,
+    1.7rem -1.7rem 0 0 #8d91aa, 1rem -2.3rem 0 0 #8d91aa,
+    1.4rem -2rem 0 0 #8d91aa, -2.3rem -0.8rem 0 0 #8d91aa,
+    -2.3rem -1rem 0 0 #8d91aa, -2rem -1.4rem 0 0 #8d91aa,
+    -1.7rem -1.7rem 0 0 #8d91aa, -1rem -2.3rem 0 0 #8d91aa,
+    -1.4rem -2rem 0 0 #8d91aa, 2.3rem 0.8rem 0 0 #8d91aa,
+    2.3rem 1rem 0 0 #8d91aa, 2rem 1.4rem 0 0 #8d91aa, 1.7rem 1.7rem 0 0 #8d91aa,
+    1rem 2.3rem 0 0 #8d91aa, 1.4rem 2rem 0 0 #8d91aa, -2.3rem 0.8rem 0 0 #8d91aa,
+    -2.3rem 1rem 0 0 #8d91aa, -2rem 1.4rem 0 0 #8d91aa,
+    -1.7rem 1.7rem 0 0 #8d91aa, -1rem 2.3rem 0 0 #8d91aa,
+    -1.4rem 2rem 0 0 #8d91aa, 0rem -2.5rem 0 0 #8d91aa,
+    -0.5rem -2.5rem 0 0 #8d91aa, 0.5rem -2.5rem 0 0 #8d91aa,
+    0rem 2.5rem 0 0 #8d91aa, -0.5rem 2.5rem 0 0 #8d91aa,
+    0.5rem 2.5rem 0 0 #8d91aa, -2.5rem 0 0 0 #8d91aa, -2.5rem 0.5rem 0 0 #8d91aa,
+    -2.5rem -0.5rem 0 0 #8d91aa;
+}
 
+.button-pixel-border {
+  width: 8px;
+  height: 8px;
+  box-shadow: 20px 0px 0 0 #d6eaf8, 20px 8px 0 0 #d6eaf8, 20px -8px 0 0 #d6eaf8,
+    14px -14px 0 0 #d6eaf8, 8px -20px 0 0 #d6eaf8, 0px -20px 0 0 #d6eaf8,
+    -8px -20px 0 0 #d6eaf8, -14px -14px 0 0 #d6eaf8, -20px 0px 0 0 #d6eaf8,
+    -20px 8px 0 0 #d6eaf8, -20px -8px 0 0 #d6eaf8, 8px 20px 0 0 #d6eaf8, 0px 20px 0 0 #d6eaf8,
+    -8px 20px 0 0 #d6eaf8, 14px 14px 0 0 #d6eaf8, -14px 14px 0 0 #d6eaf8;
+}
+.animate-pause {
+}
+
+.animate-pause:hover {
+  animation-play-state: paused;
 }

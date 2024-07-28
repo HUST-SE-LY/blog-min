@@ -141,7 +141,7 @@ const blogConfig: config = {
     },
   },
   homeBackground: false,
-  mainBackground: "mainBackground.jpg",
+  mainBackground: "mainBackground.gif",
   staticBlogBackground: [
     "blogBackground1.jpeg",
     "blogBackground2.jpeg",
@@ -150,7 +150,7 @@ const blogConfig: config = {
   chatBox: false,
   chatAvatar: "cyberCheems.jpg",
   homeVideo: "background.mp4",
-  blogBackground: "/blogBackground.jpeg",
+  blogBackground: "/blogBackground.gif",
   blogComment: false,
   blogContent: true,
   commonTags: true,
@@ -171,7 +171,7 @@ const blogConfig: config = {
   neteasePlayListId: false,
   staticMusicList: ["bgm.m4a"],
   layout: "two cols",
-  avatar: "avatar.jpg",
+  avatar: "avatar.gif",
   avatarTags: ["前端", "想吃薯条", "infp", "enfp", "睡眠好差"],
   title: "Cheems的小窝",
   introduction: "縱有疾風起，人生不言棄",
@@ -186,7 +186,7 @@ const blogConfig: config = {
       content: "柴犬的小窝",
     },
   ],
-  friendLink: true,
+  friendLink: false,
 };
 
 export default blogConfig;

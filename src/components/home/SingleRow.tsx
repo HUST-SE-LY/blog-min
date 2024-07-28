@@ -15,7 +15,7 @@ export default function SingleRow(props: singleRowProps) {
 
   return (
     <>
-      <div className={"max-sm:hidden grid grid-cols-2 max-sm:h-[150px] h-[300px]"}>
+      <div className={"max-sm:hidden font-pixel  grid grid-cols-2 max-sm:h-[150px] h-[300px]"}>
         <BlogLeft
           onJump={props.onJump}
           isMain={props.index % 2 === 1}
