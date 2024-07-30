@@ -150,7 +150,7 @@ const blogConfig: config = {
   chatBox: false,
   chatAvatar: "cyberCheems.jpg",
   homeVideo: "background.mp4",
-  blogBackground: "/blogBackground.gif",
+  blogBackground: "/mainBackground.gif",
   blogComment: false,
   blogContent: true,
   commonTags: true,
