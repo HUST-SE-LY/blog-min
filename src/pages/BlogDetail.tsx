@@ -104,7 +104,7 @@ export default function BlogDetail() {
           showLoading ? "right-0" : "right-[100vw]",
         ])}
       >
-        <div ref={loadingLineContainer} className="w-full"></div>
+        <div ref={loadingLineContainer} className="w-1/2"></div>
       </div>
     </>
   );

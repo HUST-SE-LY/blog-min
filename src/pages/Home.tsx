@@ -234,7 +234,7 @@ export default function Home() {
           isJump ? 'left-0' : 'left-[100vw]',
         ])}
       >
-        <div ref={loadingLineContainer} className="w-full"></div>
+        <div ref={loadingLineContainer} className="w-1/2"></div>
       </div>
     </>
   );
