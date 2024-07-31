@@ -42,6 +42,11 @@ export default function Home() {
       }
     }
   };
+
+  const getVideo = () => {
+    return (new Date()).getHours() > 6 && (new Date()).getHours() < 19 ? '/morningBg.mp4' : '/nightBg.mp4'
+    
+  }
   async function updateBlogList() {
     if (blogConfig.static) {
       const res = await getStaticBlogList({
@@ -148,18 +153,14 @@ export default function Home() {
             <p className="animate-floatIn font-pixel bg-clip-text text-white max-sm:text-[12px]">
               {blogConfig.introduction}
             </p>
-            {blogConfig.homeVideo ? (
-              <>
-                <video
-                  src={blogConfig.homeVideo}
-                  className="-z-10 max-sm:hidden object-cover w-full h-full absolute top-0 left-0"
-                  autoPlay
-                  loop
-                  muted
-                  controls={false}
-                ></video>
-              </>
-            ) : null}
+            <video
+              src={getVideo()}
+              className="-z-10 max-sm:hidden object-cover w-full h-full absolute top-0 left-0"
+              autoPlay
+              loop
+              muted
+              controls={false}
+            ></video>
             {blogConfig.homeBackground ? (
               <>
                 <img
@@ -220,7 +221,7 @@ export default function Home() {
           }}
           className="max-sm:w-[30px] max-sm:h-[30px] max-md:right-[50px] z-[904] fixed right-[150px] bottom-[100px] w-[40px] h-[40px] bg-white border-blue-200 border-2 cursor-pointer rounded-full flex justify-center items-center"
         >
-          <div className='button-pixel-border max-sm:hidden absolute top-1/2 left-1/2 translate-x-[-4px] translate-y-[-4px]'></div>
+          <div className="button-pixel-border max-sm:hidden absolute top-1/2 left-1/2 translate-x-[-4px] translate-y-[-4px]"></div>
           <img
             className="max-sm:w-[15px] max-sm:h-[15px]"
             src={toTopSVG}
