@@ -53,6 +53,7 @@ export default function Home() {
         limit: limit,
         offset: offset.current,
       });
+      console.log(res)
       if (res.length < limit) {
         setIsBottom(true);
       }
@@ -84,6 +85,12 @@ export default function Home() {
     if (blogConfig.static) {
       getStaticBlogList({ limit: 10, offset: 0 }).then((loaderData) => {
         setBlogList(loaderData as staticBlogInfo[]);
+        if(loaderData.length < 10) {
+          setIsBottom(true);
+        }
+        setTimeout(() => {
+          setIsJump(false);
+        }, 500)
       });
     } else {
       getBlogList({ limit: 10, offset: 0 }).then((loaderData: getBlogRes) => {
@@ -103,7 +110,6 @@ export default function Home() {
       });
   }, []);
   useEffect(() => {
-    console.log(state);
     if (
       container.current &&
       mainContainer.current &&
